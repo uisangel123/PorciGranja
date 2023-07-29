@@ -365,26 +365,27 @@ h6 {
 }
 
 .logo img {
-  max-height: 26px;
-  margin-right: 6px;
+
 }
 
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #012970;
+  color: #692D2C;
   font-family: "Nunito", sans-serif;
 }
 
 .header {
   transition: all 0.5s;
   z-index: 997;
-  height: 60px;
+ 
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
   padding-left: 20px;
   /* Toggle Sidebar Button */
   /* Search Bar */
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .header .toggle-sidebar-btn {

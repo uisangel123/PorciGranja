@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Porcino;
+use App\Models\Corrale;
 use Illuminate\Http\Request;
 
 /**
- * Class PorcinoController
+ * Class CorraleController
  * @package App\Http\Controllers
  */
-class PorcinoController extends Controller
+class CorraleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,10 +23,10 @@ class PorcinoController extends Controller
     
     public function index()
     {
-        $porcinos = Porcino::paginate();
+        $corrales = Corrale::paginate();
 
-        return view('porcino.index', compact('porcinos'))
-            ->with('i', (request()->input('page', 1) - 1) * $porcinos->perPage());
+        return view('corrale.index', compact('corrales'))
+            ->with('i', (request()->input('page', 1) - 1) * $corrales->perPage());
     }
 
     /**
@@ -36,8 +36,8 @@ class PorcinoController extends Controller
      */
     public function create()
     {
-        $porcino = new Porcino();
-        return view('porcino.create', compact('porcino'));
+        $corrale = new Corrale();
+        return view('corrale.create', compact('corrale'));
     }
 
     /**
@@ -48,12 +48,12 @@ class PorcinoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Porcino::$rules);
+        request()->validate(Corrale::$rules);
 
-        $porcino = Porcino::create($request->all());
+        $corrale = Corrale::create($request->all());
 
-        return redirect()->route('porcinos.index')
-            ->with('success', 'Porcino created successfully.');
+        return redirect()->route('corrales.index')
+            ->with('success', 'Corrale created successfully.');
     }
 
     /**
@@ -64,9 +64,9 @@ class PorcinoController extends Controller
      */
     public function show($id)
     {
-        $porcino = Porcino::find($id);
+        $corrale = Corrale::find($id);
 
-        return view('porcino.show', compact('porcino'));
+        return view('corrale.show', compact('corrale'));
     }
 
     /**
@@ -77,26 +77,26 @@ class PorcinoController extends Controller
      */
     public function edit($id)
     {
-        $porcino = Porcino::find($id);
+        $corrale = Corrale::find($id);
 
-        return view('porcino.edit', compact('porcino'));
+        return view('corrale.edit', compact('corrale'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Porcino $porcino
+     * @param  Corrale $corrale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Porcino $porcino)
+    public function update(Request $request, Corrale $corrale)
     {
-        request()->validate(Porcino::$rules);
+        request()->validate(Corrale::$rules);
 
-        $porcino->update($request->all());
+        $corrale->update($request->all());
 
-        return redirect()->route('porcinos.index')
-            ->with('success', 'Porcino updated successfully');
+        return redirect()->route('corrales.index')
+            ->with('success', 'Corrale updated successfully');
     }
 
     /**
@@ -106,9 +106,9 @@ class PorcinoController extends Controller
      */
     public function destroy($id)
     {
-        $porcino = Porcino::find($id)->delete();
+        $corrale = Corrale::find($id)->delete();
 
-        return redirect()->route('porcinos.index')
-            ->with('success', 'Porcino deleted successfully');
+        return redirect()->route('corrales.index')
+            ->with('success', 'Corrale deleted successfully');
     }
 }

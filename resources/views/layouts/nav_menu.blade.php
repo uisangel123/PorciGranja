@@ -2,8 +2,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{ route('home.index') }}" class="logo d-flex align-items-center">{{--modifique la ruta q devuelve al inicio por medio del logo--}}
-            <img src="assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">NiceAdmin</span>
+            <img src="{{ asset('assets/img/LOGO-3.png')}}" alt="" style="width: 70px;height: 55px !important;">
+            <span class="d-none d-lg-block">PorciGranja</span>
         </a>
         {{-- ESCONDE EL MENU --}}
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -163,7 +163,7 @@
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"
                     arual-expanded="true">
-                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <img src="{{ asset('assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">Hola.{{ Auth::user()->name }}</span>
                 </a><!-- End Profile Iamge Icon -->
 

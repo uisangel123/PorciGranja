@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Porcino;
+use App\Models\Granja;
 use Illuminate\Http\Request;
 
 /**
- * Class PorcinoController
+ * Class GranjaController
  * @package App\Http\Controllers
  */
-class PorcinoController extends Controller
+class GranjaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,10 +23,10 @@ class PorcinoController extends Controller
     
     public function index()
     {
-        $porcinos = Porcino::paginate();
+        $granjas = Granja::paginate();
 
-        return view('porcino.index', compact('porcinos'))
-            ->with('i', (request()->input('page', 1) - 1) * $porcinos->perPage());
+        return view('granja.index', compact('granjas'))
+            ->with('i', (request()->input('page', 1) - 1) * $granjas->perPage());
     }
 
     /**
@@ -36,8 +36,8 @@ class PorcinoController extends Controller
      */
     public function create()
     {
-        $porcino = new Porcino();
-        return view('porcino.create', compact('porcino'));
+        $granja = new Granja();
+        return view('granja.create', compact('granja'));
     }
 
     /**
@@ -48,12 +48,12 @@ class PorcinoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Porcino::$rules);
+        request()->validate(Granja::$rules);
 
-        $porcino = Porcino::create($request->all());
+        $granja = Granja::create($request->all());
 
-        return redirect()->route('porcinos.index')
-            ->with('success', 'Porcino created successfully.');
+        return redirect()->route('granjas.index')
+            ->with('success', 'Granja created successfully.');
     }
 
     /**
@@ -64,9 +64,9 @@ class PorcinoController extends Controller
      */
     public function show($id)
     {
-        $porcino = Porcino::find($id);
+        $granja = Granja::find($id);
 
-        return view('porcino.show', compact('porcino'));
+        return view('granja.show', compact('granja'));
     }
 
     /**
@@ -77,26 +77,26 @@ class PorcinoController extends Controller
      */
     public function edit($id)
     {
-        $porcino = Porcino::find($id);
+        $granja = Granja::find($id);
 
-        return view('porcino.edit', compact('porcino'));
+        return view('granja.edit', compact('granja'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Porcino $porcino
+     * @param  Granja $granja
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Porcino $porcino)
+    public function update(Request $request, Granja $granja)
     {
-        request()->validate(Porcino::$rules);
+        request()->validate(Granja::$rules);
 
-        $porcino->update($request->all());
+        $granja->update($request->all());
 
-        return redirect()->route('porcinos.index')
-            ->with('success', 'Porcino updated successfully');
+        return redirect()->route('granjas.index')
+            ->with('success', 'Granja updated successfully');
     }
 
     /**
@@ -106,9 +106,9 @@ class PorcinoController extends Controller
      */
     public function destroy($id)
     {
-        $porcino = Porcino::find($id)->delete();
+        $granja = Granja::find($id)->delete();
 
-        return redirect()->route('porcinos.index')
-            ->with('success', 'Porcino deleted successfully');
+        return redirect()->route('granjas.index')
+            ->with('success', 'Granja deleted successfully');
     }
 }
