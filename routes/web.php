@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PorcinoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +20,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');//le agregue en el name el .index para q funcione la ruta de volver al inicio
+
+Route::resource('porcinos',PorcinoController::class)->middleware(['auth']);// el middleware funciona como un verificador de estado, si no esta loggeado no podra acceder a esa vista

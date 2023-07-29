@@ -1,4 +1,4 @@
-<aside id="sidebar" class="sidebar">
+<div id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -17,8 +17,8 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="components-alerts.html">
-                        <i class="bi bi-circle"></i><span>Alerts</span>
+                    <a href="{{ route('porcinos.index')}}">
+                        <i class="bi bi-circle"></i><span>Porcinos</span>
                     </a>
                 </li>
                 <li>
@@ -235,4 +235,4 @@
 
     </ul>
 
-</aside>
+</div>

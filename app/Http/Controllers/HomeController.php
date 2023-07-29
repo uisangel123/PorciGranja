@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home.index');//cambie la ruta q antes era home solamente y tambien cambien el nombre del archivo a index y esta dentro de la carpeta home
     }
 }
