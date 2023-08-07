@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('Fecha_inicial') }}
-            {{ Form::date('Fecha_inicial', $etapaLote->Fecha_inicial, ['class' => 'form-control' . ($errors->has('Fecha_inicial') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Inicial']) }}
+            {{ Form::date('Fecha_inicial', $etapaLote->Fecha_inicial, ['class' => 'form-control' . ($errors->has('Fecha_inicial') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Inicial','id' => 'Fecha_dinamica']) }}
             {!! $errors->first('Fecha_inicial', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

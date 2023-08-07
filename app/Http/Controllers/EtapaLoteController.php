@@ -16,10 +16,6 @@ class EtapaLoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
         $etapaLotes = EtapaLote::paginate();
@@ -49,9 +45,7 @@ class EtapaLoteController extends Controller
     {
         request()->validate(EtapaLote::$rules);
 
-        $datos = $request->except('Fecha_inicial');
-
-        $etapaLote = EtapaLote::create($datos);
+        $etapaLote = EtapaLote::create($request->all());
 
         return redirect()->route('etapa-lotes.index')
             ->with('success', 'EtapaLote created successfully.');

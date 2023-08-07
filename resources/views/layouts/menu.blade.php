@@ -11,7 +11,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('granjas.index')}}">
-                <i class="bi bi-house"></i>
+                <i class="bi bi-house-door-fill"></i>
                 <span>Granja</span>
             </a>
         </li>

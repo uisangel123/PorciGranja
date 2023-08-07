@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->foreign('id_corral')->references('id')->on('corrales')->onDelete('cascade');
             $table->unsignedBigInteger('id_etapa');
             $table->foreign('id_etapa')->references('id')->on('etapas')->onDelete('cascade');
-            $table->date('Fecha_inicial')->nullable()->default(now());
+            $table->date('Fecha_inicial');
             $table->date('Fecha_final')->nullable();
             $table->float('Peso_inicial');
             $table->float('Peso_final')->nullable();

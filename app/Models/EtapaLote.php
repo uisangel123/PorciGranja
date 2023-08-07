@@ -40,6 +40,7 @@ class EtapaLote extends Model
 		'id_lote' => 'required',
 		'id_corral' => 'required',
 		'id_etapa' => 'required',
+		'Fecha_inicial' => 'required',
 		'Peso_inicial' => 'required',
 		'Cantidad_inicial' => 'required',
 		'id_alimento' => 'required',

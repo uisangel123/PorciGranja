@@ -4,11 +4,10 @@
     Corrale
 @endsection
 
-@section('content')}
+@section('content')
 @include('layouts.nav_menu')
 
 @include('layouts.menu')
-
 <main id="main" class="main">
     <div class="container-fluid">
         <div class="row">
@@ -41,11 +40,11 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Name</th>
+										<th>Nombre</th>
 										<th>Granjas Id</th>
 										<th>Disponibilidad</th>
 
-                                        <th></th>
+                                        <th>Botones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,7 +56,7 @@
 											<td>{{ $corrale->granjas_id }}</td>
 											<td>{{ $corrale->disponibilidad }}</td>
 
-                                            <td>
+                                            <td class="botones">
                                                 <form action="{{ route('corrales.destroy',$corrale->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('corrales.show',$corrale->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('corrales.edit',$corrale->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
