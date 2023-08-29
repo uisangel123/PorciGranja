@@ -62,7 +62,12 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('corrales.edit',$corrale->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    @if (auth()->user()->rol === 'admin')
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm"><i
+                                                                    class="fa fa-fw fa-trash"></i>
+                                                                {{ __('Delete') }}</button>
+                                                        @endif
                                                 </form>
                                             </td>
                                         </tr>

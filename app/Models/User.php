@@ -17,9 +17,21 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+    static $rules = [
+        'name' => 'required',
+        'cedula' => 'required',
+        'email' => 'required',
+        // 'password' => 'required',
+        'telefono' => 'required',
+    ];
     protected $fillable = [
         'name',
         'cedula',
+        'rol',
         'email',
         'password',
         'telefono',

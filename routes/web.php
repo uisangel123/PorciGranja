@@ -4,6 +4,8 @@ use App\Http\Controllers\AlimentoController;
 use App\Http\Controllers\EtapaController;
 use App\Http\Controllers\EtapaLoteController;
 use App\Http\Controllers\LoteController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PorcinoController;
@@ -29,11 +31,11 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');//le agregue en el name el .index para q funcione la ruta de volver al inicio
 
-Route::resource('porcinos',PorcinoController::class);// el middleware funciona como un verificador de estado, si no esta loggeado no podra acceder a esa vista
+Route::resource('porcinos',PorcinoController::class);
 Route::resource('granjas',GranjaController::class);
 Route::resource('corrales',CorraleController::class);
 Route::resource('alimentos',AlimentoController::class);
 Route::resource('etapas',EtapaController::class);
 Route::resource('etapa-lotes',EtapaLoteController::class);
 Route::resource('lotes',LoteController::class);
-
+Route::resource('users',UserController::class);//agregar una ruta desde las opciones del user para acceder a sus datos

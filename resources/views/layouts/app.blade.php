@@ -22,6 +22,8 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Vendor CSS Files -->
+    <script src="https://kit.fontawesome.com/ea22b59fe3.js" crossorigin="anonymous"></script>
+
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
@@ -102,7 +104,7 @@
 
 </body>
 </html>
-<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/chart.js/chart.umd.js"></script>
     <script src="assets/vendor/echarts/echarts.min.js"></script>
@@ -110,5 +112,6 @@
     <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
-
     <script src="assets/js/main.js"></script>
+
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

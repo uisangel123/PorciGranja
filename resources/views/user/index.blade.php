@@ -1,15 +1,13 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Porcino
+    User
 @endsection
 
 @section('content')
-    @include('layouts.nav_menu')
-
-    @include('layouts.menu')
-
-    <main id="main" class="main">
+@include('layouts.menu')
+@include('layouts.nav_menu')
+    <div class="main" id="main">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
@@ -18,11 +16,11 @@
                             <div style="display: flex; justify-content: space-between; align-items: center;">
 
                                 <span id="card_title">
-                                    {{ __('Porcino') }}
+                                    {{ __('User') }}
                                 </span>
 
                                 <div class="float-right">
-                                    <a href="{{ route('porcinos.create') }}" class="btn btn-primary btn-sm float-right"
+                                    <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right"
                                         data-placement="left">
                                         {{ __('Create New') }}
                                     </a>
@@ -40,42 +38,40 @@
                                 <table class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
-                                            <th>Identificador</th>
+                                            <th>No</th>
 
-                                            <th>Raza</th>
-                                            <th>Genero</th>
-                                            <th>Peso</th>
-                                            <th>Descripción</th>
+                                            <th>Cedula</th>
+                                            <th>Rol</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Telefono</th>
 
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($porcinos as $porcino)
+                                        @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
 
-                                                <td>{{ $porcino->Raza }}</td>
-                                                <td>{{ $porcino->Genero }}</td>
-                                                <td>{{ $porcino->Peso }}</td>
-                                                <td>{{ $porcino->Descripción }}</td>
+                                                <td>{{ $user->cedula }}</td>
+                                                <td>{{ $user->rol }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->telefono }}</td>
 
                                                 <td>
-                                                    <form action="{{ route('porcinos.destroy', $porcino->id) }}"
-                                                        method="POST">
+                                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                         <a class="btn btn-sm btn-primary "
-                                                            href="{{ route('porcinos.show', $porcino->id) }}"><i
+                                                            href="{{ route('users.show', $user->id) }}"><i
                                                                 class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                         <a class="btn btn-sm btn-success"
-                                                            href="{{ route('porcinos.edit', $porcino->id) }}"><i
+                                                            href="{{ route('users.edit', $user->id) }}"><i
                                                                 class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                         @csrf
-                                                        @if (auth()->user()->rol === 'admin')
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm"><i
-                                                                    class="fa fa-fw fa-trash"></i>
-                                                                {{ __('Delete') }}</button>
-                                                        @endif
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i
+                                                                class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -85,9 +81,9 @@
                             </div>
                         </div>
                     </div>
-                    {!! $porcinos->links() !!}
+                    {!! $users->links() !!}
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 @endsection

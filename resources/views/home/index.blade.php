@@ -10,7 +10,11 @@
         <!-- End Sidebar-->
 
         <main id="main" class="main">
-
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+            @endif
             <div class="pagetitle">
                 <h1>Dashboard</h1>
                 <nav>
