@@ -91,7 +91,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Role::all();
-        if (auth()->user()->id == $id) {
+        if (auth()->user()->id == $id || auth()->user()->rol == 'admin') {
             return view('user.edit', compact('user', 'roles'));
         }
         return abort(403, 'No tienes los permisos requeridos para acceder a los siguientes datos o paginas.');

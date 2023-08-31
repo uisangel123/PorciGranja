@@ -36,14 +36,16 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
-
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="yourPassword" class="form-label p-0">Contraseña</label>
+                                            <div class="input-group">
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
                                                 required autocomplete="current-password">
+                                            <button class="btn btn-primary" type="button" onclick="verClave()">Mostrar Contraseña</button>
+                                            </div>
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -56,7 +58,7 @@
                                                     <input class="form-check-input" type="checkbox" name="remember"
                                                         id="remember" {{ old('remember') ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="remember">
-                                                        {{ __('Remember Me') }}
+                                                        {{ __('Recuerdame') }}
                                                     </label>
                                                 </div>
                                         </div>
