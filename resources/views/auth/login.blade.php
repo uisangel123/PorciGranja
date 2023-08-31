@@ -37,14 +37,15 @@
                                                     </span>
                                                 @enderror
                                         </div>
-
                                         <div class="row mb-3">
                                             <label for="yourPassword" class="form-label p-0">Contraseña</label>
-                                            <div class="input-group">
+                                            <div class="input-group" style="display: flex; align-items: center; padding: 0;">
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
                                                 required autocomplete="current-password">
-                                            <button class="btn btn-primary" type="button" onclick="verClave()">Mostrar Contraseña</button>
+                                                    <button class="btn" id="icono-password" type="button" onclick="verClave('password','icono-password')" style="width: 50px">
+                                                        <i class="fas fa-eye-slash"></i>
+                                                    </button>
                                             </div>
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">

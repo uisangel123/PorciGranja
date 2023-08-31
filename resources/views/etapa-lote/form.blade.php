@@ -8,17 +8,17 @@
         </div>
         <div class="form-group">
             {{ Form::label('id_lote') }}
-            {{ Form::text('id_lote', $etapaLote->id_lote, ['class' => 'form-control' . ($errors->has('id_lote') ? ' is-invalid' : ''), 'placeholder' => 'Id Lote']) }}
+            {{ Form::select('id_lote',$lotes->pluck('Nombre','id'), $etapaLote->id_lote, ['class' => 'form-control' . ($errors->has('id_lote') ? ' is-invalid' : ''), 'placeholder' => 'Id Lote']) }}
             {!! $errors->first('id_lote', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('id_corral') }}
-            {{ Form::text('id_corral', $etapaLote->id_corral, ['class' => 'form-control' . ($errors->has('id_corral') ? ' is-invalid' : ''), 'placeholder' => 'Id Corral']) }}
+            {{ Form::select('id_corral',$corrales->pluck('name','id'), $etapaLote->id_corral, ['class' => 'form-control' . ($errors->has('id_corral') ? ' is-invalid' : ''), 'placeholder' => 'Id Corral']) }}
             {!! $errors->first('id_corral', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('id_etapa') }}
-            {{ Form::text('id_etapa', $etapaLote->id_etapa, ['class' => 'form-control' . ($errors->has('id_etapa') ? ' is-invalid' : ''), 'placeholder' => 'Id Etapa']) }}
+            {{ Form::select('id_etapa',$etapas->pluck('Nombre','id'), $etapaLote->id_etapa, ['class' => 'form-control' . ($errors->has('id_etapa') ? ' is-invalid' : ''), 'placeholder' => 'Id Etapa']) }}
             {!! $errors->first('id_etapa', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -63,7 +63,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('id_alimento') }}
-            {{ Form::text('id_alimento', $etapaLote->id_alimento, ['class' => 'form-control' . ($errors->has('id_alimento') ? ' is-invalid' : ''), 'placeholder' => 'Id Alimento']) }}
+            {{ Form::select('id_alimento',$alimentos->pluck('Nombre','id'), $etapaLote->id_alimento, ['class' => 'form-control' . ($errors->has('id_alimento') ? ' is-invalid' : ''), 'placeholder' => 'Id Alimento']) }}
             {!! $errors->first('id_alimento', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

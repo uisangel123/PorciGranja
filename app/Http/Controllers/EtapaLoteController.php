@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\EtapaLote;
+use App\Models\Corrale;
+use App\Models\Lote;
+use App\Models\Alimento;
+use App\Models\Etapa;
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +36,12 @@ class EtapaLoteController extends Controller
     public function create()
     {
         $etapaLote = new EtapaLote();
-        return view('etapa-lote.create', compact('etapaLote'));
+        $lotes = Lote::all();
+        $corrales = Corrale::all();
+        $etapas = Etapa::all();
+        $alimentos = Alimento::all();
+
+        return view('etapa-lote.create', compact('etapaLote','lotes','corrales','etapas','alimentos'));
     }
 
     /**

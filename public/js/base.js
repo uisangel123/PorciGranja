@@ -5,11 +5,14 @@ document.addEventListener('DOMContentLoaded', function () {
     fechaInicialInput.value = fechaActual;
 });
 //Codigo para visualizar la contraseña
-function verClave (){
-    let tipo = document.getElementById('password');
+function verClave (inputID,btnID){
+    let tipo = document.getElementById(inputID);
+    let iconVista = document.getElementById(btnID);
     if(tipo.type == 'password'){
         tipo.type = 'text';
+    iconVista.innerHTML = `<i class="fas fa-eye"></i>`;    
     }else{
         tipo.type = 'password';
+        iconVista.innerHTML = `<i class="fas fa-eye-slash"></i>`; 
     }
 }

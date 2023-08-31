@@ -86,9 +86,14 @@
                                     <div class="row mb-3">
                                         <div class="col-md-12">
                                             <label for="password">{{ __('Contraseña') }}</label>
+                                            <div class="input-group" style="display: flex; align-items: center; padding: 0;">
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
                                                 required autocomplete="new-password">
+                                                <button class="btn" id="icono-password" type="button" onclick="verClave('password','icono-password')" style="width: 50px">
+                                                    <i class="fas fa-eye-slash"></i>
+                                                </button>
+                                            </div>
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -99,8 +104,13 @@
                                     <div class="row mb-3">
                                         <div class="col-md-12">
                                             <label for="password-confirm">{{ __('Confirmar Contraseña') }}</label>
+                                            <div class="input-group" style="display: flex; align-items: center; padding: 0;">
                                             <input id="password-confirm" type="password" class="form-control"
                                                 name="password_confirmation" required autocomplete="new-password">
+                                                <button class="btn" id="icono-password1" type="button" onclick="verClave('password-confirm','icono-password1')" style="width: 50px">
+                                                    <i class="fas fa-eye-slash"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row mb-0">
@@ -111,7 +121,7 @@
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Ya tienes cuenta? <a href="{{route('login')}}">Acceder</a></p>
-                                          </div>
+                                        </div>
                                     </div>
                                 </form>
 
