@@ -5,6 +5,10 @@
 @endsection
 
 @section('content')
+@include('layouts.nav_menu')
+
+    @include('layouts.menu')
+<main id="main" class="main">
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -27,4 +31,6 @@
             </div>
         </div>
     </section>
+</main>
 @endsection
+
