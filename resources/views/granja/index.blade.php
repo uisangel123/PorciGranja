@@ -9,30 +9,39 @@
 
     @include('layouts.menu')
     <main id="main" class="main">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="pagetitle">
+            <h1> Granja</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Inicio</a></li>
+                    <li class="breadcrumb-item active">Inicio Granja</li>
+                </ol>
+            </nav>
+        </div><!--Links de navegacion-->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                                <span id="card_title">
-                                    {{ __('Granjas') }}
-                                </span>
+                            <span id="card_title">
+                                {{ __('Granjas') }}
+                            </span>
 
-                                <div class="float-right">
-                                    <a href="{{ route('granjas.create') }}" class="btn btn-primary btn-sm float-right"
-                                        data-placement="left">
-                                        {{ __('Create New') }}
-                                    </a>
-                                </div>
+                            <div class="float-right">
+                                <a href="{{ route('granjas.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Create New') }}
+                                </a>
                             </div>
                         </div>
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @endif
-                        <div class="card-body">
+                    </div>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+                    <div class="card-body">
                         <div class="table-responsive">
 
                             <table class="table datatable">
@@ -72,9 +81,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
     </main>
 @endsection

@@ -8,7 +8,17 @@
 @include('layouts.nav_menu')
 
     @include('layouts.menu')
-<main id="main" class="main">
+<main id="main" class="main"> 
+    <div class="pagetitle">
+                      <h1>Detalles Granja</h1>
+                      <nav>
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Inicio</a></li>
+                          <li class="breadcrumb-item"><a href="{{ route('granjas.index') }}">Inicio Granja</a></li>
+                          <li class="breadcrumb-item active">Detalles Granja</li>
+                        </ol>
+                      </nav>
+                    </div><!--Links de navegacion-->
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
