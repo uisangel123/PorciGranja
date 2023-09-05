@@ -6,11 +6,18 @@
             {{ Form::text('name', $corrale->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name']) }}
             {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
-            {{ Form::label('granjas_id') }}
-            {{ Form::text('granjas_id', $corrale->granjas_id, ['class' => 'form-control' . ($errors->has('granjas_id') ? ' is-invalid' : ''), 'placeholder' => 'Granjas Id']) }}
+            {{ Form::label('granjas_id', 'Seleccione una Granja') }}
+            <select name="granjas_id" id="granjas_id" class=" form-select{{ $errors->has('granjas_id') ? ' is-invalid' : '' }}">
+                <option value="">Seleccione La Granja</option>
+                @foreach ($granjas as $granja)
+                    <option value="{{ $granja['id'] }}">{{ $granja['nombre'] }}</option>
+                @endforeach
+            </select>
             {!! $errors->first('granjas_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('disponibilidad') }}
             {{ Form::text('disponibilidad', $corrale->disponibilidad, ['class' => 'form-control' . ($errors->has('disponibilidad') ? ' is-invalid' : ''), 'placeholder' => 'Disponibilidad']) }}

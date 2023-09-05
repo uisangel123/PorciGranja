@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Corrale;
+use App\Models\Granja;
 use Illuminate\Http\Request;
 
 /**
@@ -37,7 +38,8 @@ class CorraleController extends Controller
     public function create()
     {
         $corrale = new Corrale();
-        return view('corrale.create', compact('corrale'));
+        $granjas = Granja::all();
+        return view('corrale.create', compact('corrale'), compact('granjas'));
     }
 
     /**
@@ -78,8 +80,8 @@ class CorraleController extends Controller
     public function edit($id)
     {
         $corrale = Corrale::find($id);
-
-        return view('corrale.edit', compact('corrale'));
+        $granjas = Granja::all();
+        return view('corrale.edit', compact('corrale','granjas'));
     }
 
     /**
@@ -92,8 +94,10 @@ class CorraleController extends Controller
     public function update(Request $request, Corrale $corrale)
     {
         request()->validate(Corrale::$rules);
+       
 
         $corrale->update($request->all());
+   
 
         return redirect()->route('corrales.index')
             ->with('success', 'Corrale updated successfully');
