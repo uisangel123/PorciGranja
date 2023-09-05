@@ -11,6 +11,12 @@
             {{ Form::text('id_corral', $lote->id_corral, ['class' => 'form-control' . ($errors->has('id_corral') ? ' is-invalid' : ''), 'placeholder' => 'Id Corral']) }}
             {!! $errors->first('id_corral', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        <div class="form-group">
+            {{ Form::label('Cantidad_Porcinos') }}
+            {{ Form::text('Cantidad_Porcinos', $lote->Cantidad_Porcinos, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad de Porcinos']) }}
+            {!! $errors->first('Cantidad_Porcinos', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        
 
     </div>
     <div class="box-footer mt20">

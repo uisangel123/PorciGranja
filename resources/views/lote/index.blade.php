@@ -43,6 +43,7 @@
 
                                             <th>Nombre</th>
                                             <th>Id Corral</th>
+                                            <th>Cantidad Porcinos</th>
 
                                             <th></th>
                                         </tr>
@@ -54,6 +55,7 @@
 
                                                 <td>{{ $lote->Nombre }}</td>
                                                 <td>{{ $lote->id_corral }}</td>
+                                                <td>{{ $lote->Cantidad_Porcinos }}</td>
 
                                                 <td>
                                                     <form action="{{ route('lotes.destroy', $lote->id) }}" method="POST">

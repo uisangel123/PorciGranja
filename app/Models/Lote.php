@@ -20,10 +20,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Lote extends Model
 {
-    
+
     static $rules = [
-		'Nombre' => 'required',
-		'id_corral' => 'required',
+        'Nombre' => 'required',
+        'id_corral' => 'required',
+        'Cantidad_Porcinos' => 'required',
     ];
 
     protected $perPage = 20;
@@ -33,7 +34,7 @@ class Lote extends Model
      *
      * @var array
      */
-    protected $fillable = ['Nombre','id_corral'];
+    protected $fillable = ['Nombre', 'id_corral', 'Cantidad_Porcinos'];
 
 
     /**
@@ -43,7 +44,7 @@ class Lote extends Model
     {
         return $this->hasOne('App\Models\Corrale', 'id', 'id_corral');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -51,6 +52,4 @@ class Lote extends Model
     {
         return $this->hasMany('App\Models\EtapaLote', 'id_lote', 'id');
     }
-    
-
 }
