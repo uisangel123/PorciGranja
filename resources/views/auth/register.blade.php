@@ -32,7 +32,7 @@
                                             <label for="cedula">{{ __('Cedula') }}</label>
                                             <input id="cedula" type="text"
                                                 class="form-control @error('cedula') is-invalid @enderror" name="cedula"
-                                                value="{{ old('cedula') }}" required autocomplete="cedula">
+                                                value="{{ old('cedula') }}" required autocomplete="cedula" onkeypress="return soloNumeros(event,'cedula')">
                                             @error('cedula')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -68,13 +68,12 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <div class="col-md-12">
                                             <label for="telefono">{{ __('telefono') }}</label>
                                             <input id="telefono" type="text"
-                                                class="form-control @error('telefono') is-invalid @enderror" name="telefono"
-                                                value="{{ old('telefono') }}" required autocomplete="telefono">
+                                                class="form-control error @error('telefono') is-invalid @enderror" name="telefono"
+                                                value="{{ old('telefono') }}" required autocomplete="telefono" onkeypress="return soloNumeros(event,'telefono')">
                                             @error('telefono')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

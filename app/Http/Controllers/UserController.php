@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class UserController
@@ -108,13 +110,14 @@ class UserController extends Controller
     {
         request()->validate(User::$rules);
 
-        $user->update($request->all());
-        if (auth()->user()->rol == 'admin') {
-
-
-            return redirect()->route('users.index')
-                ->with('success', 'User updated successfully');
+        if (auth()->user()->rol !== 'admin') {
+            $request->merge(['cedula' => $user->cedula]); //el merge ignora las nuevas respuesta de cierto campo y envia la original q no es copia: ejemplo dato original "123" se modifica y envia por "234", el merge ignora ese cambio y envia el original "123".
         }
+
+        request()->validate(User::$rules);
+
+        $user->update($request->all());
+
         return redirect()->route('home.index')
             ->with('success', 'User updated successfully');
     }
@@ -130,5 +133,22 @@ class UserController extends Controller
 
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
+    }
+    public function actualizarPassword(Request $request)
+    {
+
+        $user = User::find(Auth::id()); //buscar el usuario autenticado
+        $passwordActual = $request->input('passwordActual');
+        $passwordNueva = $request->input('passwordNueva');
+        $passwordBd = Auth::user()->password;
+        if($passwordNueva && password_verify($passwordActual,$passwordBd)){
+            $user->password = Hash::make($passwordNueva);
+            $user->save();
+            return redirect()->route('home.index')
+            ->with('success', 'Contraseña actualizada exitosamente');
+        }else{
+            print('error');
+        }
+
     }
 }

@@ -39,3 +39,5 @@ Route::resource('etapas',EtapaController::class);
 Route::resource('etapa-lotes',EtapaLoteController::class);
 Route::resource('lotes',LoteController::class);
 Route::resource('users',UserController::class);//agregar una ruta desde las opciones del user para acceder a sus datos
+
+Route::post('users/{user}/edit', [UserController::class, 'actualizarPassword'])->name('actualizarPassword')->middleware('web');

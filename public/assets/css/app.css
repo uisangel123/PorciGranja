@@ -1,0 +1,9 @@
+.invalid-input {/*clases para validar errores en los inputs*/
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}
+
+.is-invalid-input {
+    border-color: #dc3545 !important;
+}
