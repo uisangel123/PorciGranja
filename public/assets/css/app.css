@@ -1,4 +1,5 @@
-.invalid-input {/*clases para validar errores en los inputs*/
+.invalid-input {
+    /*clases para validar errores en los inputs*/
     color: #dc3545;
     font-size: 0.875em;
     margin-top: 0.25rem;
@@ -6,4 +7,66 @@
 
 .is-invalid-input {
     border-color: #dc3545 !important;
+}
+
+.eye-control {
+    display: block;
+    padding: 10px;
+    border-radius: 2px;
+    font-size: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin-bottom: 5px;
+    height: 40px;
+}
+
+.form-control {
+    display: block;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-size: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin-bottom: 5px;
+    height: 40px;
+}
+
+.form-control:focus {
+    color: #555252;
+    background-color: white;
+    border-color: rgb(56, 144, 231) !important;
+    outline: 0;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(56, 144, 231) !important;
+    padding: 3px 5px;
+    margin-bottom: 5px;
+    /* Espacio entre etiquetas */
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+}
+
+.color {
+    /*Para asignarle a cualquier letra*/
+    color: rgb(56, 144, 231) !important;
+
+}
+
+@media (max-width: 768px) {
+    .btn {
+        width: 100% !important;
+    }
+
+    .eye-control {
+        width: 40px !important;
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Corrale;
 use App\Models\Lote;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,8 @@ class LoteController extends Controller
     public function create()
     {
         $lote = new Lote();
-        return view('lote.create', compact('lote'));
+        $corrales = Corrale::all();
+        return view('lote.create', compact('lote'), compact('corrales'));
     }
 
     /**
@@ -77,8 +79,9 @@ class LoteController extends Controller
     public function edit($id)
     {
         $lote = Lote::find($id);
+        $corrales = Corrale::all();
 
-        return view('lote.edit', compact('lote'));
+        return view('lote.edit', compact('lote'), compact('corrales'));
     }
 
     /**

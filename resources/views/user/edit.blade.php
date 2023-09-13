@@ -11,16 +11,22 @@
     <main id="main" class="main">
 
 
-        <div class="pagetitle">
-            <h1>Perfil</h1>
             <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Users</li>
-                    <li class="breadcrumb-item active">Profile</li>
+                <br>
+                    <ol class="breadcrumb" style="padding: 0 0 0 10px">
+                        <li class="breadcrumb-item"><i class="fa-solid fa-house"></i></i> {{strtoupper('inicio')}}</a></li>
+                        <?php $segments = ''; ?>
+                        @foreach(Request::segments() as $key => $segment)
+                        @if($segment== 'edit' || count(Request::segments())-2 == $key)
+                        @continue
+                        @endif
+                        <?php $segments .= '/'.$segment; ?>
+                        <li class="breadcrumb-item">
+                        <a href="{{ $segments }}"> {{strtoupper($segment)}}</a>
+                        </li>
+                        @endforeach
                 </ol>
             </nav>
-        </div><!-- End Page Title -->
 
         <section class="section profile">
             <div class="row">
@@ -30,7 +36,7 @@
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                             <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-                            <h2>{{ $user->name }}</h2>
+                            <h2 class="color">{{ $user->name }}</h2>
                             <h3>{{ $user->rol }}</h3>
                             <h6>{{ $user->cedula }}</h6>
                         </div>
@@ -71,7 +77,7 @@
                                         {{ method_field('PATCH') }}
                                         @csrf
                                         <div class="row mb-3">
-                                            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
+                                            <label for="fullName" class="col-md-4 col-lg-3">Nombre</label>
                                             <div class="col-md-8 col-lg-9">
                                                 {{ Form::text('name', $user->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name']) }}
                                                 {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
@@ -83,7 +89,7 @@
                                             <!--ver campo rol si es admin y el campo cedula sera editable solo para el admin-->
                                             <div class="row mb-3">
                                                 <label for="about"
-                                                    class="col-md-4 col-lg-3 col-form-label">Cedula</label>
+                                                    class="col-md-4 col-lg-3">Cedula</label>
                                                 <div class="col-md-8 col-lg-9">
                                                     {{ Form::text('cedula', $user->cedula, ['class' => 'form-control' . ($errors->has('cedula') ? ' is-invalid' : ''), 'placeholder' => 'Cedula', 'readonly' => auth()->user()->rol !== 'admin']) }}
                                                     {!! $errors->first('cedula', '<div class="invalid-feedback">:message</div>') !!}
@@ -91,7 +97,7 @@
                                             </div>
 
                                             <div class="row mb-3">
-                                                <label for="company" class="col-md-4 col-lg-3 col-form-label">Rol</label>
+                                                <label for="company" class="col-md-4 col-lg-3">Rol</label>
                                                 <div class="col-md-8 col-lg-9">
                                                     {{ Form::select('rol', $roles->pluck('role_name', 'role_name'), $user->rol, ['class' => 'form-control' . ($errors->has('rol') ? ' is-invalid' : ''), 'placeholder' => 'Rol']) }}
                                                     {!! $errors->first('rol', '<div class="invalid-feedback">:message</div>') !!}
@@ -102,7 +108,7 @@
                                         @endif
 
                                         <div class="row mb-3">
-                                            <label for="Job" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                            <label for="Job" class="col-md-4 col-lg-3">Email</label>
                                             <div class="col-md-8 col-lg-9">
                                                 {{ Form::text('email', $user->email, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => 'Email']) }}
                                                 {!! $errors->first('email', '<div class="invalid-feedback">:message</div>') !!}
@@ -110,7 +116,7 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="Country" class="col-md-4 col-lg-3 col-form-label">Telefono</label>
+                                            <label for="Country" class="col-md-4 col-lg-3">Telefono</label>
                                             <div class="col-md-8 col-lg-9">
                                                 {{ Form::text('telefono', $user->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono']) }}
                                                 {!! $errors->first('telefono', '<div class="invalid-feedback">:message</div>') !!}
@@ -129,7 +135,7 @@
                                     <form action="{{route('users.edit',[ 'user' => Auth::user()->id])}}" method="POST">
                                         @csrf
                                         <div class="row mb-3">
-                                            <label for="passwordActual" class="col-md-4 col-lg-3 col-form-label">Contraseña Actual</label>
+                                            <label for="passwordActual" class="col-md-4 col-lg-3">Contraseña Actual</label>
                                             <div class="col-md-8 col-lg-9">
                                             <input id="passwordActual" name="passwordActual" type="password" class="form-control @error('passwordActual') is-invalid
                                             @enderror inputPassword">
@@ -137,7 +143,7 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="passwordNueva" class="col-md-4 col-lg-3 col-form-label">Contraseña nueva</label>
+                                            <label for="passwordNueva" class="col-md-4 col-lg-3">Contraseña nueva</label>
                                             <div class="col-md-8 col-lg-9">
                                             <input id="passwordNueva" name="passwordNueva" type="password" class="form-control @error('passwordNueva') is-invalid
                                             @enderror" onkeydown="compararClave('passwordNueva','PasswordNuevaConfirmar')">
@@ -145,7 +151,7 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="PasswordNuevaConfirmar" class="col-md-4 col-lg-3 col-form-label">Confirmar Nueva Contraseña</label>
+                                            <label for="PasswordNuevaConfirmar" class="col-md-4 col-lg-3">Confirmar Nueva Contraseña</label>
                                             <div class="col-md-8 col-lg-9">
                                             <input id="PasswordNuevaConfirmar" name="PasswordNuevaConfirmar" type="password" class="form-control"  onkeydown="compararClave('passwordNueva','PasswordNuevaConfirmar')">
                                             </div>

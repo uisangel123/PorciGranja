@@ -1,3 +1,11 @@
+// let token = ""; TOKEN CSRF GLOBAL
+// function loadUserCredentials() {
+//     token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
+//     if (token) {
+//         useCredentials(token);
+//     }
+// }
+
 //Codigo para que un input tipo date tome la fecha actual a tiempo real.
 document.addEventListener('DOMContentLoaded', function () {
     const fechaInicialInput = document.getElementById('Fecha_dinamica');
@@ -71,10 +79,27 @@ function borrarError(input, errorElementId) {
 function compararClave(dato, datoC) {//revisar por consola
     let dato1 = document.getElementById(dato).value;
     let dato2 = document.getElementById(datoC).value;
-    console.log(dato1, dato2);
+    console.log(dato1+"Input 1");
+    console.log(dato2+"Input 2");
     if (dato1 == dato2) {
         console.log("Son iguales");
     } else {
         console.log('no');
     }
 }
+// function actualizarContra() { REVISAR SI SE USARA PARA VALACIÓN DE CLAVE
+
+//     $.ajax({
+//         url: '/actualizarContra',
+//         type: 'POST',
+//         headers: {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         },
+//         async: false,
+//         success: function (response) {
+//             let hola = response.claveActual;
+//             console.log(response + hola);
+//         }
+//     });
+    
+// };

@@ -55,7 +55,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('alimentos.index') }}">
                 <i class="fa-solid fa-apple-whole"></i>
-                <span>Alimentos</span>
+                <span>Alimento</span>
             </a>
         </li>
 

@@ -5,49 +5,66 @@
 @endsection
 
 @section('content')
-@include('layouts.nav_menu')
+    @include('layouts.nav_menu')
 
     @include('layouts.menu')
-<main id="main" class="main">
-    <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} User</span>
+    <main id="main" class="main">
+        <br>
+        <ol class="breadcrumb" style="padding: 0 0 0 10px">
+            <li class="breadcrumb-item"><i class="fa-solid fa-house"></i></i> {{ strtoupper('inicio') }}</a></li>
+            <?php $segments = ''; ?>
+            @foreach (Request::segments() as $key => $segment)
+                @if ($segment == 'edit' || count(Request::segments()) - 1 == $key)
+                    @continue
+                @endif
+                <?php $segments .= '/' . $segment; ?>
+                <li class="breadcrumb-item">
+                    <a href="{{ $segments }}"> {{ strtoupper($segment) }}</a>
+                </li>
+            @endforeach
+        </ol>
+        <div class="card">
+            <div class="card-header">
+                <div class="float-left">
+                    <span class="card-title">{{ __('Datos') }} Usuario {{ $user->name }}</span>
+                </div>
+
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Cedula:</label>
+                            <input type="text" readonly placeholder="{{ $user->cedula }}" class="form-control">
                         </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('users.index') }}"> {{ __('Back') }}</a>
+                        <div class="form-group">
+                            <label>Rol:</label>
+                            <input type="text" readonly placeholder="{{ $user->rol }}" class="form-control">
                         </div>
                     </div>
-
-                    <div class="card-body">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <strong>Cedula:</strong>
-                            {{ $user->cedula }}
+                            <label>Nombre:</label>
+                            <input type="text" readonly placeholder="{{ $user->name }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <strong>Rol:</strong>
-                            {{ $user->rol }}
+                            <label>Correo:</label>
+                            <input type="text" readonly placeholder="{{ $user->email }}" class="form-control">
                         </div>
-                        <div class="form-group">
-                            <strong>Name:</strong>
-                            {{ $user->name }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Email:</strong>
-                            {{ $user->email }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Telefono:</strong>
-                            {{ $user->telefono }}
-                        </div>
-
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Telefono:</label>
+                            <input type="text" readonly placeholder="{{ $user->telefono }}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <a style="margin-top: 10px" class="btn btn-primary" href="{{ route('users.index') }}">
+                        {{ __('Regresar') }}</a>
                 </div>
             </div>
         </div>
-    </section>
-</main>
+    </main>
 @endsection

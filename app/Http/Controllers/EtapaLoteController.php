@@ -82,8 +82,12 @@ class EtapaLoteController extends Controller
     public function edit($id)
     {
         $etapaLote = EtapaLote::find($id);
+        $lotes = Lote::all();
+        $corrales = Corrale::all();
+        $etapas = Etapa::all();
+        $alimentos = Alimento::all();
 
-        return view('etapa-lote.edit', compact('etapaLote'));
+        return view('etapa-lote.edit', compact('etapaLote','lotes','corrales','etapas','alimentos'));
     }
 
     /**

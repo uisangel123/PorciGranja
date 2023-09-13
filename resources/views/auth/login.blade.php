@@ -11,16 +11,16 @@
 
                             <div class="d-flex justify-content-center py-4">
                                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="assets/img/logo.png" alt="">
+                                    <img src="{{ asset('assets/img/LOGO-3.png') }}" style="width: 70px;height: 55px !important;">
                                     <span class="d-none d-lg-block">PorciGranja</span>
                                 </a>
                             </div><!-- End Logo -->
 
                             <div class="card mb-3">
 
-                                <div class="card-body" style="padding: 0 30px 30px 30px; width: 332px !important">
+                                <div class="card-body" style="padding: 0 30px 0 30px; width: 332px !important">
 
-                                    <div class="pt-4 pb-2">
+                                    <div class="pt-2 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Acceda a tu cuenta</h5>
                                         <p class="text-center small">Entra con tu correo y contraseña!</p>
                                     </div>
@@ -43,7 +43,7 @@
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
                                                 required autocomplete="current-password">
-                                                    <button class="btn" id="icono-password" type="button" onclick="verClave('password','icono-password')" style="width: 50px">
+                                                    <button class="btn eye-control" id="icono-password" type="button" onclick="verClave('password','icono-password')" style="width: 50px">
                                                         <i class="fas fa-eye-slash"></i>
                                                     </button>
                                             </div>
