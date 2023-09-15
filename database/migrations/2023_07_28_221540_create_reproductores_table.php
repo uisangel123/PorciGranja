@@ -10,15 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('porcinos', function (Blueprint $table) {//Poner despues un migrate:rollback para eliminar esto, si es necesario.
-            $table->id();
+        Schema::create('reproductores', function (Blueprint $table) {//Poner despues un migrate:rollback para eliminar esto, si es necesario.
+            $table->bigInteger('id')->primary();
             $table->date('Fecha_nacimiento');
             $table->string('Raza');
             $table->integer('Genero');
             $table->float('Peso');
             $table->mediumText('Procedencia');
             $table->timestamps();
-            $table->mediumText('Descripción');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('porcinos');
+        Schema::dropIfExists('reproductores');
     }
 };

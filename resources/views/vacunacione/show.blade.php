@@ -1,44 +1,36 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $porcino->name ?? "{{ __('Show') Porcino" }}
+    {{ $vacunacione->name ?? "{{ __('Show') Vacunacione" }}
 @endsection
 
 @section('content')
-@include('layouts.nav_menu')
-
-    @include('layouts.menu')
-<main id="main" class="main">
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Porcino</span>
+                            <span class="card-title">{{ __('Show') }} Vacunacione</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('porcinos.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('vacunaciones.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Raza:</strong>
-                            {{ $porcino->Raza }}
+                            <strong>Nombre:</strong>
+                            {{ $vacunacione->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Genero:</strong>
-                            {{ $porcino->Genero }}
+                            <strong>Id Lote Vacunación:</strong>
+                            {{ $vacunacione->id_lote_vacunación }}
                         </div>
                         <div class="form-group">
-                            <strong>Peso:</strong>
-                            {{ $porcino->Peso }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Descripción:</strong>
-                            {{ $porcino->Descripción }}
+                            <strong>Fecha Vacunación:</strong>
+                            {{ $vacunacione->Fecha_Vacunación }}
                         </div>
 
                     </div>
@@ -46,5 +38,4 @@
             </div>
         </div>
     </section>
-</main>
 @endsection

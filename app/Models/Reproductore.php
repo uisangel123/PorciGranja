@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Porcino
+ * Class Reproductore
  *
  * @property $id
+ * @property $Fecha_nacimiento
  * @property $Raza
  * @property $Genero
  * @property $Peso
+ * @property $Procedencia
  * @property $created_at
  * @property $updated_at
  * @property $Descripción
@@ -18,14 +20,16 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Porcino extends Model
+class Reproductore extends Model
 {
     
     static $rules = [
+		'id' => 'required',
+		'Fecha_nacimiento' => 'required',
 		'Raza' => 'required',
 		'Genero' => 'required',
 		'Peso' => 'required',
-		'Descripción' => 'required',
+		'Procedencia' => 'required',
     ];
 
     protected $perPage = 20;
@@ -35,7 +39,7 @@ class Porcino extends Model
      *
      * @var array
      */
-    protected $fillable = ['Raza','Genero','Peso','Descripción'];
+    protected $fillable = ['id','Fecha_nacimiento','Raza','Genero','Peso','Procedencia'];
 
 
 

@@ -35,9 +35,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('porcinos.index') }}">
-                <i class="bi bi-piggy-bank-fill"></i>
-                <span>Porcino</span>
+            <a class="nav-link collapsed" href="{{ route('reproductores.index') }}">
+                <i class="fa-solid fa-heart"></i>
+                <span>Reproducción</span>
             </a>
         </li>
         <li class="nav-item">

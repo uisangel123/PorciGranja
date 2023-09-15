@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Porcino;
+use App\Models\Vacunacione;
 use Illuminate\Http\Request;
 
 /**
- * Class PorcinoController
+ * Class VacunacioneController
  * @package App\Http\Controllers
  */
-class PorcinoController extends Controller
+class VacunacioneController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,13 +20,12 @@ class PorcinoController extends Controller
     {
         $this->middleware('auth');
     }
-    
     public function index()
     {
-        $porcinos = Porcino::paginate();
+        $vacunaciones = Vacunacione::paginate();
 
-        return view('porcino.index', compact('porcinos'))
-            ->with('i', (request()->input('page', 1) - 1) * $porcinos->perPage());
+        return view('vacunacione.index', compact('vacunaciones'))
+            ->with('i', (request()->input('page', 1) - 1) * $vacunaciones->perPage());
     }
 
     /**
@@ -36,8 +35,8 @@ class PorcinoController extends Controller
      */
     public function create()
     {
-        $porcino = new Porcino();
-        return view('porcino.create', compact('porcino'));
+        $vacunacione = new Vacunacione();
+        return view('vacunacione.create', compact('vacunacione'));
     }
 
     /**
@@ -48,12 +47,12 @@ class PorcinoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Porcino::$rules);
+        request()->validate(Vacunacione::$rules);
 
-        $porcino = Porcino::create($request->all());
+        $vacunacione = Vacunacione::create($request->all());
 
-        return redirect()->route('porcinos.index')
-            ->with('success', 'Porcino created successfully.');
+        return redirect()->route('vacunaciones.index')
+            ->with('success', 'Vacunacione created successfully.');
     }
 
     /**
@@ -64,9 +63,9 @@ class PorcinoController extends Controller
      */
     public function show($id)
     {
-        $porcino = Porcino::find($id);
+        $vacunacione = Vacunacione::find($id);
 
-        return view('porcino.show', compact('porcino'));
+        return view('vacunacione.show', compact('vacunacione'));
     }
 
     /**
@@ -77,26 +76,26 @@ class PorcinoController extends Controller
      */
     public function edit($id)
     {
-        $porcino = Porcino::find($id);
+        $vacunacione = Vacunacione::find($id);
 
-        return view('porcino.edit', compact('porcino'));
+        return view('vacunacione.edit', compact('vacunacione'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Porcino $porcino
+     * @param  Vacunacione $vacunacione
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Porcino $porcino)
+    public function update(Request $request, Vacunacione $vacunacione)
     {
-        request()->validate(Porcino::$rules);
+        request()->validate(Vacunacione::$rules);
 
-        $porcino->update($request->all());
+        $vacunacione->update($request->all());
 
-        return redirect()->route('porcinos.index')
-            ->with('success', 'Porcino updated successfully');
+        return redirect()->route('vacunaciones.index')
+            ->with('success', 'Vacunacione updated successfully');
     }
 
     /**
@@ -106,9 +105,9 @@ class PorcinoController extends Controller
      */
     public function destroy($id)
     {
-        $porcino = Porcino::find($id)->delete();
+        $vacunacione = Vacunacione::find($id)->delete();
 
-        return redirect()->route('porcinos.index')
-            ->with('success', 'Porcino deleted successfully');
+        return redirect()->route('vacunaciones.index')
+            ->with('success', 'Vacunacione deleted successfully');
     }
 }
