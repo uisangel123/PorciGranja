@@ -70,3 +70,59 @@ label {
     }
 
 }
+.dropdown-1 {
+    position: relative;
+    margin: 2em;
+}
+
+.dropdown-1 * {
+    cursor: pointer;
+}
+
+.selected {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.caret {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #fff;
+    transition: 0.3s;
+}
+
+.menu {
+    font-size: 14px;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    background: #fff;
+    border: 1px transparent solid;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    border-radius: 0.5em;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+    position: absolute;
+    transition: 0.2s;
+}
+
+.menu :hover {
+    background: #F6F9FF;
+    color: #4B8CEB;
+}
+
+.menu li {
+    padding: 10px 15px;
+}
+
+.menu-open {
+    opacity: 1;
+    display: block;
+}
+.caret-rotate{
+    transform: rotate(12px);
+}

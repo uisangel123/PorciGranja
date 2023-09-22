@@ -40,6 +40,18 @@
                 <span>Reproducción</span>
             </a>
         </li>
+        <li class="nav-item dropdown-1">
+            <div class="select" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="nav-link collapsed selected" style="width: 100%">Reproducción
+                    <div class="caret"></div>
+                </span>
+            </div>
+            <ul class="menu dropdown-menu dropdown-menu-dark">
+                <li class="active">Proceso Reproducción</li>
+                <li class=""><a href=""></a><span>Porcinos</span></li>
+                <li class=""><a href=""></a>Datos Nacimiento</li>
+            </ul>
+        </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('etapas.index') }}">
                 <i class="fa-solid fa-arrows-spin"></i>
