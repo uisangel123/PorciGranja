@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fase_reproduccion', function (Blueprint $table) {
+        Schema::create('reproducciones', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_Porcino_Macho');
-            $table->foreign('id_Porcino_Macho')->references('id_repro')->on('reproductores');
+            $table->foreign('id_Porcino_Macho')->references('id')->on('reproductores');
             $table->unsignedBigInteger('id_Porcino_Hembra');
-            $table->foreign('id_Porcino_Hembra')->references('id_repro')->on('reproductores');
+            $table->foreign('id_Porcino_Hembra')->references('id')->on('reproductores');
             $table->date('Fecha_Inicio');
             $table->date('Fecha_Final')->nullable();
             $table->timestamps();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fase_reproduccion');
+        Schema::dropIfExists('reproducciones');
     }
 };

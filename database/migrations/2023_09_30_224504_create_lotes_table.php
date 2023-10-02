@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_corral');
             $table->foreign('id_corral')->references('id')->on('corrales')->onDelete('cascade');
             $table->unsignedBigInteger('id_Datos');
-            $table->foreign('id_Datos')->references('id')->on('datos_nacimiento');
+            $table->foreign('id_Datos')->references('id')->on('nacimientos');
             $table->integer('Cantidad_Porcinos');
             $table->timestamps();
         });

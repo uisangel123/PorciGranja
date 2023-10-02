@@ -16,10 +16,6 @@ class ReproductoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
         $reproductores = Reproductore::paginate();
@@ -36,7 +32,9 @@ class ReproductoreController extends Controller
     public function create()
     {
         $reproductore = new Reproductore();
-        return view('reproductore.create', compact('reproductore'));
+        $reproductoreMacho = Reproductore::where('Genero', 'Macho')->get();
+        $reproductoreHembra = Reproductore::where('Genero', 'Hembra')->get();
+        return view('reproductore.create', compact('reproductore', 'reproductoreMacho', 'reproductoreHembra'));
     }
 
     /**

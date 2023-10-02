@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Vacunacione
+    Nacimiento
 @endsection
 
 @section('content')
@@ -17,11 +17,11 @@
                             <div style="display: flex; justify-content: space-between; align-items: center;">
 
                                 <span id="card_title">
-                                    {{ __('Vacunacione') }}
+                                    {{ __('Nacimiento') }}
                                 </span>
 
                                 <div class="float-right">
-                                    <a href="{{ route('vacunaciones.create') }}" class="btn btn-primary btn-sm float-right"
+                                    <a href="{{ route('nacimientos.create') }}" class="btn btn-primary btn-sm float-right"
                                         data-placement="left">
                                         {{ __('Create New') }}
                                     </a>
@@ -36,35 +36,43 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover datatable">
+                                <table class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
                                             <th>No</th>
 
-                                            <th>Nombre</th>
-                                            <th>Id Lote Vacunación</th>
-                                            <th>Fecha Vacunación</th>
+                                            <th>Id Reproduccion</th>
+                                            <th>Fecha Nacimiento</th>
+                                            <th>Peso Promedio</th>
+                                            <th>Porcinos Totales</th>
+                                            <th>Porcinos Criales</th>
+                                            <th>Porcinos Reproductores</th>
+                                            <th>Porcinos Muertos</th>
 
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($vacunaciones as $vacunacione)
+                                        @foreach ($nacimientos as $nacimiento)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
 
-                                                <td>{{ $vacunacione->nombre }}</td>
-                                                <td>{{ $vacunacione->id_lote_vacunación }}</td>
-                                                <td>{{ $vacunacione->Fecha_Vacunación }}</td>
+                                                <td>{{ $nacimiento->id_faseReproduccion }}</td>
+                                                <td>{{ $nacimiento->Fecha_Nacimiento }}</td>
+                                                <td>{{ $nacimiento->Peso_Promedio }}</td>
+                                                <td>{{ $nacimiento->Cantidad_Porcinos_Total }}</td>
+                                                <td>{{ $nacimiento->Cantidad_Porcinos_Criales }}</td>
+                                                <td>{{ $nacimiento->Cantidad_Porcinos_Reproductores }}</td>
+                                                <td>{{ $nacimiento->Cantidad_Porcinos_Muertos }}</td>
 
                                                 <td>
-                                                    <form action="{{ route('vacunaciones.destroy', $vacunacione->id) }}"
+                                                    <form action="{{ route('nacimientos.destroy', $nacimiento->id) }}"
                                                         method="POST">
                                                         <a class="btn btn-sm btn-primary "
-                                                            href="{{ route('vacunaciones.show', $vacunacione->id) }}"><i
+                                                            href="{{ route('nacimientos.show', $nacimiento->id) }}"><i
                                                                 class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                         <a class="btn btn-sm btn-success"
-                                                            href="{{ route('vacunaciones.edit', $vacunacione->id) }}"><i
+                                                            href="{{ route('nacimientos.edit', $nacimiento->id) }}"><i
                                                                 class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                         @csrf
                                                         @method('DELETE')
@@ -79,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    {!! $vacunaciones->links() !!}
+                    {!! $nacimientos->links() !!}
                 </div>
             </div>
         </div>

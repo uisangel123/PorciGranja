@@ -17,7 +17,7 @@
                             <div style="display: flex; justify-content: space-between; align-items: center;">
 
                                 <span id="card_title">
-                                    {{ __('Reproductores') }}
+                                    {{ __('Reproductore') }}
                                 </span>
 
                                 <div class="float-right">
@@ -29,24 +29,25 @@
                             </div>
                         </div>
                         @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-success cerrarMensaje">
                                 <p>{{ $message }}</p>
                             </div>
                         @endif
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover datatable">
+                                <table class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
                                             <th>No</th>
 
-                                            <th>Identificador</th>
-                                            <th>Fecha Nacimiento</th>
+                                            <th>Id Repro</th>
                                             <th>Raza</th>
                                             <th>Genero</th>
                                             <th>Peso</th>
-                                            <th>Procedencia</th>
+                                            <th>Porcino Macho</th>
+                                            <th>Porcino Hembra</th>
+                                            <th>Fecha Nacimiento</th>
 
                                             <th></th>
                                         </tr>
@@ -57,14 +58,22 @@
                                                 <td>{{ ++$i }}</td>
 
                                                 <td>{{ $reproductore->id }}</td>
-                                                <td>{{ $reproductore->Fecha_nacimiento }}</td>
                                                 <td>{{ $reproductore->Raza }}</td>
                                                 <td>{{ $reproductore->Genero }}</td>
                                                 <td>{{ $reproductore->Peso }}</td>
-                                                <td>{{ $reproductore->Procedencia }}</td>
+                                                <td>{{ $reproductore->Porcino_Macho }}</td>
+                                                <td>{{ $reproductore->Porcino_Hembra }}</td>
+                                                <td>{{ $reproductore->Fecha_nacimiento }}</td>
 
-                                                <td>
-                                                    <form action="{{ route('reproductores.destroy', $reproductore->id) }}"
+                                                <td class="btn-xd">
+                                                    <style>
+                                                        .btn-xd {
+                                                            display: flex;
+                                                            flex-direction: row;
+                                                        }
+                                                    </style>
+                                                    <form
+                                                        action="{{ route('reproductores.destroy', $reproductore->id) }}"
                                                         method="POST">
                                                         <a class="btn btn-sm btn-primary "
                                                             href="{{ route('reproductores.show', $reproductore->id) }}"><i
@@ -90,4 +99,4 @@
             </div>
         </div>
     </main>
-    @endsection
+@endsection

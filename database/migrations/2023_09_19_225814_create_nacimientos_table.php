@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('datos_nacimiento', function (Blueprint $table) {
+        Schema::create('nacimientos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_faseReproduccion');
-            $table->foreign('id_faseReproduccion')->references('id')->on('fase_reproduccion')->onDelete('cascade');
+            $table->foreign('id_faseReproduccion')->references('id')->on('reproducciones')->onDelete('cascade');
             $table->date('Fecha_Nacimiento');
             $table->float('Peso_Promedio');
             $table->integer('Cantidad_Porcinos_Total');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('datos_nacimiento');
+        Schema::dropIfExists('nacimientos');
     }
 };

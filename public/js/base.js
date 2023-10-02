@@ -103,3 +103,22 @@ function compararClave(dato, datoC) {//revisar por consola
 //     });
     
 // };
+
+function prueba(){//esperar xd si se maneja ono (activa btn para registrar porcino desde datos nacimiento)
+    let repro = document.getElementById('reproductores').value;
+    let btn = document.getElementById('btn-registrar');
+    if(repro == 0 || repro == ''){
+        btn.style.display = 'none';
+    }else{
+        btn.style.display = 'block';
+    }
+}
+
+function cerrarMensajes (){//los mensajes de creado, actualizado o eliminado se borraran despues de 5 segundos
+    setTimeout(function() {
+        $('.cerrarMensaje').fadeOut('slow');
+    }, 5000);
+}
+$(document).ready(function() {
+    cerrarMensajes();
+});

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Vacunacione
+    Reproduccione
 @endsection
 
 @section('content')
@@ -17,12 +17,12 @@
                             <div style="display: flex; justify-content: space-between; align-items: center;">
 
                                 <span id="card_title">
-                                    {{ __('Vacunacione') }}
+                                    {{ __('Reproduccione') }}
                                 </span>
 
                                 <div class="float-right">
-                                    <a href="{{ route('vacunaciones.create') }}" class="btn btn-primary btn-sm float-right"
-                                        data-placement="left">
+                                    <a href="{{ route('reproducciones.create') }}"
+                                        class="btn btn-primary btn-sm float-right" data-placement="left">
                                         {{ __('Create New') }}
                                     </a>
                                 </div>
@@ -36,35 +36,37 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover datatable">
+                                <table class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
                                             <th>No</th>
 
-                                            <th>Nombre</th>
-                                            <th>Id Lote Vacunación</th>
-                                            <th>Fecha Vacunación</th>
+                                            <th>Id Porcino Macho</th>
+                                            <th>Id Porcino Hembra</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Final</th>
 
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($vacunaciones as $vacunacione)
+                                        @foreach ($reproducciones as $reproduccione)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
 
-                                                <td>{{ $vacunacione->nombre }}</td>
-                                                <td>{{ $vacunacione->id_lote_vacunación }}</td>
-                                                <td>{{ $vacunacione->Fecha_Vacunación }}</td>
+                                                <td>{{ $reproduccione->id_Porcino_Macho }}</td>
+                                                <td>{{ $reproduccione->id_Porcino_Hembra }}</td>
+                                                <td>{{ $reproduccione->Fecha_Inicio }}</td>
+                                                <td>{{ $reproduccione->Fecha_Final }}</td>
 
                                                 <td>
-                                                    <form action="{{ route('vacunaciones.destroy', $vacunacione->id) }}"
+                                                    <form action="{{ route('reproducciones.destroy', $reproduccione->id) }}"
                                                         method="POST">
                                                         <a class="btn btn-sm btn-primary "
-                                                            href="{{ route('vacunaciones.show', $vacunacione->id) }}"><i
+                                                            href="{{ route('reproducciones.show', $reproduccione->id) }}"><i
                                                                 class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                         <a class="btn btn-sm btn-success"
-                                                            href="{{ route('vacunaciones.edit', $vacunacione->id) }}"><i
+                                                            href="{{ route('reproducciones.edit', $reproduccione->id) }}"><i
                                                                 class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                         @csrf
                                                         @method('DELETE')
@@ -79,7 +81,7 @@
                             </div>
                         </div>
                     </div>
-                    {!! $vacunaciones->links() !!}
+                    {!! $reproducciones->links() !!}
                 </div>
             </div>
         </div>

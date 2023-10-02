@@ -1,7 +1,7 @@
-m@extends('layouts.app')
+@extends('layouts.app')
 
 @section('template_title')
-    {{ $reproductore->name ?? "{{ __('Show') Reproductore" }}
+    {{ $nacimiento->name ?? "{{ __('Show') Nacimiento" }}
 @endsection
 
 @section('content')
@@ -15,43 +15,42 @@ m@extends('layouts.app')
                     <div class="card">
                         <div class="card-header">
                             <div class="float-left">
-                                <span class="card-title">{{ __('Show') }} Reproductore</span>
+                                <span class="card-title">{{ __('Show') }} Nacimiento</span>
                             </div>
                             <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('reproductores.index') }}">
-                                    {{ __('Back') }}</a>
+                                <a class="btn btn-primary" href="{{ route('nacimientos.index') }}"> {{ __('Back') }}</a>
                             </div>
                         </div>
 
                         <div class="card-body">
 
                             <div class="form-group">
-                                <strong>Id Repro:</strong>
-                                {{ $reproductore->id }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Raza:</strong>
-                                {{ $reproductore->Raza }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Genero:</strong>
-                                {{ $reproductore->Genero }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Peso:</strong>
-                                {{ $reproductore->Peso }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Porcino Macho:</strong>
-                                {{ $reproductore->Porcino_Macho }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Porcino Hembra:</strong>
-                                {{ $reproductore->Porcino_Hembra }}
+                                <strong>Id Fasereproduccion:</strong>
+                                {{ $nacimiento->id_faseReproduccion }}
                             </div>
                             <div class="form-group">
                                 <strong>Fecha Nacimiento:</strong>
-                                {{ $reproductore->Fecha_nacimiento }}
+                                {{ $nacimiento->Fecha_Nacimiento }}
+                            </div>
+                            <div class="form-group">
+                                <strong>Peso Promedio:</strong>
+                                {{ $nacimiento->Peso_Promedio }}
+                            </div>
+                            <div class="form-group">
+                                <strong>Cantidad Porcinos Total:</strong>
+                                {{ $nacimiento->Cantidad_Porcinos_Total }}
+                            </div>
+                            <div class="form-group">
+                                <strong>Cantidad Porcinos Criales:</strong>
+                                {{ $nacimiento->Cantidad_Porcinos_Criales }}
+                            </div>
+                            <div class="form-group">
+                                <strong>Cantidad Porcinos Reproductores:</strong>
+                                {{ $nacimiento->Cantidad_Porcinos_Reproductores }}
+                            </div>
+                            <div class="form-group">
+                                <strong>Cantidad Porcinos Muertos:</strong>
+                                {{ $nacimiento->Cantidad_Porcinos_Muertos }}
                             </div>
 
                         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Create') }} Reproductore
+    {{ __('Create') }} Nacimiento
 @endsection
 
 @section('content')
@@ -17,14 +17,14 @@
 
                     <div class="card card-default">
                         <div class="card-header">
-                            <span class="card-title">{{ __('Create') }} Reproductore</span>
+                            <span class="card-title">{{ __('Create') }} Nacimiento</span>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('reproductores.store') }}" role="form"
+                            <form method="POST" action="{{ route('nacimientos.store') }}" role="form"
                                 enctype="multipart/form-data">
                                 @csrf
 
-                                @include('reproductore.form')
+                                @include('nacimiento.form')
 
                             </form>
                         </div>

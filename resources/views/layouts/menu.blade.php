@@ -15,12 +15,12 @@
                     <span>Usuarios</span>
                 </a>
             </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('granjas.index') }}">
-                <i class="bi bi-house-door-fill"></i>
-                <span>Granja</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('granjas.index') }}">
+                    <i class="bi bi-house-door-fill"></i>
+                    <span>Granja</span>
+                </a>
+            </li>
         @endif
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('corrales.index') }}">
@@ -34,22 +34,24 @@
                 <span>Lotes</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('reproductores.index') }}">
-                <i class="fa-solid fa-heart"></i>
-                <span>Reproducción</span>
-            </a>
-        </li>
         <li class="nav-item dropdown-1">
             <div class="select" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="nav-link collapsed selected" style="width: 100%">Reproducción
-                    <div class="caret"></div>
+
+                <span class="nav-link collapsed selected" style="width: 100%"><i
+                        class="fa-solid fa-heart"></i>Reproducción
+                    {{-- <div class="caret"></div> --}}
                 </span>
             </div>
             <ul class="menu dropdown-menu dropdown-menu-dark">
-                <li class="active">Proceso Reproducción</li>
-                <li class=""><a href=""></a><span>Porcinos</span></li>
-                <li class=""><a href=""></a>Datos Nacimiento</li>
+                <a href="{{ route('reproducciones.index') }}">
+                    <li class="active"><i class="fa-solid fa-heart"></i>Proceso Reproducción</li>
+                </a>
+                <a href="{{ route('reproductores.index') }}">
+                    <li><i class="fa-solid fa-heart"></i><span>Porcinos</span></li>
+                </a>
+                <a href="{{ route('nacimientos.index') }}">
+                    <li><i class="fa-solid fa-heart"></i>Datos Nacimiento</li>
+                </a>
             </ul>
         </li>
         <li class="nav-item">

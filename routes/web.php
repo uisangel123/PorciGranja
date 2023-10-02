@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GranjaController;
 use App\Http\Controllers\CorraleController;
-use App\Http\Controllers\ReproductoreController;
+use App\Http\Controllers\NacimientoController;
+use App\Http\Controllers\ReproduccioneController;
 use App\Http\Controllers\VacunacioneController;
-
+use App\Http\Controllers\ReproductoreController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +43,8 @@ Route::resource('etapa-lotes',EtapaLoteController::class);
 Route::resource('lotes',LoteController::class);
 Route::resource('users',UserController::class);//agregar una ruta desde las opciones del user para acceder a sus datos
 Route::resource('vacunaciones',VacunacioneController::class);
+Route::resource('reproducciones',ReproduccioneController::class);
+Route::resource('nacimientos',NacimientoController::class);
 
 
 Route::post('users/{user}/edit', [UserController::class, 'actualizarPassword'])->name('actualizarPassword')->middleware('web');
