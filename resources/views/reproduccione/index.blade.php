@@ -36,15 +36,16 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover datatable">
                                     <thead class="thead">
                                         <tr>
                                             <th>No</th>
 
-                                            <th>Id Porcino Macho</th>
-                                            <th>Id Porcino Hembra</th>
+                                            <th>Porcino Macho</th>
+                                            <th>Porcino Hembra</th>
                                             <th>Fecha Inicio</th>
                                             <th>Fecha Final</th>
+                                            <th>Estado</th>
 
                                             <th></th>
                                         </tr>
@@ -58,6 +59,7 @@
                                                 <td>{{ $reproduccione->id_Porcino_Hembra }}</td>
                                                 <td>{{ $reproduccione->Fecha_Inicio }}</td>
                                                 <td>{{ $reproduccione->Fecha_Final }}</td>
+                                                <td>{{ $reproduccione->Estado }}</td>
 
                                                 <td>
                                                     <form action="{{ route('reproducciones.destroy', $reproduccione->id) }}"

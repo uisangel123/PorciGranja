@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('id_Porcino_Hembra')->references('id')->on('reproductores');
             $table->date('Fecha_Inicio');
             $table->date('Fecha_Final')->nullable();
+            $table->string('Estado')->default('En Curso');
             $table->timestamps();
         });
     }

@@ -1,4 +1,4 @@
-m@extends('layouts.app')
+@extends('layouts.app')
 
 @section('template_title')
     {{ $reproductore->name ?? "{{ __('Show') Reproductore" }}

@@ -79,8 +79,8 @@ function borrarError(input, errorElementId) {
 function compararClave(dato, datoC) {//revisar por consola
     let dato1 = document.getElementById(dato).value;
     let dato2 = document.getElementById(datoC).value;
-    console.log(dato1+"Input 1");
-    console.log(dato2+"Input 2");
+    console.log(dato1 + "Input 1");
+    console.log(dato2 + "Input 2");
     if (dato1 == dato2) {
         console.log("Son iguales");
     } else {
@@ -101,24 +101,42 @@ function compararClave(dato, datoC) {//revisar por consola
 //             console.log(response + hola);
 //         }
 //     });
-    
+
 // };
 
-function prueba(){//esperar xd si se maneja ono (activa btn para registrar porcino desde datos nacimiento)
+function prueba() {//esperar xd si se maneja ono (activa btn para registrar porcino desde datos nacimiento)
     let repro = document.getElementById('reproductores').value;
     let btn = document.getElementById('btn-registrar');
-    if(repro == 0 || repro == ''){
+    if (repro == 0 || repro == '') {
         btn.style.display = 'none';
-    }else{
+    } else {
         btn.style.display = 'block';
     }
 }
 
-function cerrarMensajes (){//los mensajes de creado, actualizado o eliminado se borraran despues de 5 segundos
-    setTimeout(function() {
+function cerrarMensajes() {//los mensajes de creado, actualizado o eliminado se borraran despues de 5 segundos
+    setTimeout(function () {
         $('.cerrarMensaje').fadeOut('slow');
     }, 5000);
 }
-$(document).ready(function() {
+$(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair sobre el error q no funciona las peticiones del AJAX por el csrf
     cerrarMensajes();
+
+    $('#id_Datos').change(function () {
+        let select = $(this).val();
+        $.ajax({
+            url: "/buscarDinamico",
+            method: "POST",
+            data: {
+                "_token": $("meta[name='csrf-token']").attr("content"),
+                "select": select
+            },
+            success: function (response) {
+                $('#cantidad').val(response.related_value);
+            }
+        })
+    });
 });
+
+
+

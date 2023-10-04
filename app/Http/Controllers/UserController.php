@@ -119,7 +119,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         return redirect()->route('home.index')
-            ->with('success', 'User updated successfully');
+            ->with('success', 'Usuario actualizado exitosamente!');
     }
 
     /**
@@ -132,7 +132,7 @@ class UserController extends Controller
         $user = User::find($id)->delete();
 
         return redirect()->route('users.index')
-            ->with('success', 'User deleted successfully');
+            ->with('success', 'Usuario eliminado exitosamente!');
     }
     public function actualizarPassword(Request $request)
     {

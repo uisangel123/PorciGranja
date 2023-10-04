@@ -10,21 +10,26 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $Nombre
  * @property $id_corral
+ * @property $id_Datos
+ * @property $Cantidad_Porcinos
  * @property $created_at
  * @property $updated_at
  *
+ * @property Alimentacione[] $alimentaciones //el error es porq no existe ese modal aun
  * @property Corrale $corrale
  * @property EtapaLote[] $etapaLotes
+ * @property Nacimiento $nacimiento
+ * @property Vacunacione[] $vacunaciones
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Lote extends Model
 {
-
+    
     static $rules = [
-        'Nombre' => 'required',
-        'id_corral' => 'required',
-        'Cantidad_Porcinos' => 'required',
+		'Nombre' => 'required',
+		'id_corral' => 'required',
+		'Cantidad_Porcinos' => 'required',
     ];
 
     protected $perPage = 20;
@@ -34,9 +39,17 @@ class Lote extends Model
      *
      * @var array
      */
-    protected $fillable = ['Nombre', 'id_corral', 'Cantidad_Porcinos'];
+    protected $fillable = ['Nombre','id_corral','id_Datos','Cantidad_Porcinos'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function alimentaciones()
+    {
+        return $this->hasMany('App\Models\Alimentacione', 'id_lote', 'id');
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -44,7 +57,7 @@ class Lote extends Model
     {
         return $this->hasOne('App\Models\Corrale', 'id', 'id_corral');
     }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -52,4 +65,22 @@ class Lote extends Model
     {
         return $this->hasMany('App\Models\EtapaLote', 'id_lote', 'id');
     }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function nacimiento()
+    {
+        return $this->hasOne('App\Models\Nacimiento', 'id', 'id_Datos');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function vacunaciones()
+    {
+        return $this->hasMany('App\Models\Vacunacione', 'id_lote_vacunación', 'id');
+    }
+    
+
 }

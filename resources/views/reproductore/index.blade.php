@@ -29,8 +29,11 @@
                             </div>
                         </div>
                         @if ($message = Session::get('success'))
-                            <div class="alert alert-success cerrarMensaje">
-                                <p>{{ $message }}</p>
+                            <div class="alert alert-success cerrarMensaje alert-dismissible fade show " role="alert">
+                                <i class="bi bi-check-circle me-1"></i>
+                                <span>{{ $message }}</span>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
                         @endif
 
@@ -72,8 +75,7 @@
                                                             flex-direction: row;
                                                         }
                                                     </style>
-                                                    <form
-                                                        action="{{ route('reproductores.destroy', $reproductore->id) }}"
+                                                    <form action="{{ route('reproductores.destroy', $reproductore->id) }}"
                                                         method="POST">
                                                         <a class="btn btn-sm btn-primary "
                                                             href="{{ route('reproductores.show', $reproductore->id) }}"><i

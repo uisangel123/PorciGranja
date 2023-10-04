@@ -75,8 +75,9 @@ class ReproductoreController extends Controller
     public function edit($id)
     {
         $reproductore = Reproductore::find($id);
-
-        return view('reproductore.edit', compact('reproductore'));
+        $reproductoreMacho = Reproductore::where('Genero', 'Macho')->get();
+        $reproductoreHembra = Reproductore::where('Genero', 'Hembra')->get();
+        return view('reproductore.edit', compact('reproductore', 'reproductoreMacho', 'reproductoreHembra'));
     }
 
     /**

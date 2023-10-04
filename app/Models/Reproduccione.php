@@ -36,7 +36,7 @@ class Reproduccione extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_Porcino_Macho','id_Porcino_Hembra','Fecha_Inicio','Fecha_Final'];
+    protected $fillable = ['id_Porcino_Macho','id_Porcino_Hembra','Fecha_Inicio','Fecha_Final','Estado'];
 
 
     /**

@@ -35,10 +35,10 @@ class NacimientoController extends Controller
     {
         $nacimiento = new Nacimiento();
         // $reproducciones = Reproduccione::all();
-        $reproductore = new Reproductore();//revisar xdxddo o dejar pa despues y mirar otras cosas
-        $reproducciones = Reproduccione::where('Fecha_Final',null)->get();
-        
-        return view('nacimiento.create', compact('nacimiento', 'reproducciones','reproductore'));
+        $reproductore = new Reproductore(); //revisar xdxddo o dejar pa despues y mirar otras cosas
+        $reproducciones = Reproduccione::where('Estado', 'En Curso')->get();
+
+        return view('nacimiento.create', compact('nacimiento', 'reproducciones', 'reproductore'));
     }
 
     /**
@@ -55,8 +55,9 @@ class NacimientoController extends Controller
 
         $repro = Reproduccione::find($nacimiento->id_faseReproduccion);
 
-        if($repro && $repro->Fecha_Final === null ){
+        if ($repro && $repro->Fecha_Final === null) {
             $repro->Fecha_Final = $nacimiento->Fecha_Nacimiento;
+            $repro->Estado = "Finalizado";
             $repro->save();
         }
 
@@ -84,12 +85,12 @@ class NacimientoController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)//borre esto y mire pa hacer validación de q no permita trabajar con cerdos de otras reproducciones
+    public function edit($id) //borre esto y mire pa hacer validación de q no permita trabajar con cerdos de otras reproducciones
     {
         $nacimiento = Nacimiento::find($id);
         $reproducciones = Reproduccione::all();
 
-        return view('nacimiento.edit', compact('nacimiento','reproducciones'));
+        return view('nacimiento.edit', compact('nacimiento', 'reproducciones'));
     }
 
     /**
@@ -120,5 +121,12 @@ class NacimientoController extends Controller
 
         return redirect()->route('nacimientos.index')
             ->with('success', 'Nacimiento deleted successfully');
+    }
+
+    public function buscarDinamico(Request $request)
+    {
+        $seleccionarDatos = $request->input('id_Datos');
+        $buscarDatos = Nacimiento::find($seleccionarDatos)->Cantidad_Porcinos_Total;
+        return response()->json(['datos' => $buscarDatos]);
     }
 }

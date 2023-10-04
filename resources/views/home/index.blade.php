@@ -11,9 +11,11 @@
 
         <main id="main" class="main">
             @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
+            <div class="alert alert-success cerrarMensaje alert-dismissible fade show " role="alert" style="border-radius: 0; width: 100%"><!--Agregar clase pa los bordes en el sena-->
+                <i class="bi bi-check-circle me-1"></i>
+                <span>{{$message}}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
             @endif
             <div class="pagetitle">
                 <h1>Dashboard</h1>

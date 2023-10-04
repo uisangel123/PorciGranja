@@ -29,20 +29,21 @@
                             </div>
                         </div>
                         @if ($message = Session::get('success'))
-                            <div class="alert alert-success cerrarMensaje">
+                            <div class="alert alert-success">
                                 <p>{{ $message }}</p>
                             </div>
                         @endif
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table datatable">
+                                <table class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
                                             <th>No</th>
 
                                             <th>Nombre</th>
                                             <th>Id Corral</th>
+                                            <th>Id Datos</th>
                                             <th>Cantidad Porcinos</th>
 
                                             <th></th>
@@ -55,6 +56,7 @@
 
                                                 <td>{{ $lote->Nombre }}</td>
                                                 <td>{{ $lote->id_corral }}</td>
+                                                <td>{{ $lote->id_Datos }}</td>
                                                 <td>{{ $lote->Cantidad_Porcinos }}</td>
 
                                                 <td>
@@ -66,12 +68,9 @@
                                                             href="{{ route('lotes.edit', $lote->id) }}"><i
                                                                 class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                         @csrf
-                                                        @if (auth()->user()->rol === 'admin')
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm"><i
-                                                                    class="fa fa-fw fa-trash"></i>
-                                                                {{ __('Delete') }}</button>
-                                                        @endif
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i
+                                                                class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                     </form>
                                                 </td>
                                             </tr>
