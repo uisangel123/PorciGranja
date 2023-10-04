@@ -125,3 +125,7 @@ label {
 .caret-rotate{
     transform: rotate(12px);
 }
+.m{
+    border-radius: 0px;
+    width: 100% !important;
+}

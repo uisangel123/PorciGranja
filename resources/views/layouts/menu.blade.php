@@ -72,6 +72,12 @@
                 <span>Alimento</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('vacunaciones.index') }}">
+                <i class="fa-solid fa-syringe"></i>
+                <span>Vacunación</span>
+            </a>
+        </li>
 
 
         <!-- End Profile Page Nav -->
