@@ -49,9 +49,6 @@ class ReproductoreController extends Controller
 
         $reproductore = Reproductore::create($request->all());
 
-        if($reproductore->Porcino_Macho === null && $reproductore->Porcino_Hembra === null){//mandar No tiene en lugar de null
-        
-        }
 
         return redirect()->route('reproductores.index')
             ->with('success', 'Reproductore created successfully.');

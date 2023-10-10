@@ -18,12 +18,12 @@
             {!! $errors->first('id_corral', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-                {{ Form::label('id_Datos', 'Selecciones un Corral') }}
+                {{ Form::label('id_Datos', 'Selecciones una Piara') }}
                 <select name="id_Datos" id="id_Datos"
                     class=" form-control{{ $errors->has('id_Datos') ? ' is-invalid' : '' }}">
-                    <option value="">Seleccione un Corral</option>
+                    <option value="">Seleccione una Piara</option>
                     @foreach ($datos as $dato)
-                        <option value="{{ $corral['id'] }}">{{ $corral['id'] }}</option>
+                        <option value="{{ $dato['id'] }}">{{ $dato['id'] }}</option>
                     @endforeach
                 </select>
                 {!! $errors->first('id_Datos', '<div class="invalid-feedback">:message</div>') !!}

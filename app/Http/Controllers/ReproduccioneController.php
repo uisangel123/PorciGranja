@@ -33,19 +33,19 @@ class ReproduccioneController extends Controller
      */
     public function create()
     {
-        $edadminima = 2;//dato para determinar la edad minima para los porcinos reproductores
+        $edadminima = 2; //dato para determinar la edad minima para los porcinos reproductores
         $reproduccione = new Reproduccione();
-        $reproducciones = Reproduccione::whereNull('Fecha_Final')->get();//todas las reproducciones que tengan la fecha final en null(son procesos sin acabar)
-        $macho = $reproducciones->pluck('id_Porcino_Macho');//esas repros q no han terminado, obtenemos los porcinos macho cruzado
-        $hembra = $reproducciones->pluck('id_Porcino_Hembra');//esas repros q no han terminado, obtenemos las porcinos hembra cruzado
-        $machosDisponibles = Reproductore::where('Genero', 'Macho')//llamamos todos los porcinos reproductores por genero macho
-        ->whereNotIn('id', $macho)//todos los machos cruzados en repros sin terminar, se comparan con todos los reproductores y si coinciden su id, no seran filtrados
-        ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))//Fecha_nacimiento es un valor de cada repro q si no cumple para poder cruzar no sera filtrado
-        ->get();//obtenemos todos los machos q finalmente cumplieron las condiciones pasadas
-        $hembrasDisponibles = Reproductore::where('Genero', 'Hembra')//mismo proceso para las hembras q lo de machos
-        ->whereNotIn('id', $hembra)
-        ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))
-        ->get();
+        $reproducciones = Reproduccione::whereNull('Fecha_Final')->get(); //todas las reproducciones que tengan la fecha final en null(son procesos sin acabar)
+        $macho = $reproducciones->pluck('id_Porcino_Macho'); //esas repros q no han terminado, obtenemos los porcinos macho cruzado
+        $hembra = $reproducciones->pluck('id_Porcino_Hembra'); //esas repros q no han terminado, obtenemos las porcinos hembra cruzado
+        $machosDisponibles = Reproductore::where('Genero', 'Macho') //llamamos todos los porcinos reproductores por genero macho
+            ->whereNotIn('id', $macho) //todos los machos cruzados en repros sin terminar, se comparan con todos los reproductores y si coinciden su id, no seran filtrados
+            ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima)) //Fecha_nacimiento es un valor de cada repro q si no cumple para poder cruzar no sera filtrado
+            ->get(); //obtenemos todos los machos q finalmente cumplieron las condiciones pasadas
+        $hembrasDisponibles = Reproductore::where('Genero', 'Hembra') //mismo proceso para las hembras q lo de machos
+            ->whereNotIn('id', $hembra)
+            ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))
+            ->get();
 
 
         return view('reproduccione.create', compact('reproduccione', 'machosDisponibles', 'hembrasDisponibles')); //los datos los mandamos por el compact
@@ -121,5 +121,21 @@ class ReproduccioneController extends Controller
 
         return redirect()->route('reproducciones.index')
             ->with('success', 'Reproduccione deleted successfully');
+    }
+    public function buscarDisponibles(Request $request)
+    {
+        $edadminima = 2; //dato para determinar la edad minima para los porcinos reproductores
+        $reproducciones = Reproduccione::whereNull('Fecha_Final')->get(); //todas las reproducciones que tengan la fecha final en null(son procesos sin acabar)
+        $seleccionado = $request->input('macho'); //2
+        $hembra = $reproducciones->pluck('id_Porcino_Hembra'); //esas repros q no han terminado, obtenemos las porcinos hembra cruzado
+        $hembrasDisponibles = Reproductore::where('Genero', 'Hembra') //mismo proceso para las hembras q lo de machos
+            ->whereNotIn('id', $hembra)
+            ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))
+            ->get();
+        $hola = $hembrasDisponibles->where('Porcino_Macho','!=', $seleccionado);
+        return response()->json([
+            "hola" => $hola,
+            "macho" => $seleccionado,
+        ]);
     }
 }

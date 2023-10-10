@@ -47,9 +47,8 @@ Route::resource('users', UserController::class); //agregar una ruta desde las op
 Route::resource('vacunaciones', VacunacioneController::class)->middleware('auth');
 Route::resource('reproducciones', ReproduccioneController::class)->middleware('auth');
 Route::resource('nacimientos', NacimientoController::class)->middleware('auth');
-// Route::post('/buscarDinamico', [Nacimiento::class, 'buscarDinamico']);
-Route::post('/buscarDinamico', 'NacimientoController@buscarDinamico');
-
+Route::post('/buscarDinamico', [NacimientoController::class, 'buscarDinamico']);
+Route::post('/buscarDisponibles', [ReproduccioneController::class, 'buscarDisponibles']);
 
 
 Route::post('users/{user}/edit', [UserController::class, 'actualizarPassword'])->name('actualizarPassword')->middleware('web');

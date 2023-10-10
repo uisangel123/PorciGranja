@@ -68,7 +68,7 @@
                                             <input id="telefono" type="text"
                                                 class="form-control error @error('telefono') is-invalid @enderror"
                                                 name="telefono" value="{{ old('telefono') }}" required
-                                                autocomplete="telefono" onkeypress="return soloNumeros(event,'telefono')">
+                                                autocomplete="telefono" onkeypress="return soloNumeros(event,'telefono')" minlength="10" maxlength="10">
                                             @error('telefono')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

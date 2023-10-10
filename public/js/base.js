@@ -1,10 +1,4 @@
-// let token = ""; TOKEN CSRF GLOBAL
-// function loadUserCredentials() {
-//     token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
-//     if (token) {
-//         useCredentials(token);
-//     }
-// }
+var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 
 //Codigo para que un input tipo date tome la fecha actual a tiempo real.
 document.addEventListener('DOMContentLoaded', function () {
@@ -128,13 +122,49 @@ $(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair
             url: "/buscarDinamico",
             method: "POST",
             data: {
-                "_token": $("meta[name='csrf-token']").attr("content"),
-                "select": select
+                "id_Datos": select,
+            },
+            headers: {
+                "X-CSRF-TOKEN": token,
             },
             success: function (response) {
-                $('#cantidad').val(response.related_value);
+                if (response) {
+                    let datos = document.getElementById('cantidad');
+
+                    datos.value = response.datos;
+                    console.log(response);
+
+                }
             }
         })
+    });
+    let select = document.getElementById('macho');
+    select.addEventListener('change', (event) => {
+        let select2 = event.target.value;
+        $.ajax({
+            url: "/buscarDisponibles",
+            method: "POST",
+            data: {
+                "macho": select2,
+            },
+            headers: {
+                "X-CSRF-TOKEN": token,
+            },
+            success: function (response) {
+                // let idsHembra = response.hola ;
+                // const ids = [];
+                // idsHembra.forEach(objeto => {
+                //     const hembras = objeto.Porcino_Macho;
+                //     // if(hembras != select2){
+                //     // const NoHijas = objeto.id;
+                //     // ids.push(NoHijas);
+                //     // }
+                //     ids.push(hembras);
+                // });
+            console.log(response.hola);
+            // console.log(select2);
+            },
+        });
     });
 });
 
