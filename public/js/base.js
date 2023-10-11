@@ -151,18 +151,29 @@ $(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair
                 "X-CSRF-TOKEN": token,
             },
             success: function (response) {
-                // let idsHembra = response.hola ;
-                // const ids = [];
-                // idsHembra.forEach(objeto => {
-                //     const hembras = objeto.Porcino_Macho;
-                //     // if(hembras != select2){
-                //     // const NoHijas = objeto.id;
-                //     // ids.push(NoHijas);
-                //     // }
-                //     ids.push(hembras);
-                // });
+                let selectHembra = document.getElementById('hembra');
+            while (selectHembra.firstChild) {
+                    selectHembra.removeChild(selectHembra.firstChild);
+            }
+            let option = document.createElement("option");
+            option.value = 'Seleccionar hembra';
+            option.text = 'Seleccionar hembra';
+            selectHembra.insertBefore(option, selectHembra.firstChild);
+            
+            // Ahora agregamos las nuevas opciones
+            if(select2 != ""){
+            for (let i = 0; i < response.hola.length; i++) {
+                // Creamos la nueva opción
+                let option = document.createElement("option");
+                option.value = response.hola[i].id; // Aquí debes cambiar 'id' por el nombre del atributo que contiene el id de la hembra
+                option.text = response.hola[i].id; // Aquí debes cambiar 'id' por el nombre del atributo que contiene el nombre de la hembra
+
+                // Añadimos la opción al select
+                selectHembra.appendChild(option);
+            }
             console.log(response.hola);
             // console.log(select2);
+        }
             },
         });
     });

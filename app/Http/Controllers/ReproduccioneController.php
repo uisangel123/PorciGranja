@@ -42,11 +42,11 @@ class ReproduccioneController extends Controller
             ->whereNotIn('id', $macho) //todos los machos cruzados en repros sin terminar, se comparan con todos los reproductores y si coinciden su id, no seran filtrados
             ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima)) //Fecha_nacimiento es un valor de cada repro q si no cumple para poder cruzar no sera filtrado
             ->get(); //obtenemos todos los machos q finalmente cumplieron las condiciones pasadas
-        $hembrasDisponibles = Reproductore::where('Genero', 'Hembra') //mismo proceso para las hembras q lo de machos
-            ->whereNotIn('id', $hembra)
-            ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))
-            ->get();
-
+        // $hembrasDisponibles = Reproductore::where('Genero', 'Hembra') //mismo proceso para las hembras q lo de machos
+        //     ->whereNotIn('id', $hembra)
+        //     ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))
+        //     ->get();
+        $hembrasDisponibles = collect([]);
 
         return view('reproduccione.create', compact('reproduccione', 'machosDisponibles', 'hembrasDisponibles')); //los datos los mandamos por el compact
     }
@@ -133,8 +133,9 @@ class ReproduccioneController extends Controller
             ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))
             ->get();
         $hola = $hembrasDisponibles->where('Porcino_Macho','!=', $seleccionado);
+        $hola2 = collect($hola)->values();
         return response()->json([
-            "hola" => $hola,
+            "hola" => $hola2,
             "macho" => $seleccionado,
         ]);
     }
