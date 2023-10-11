@@ -18,18 +18,18 @@
         </div>
         <div class="form-group">
             {{ Form::label('Cantidad_Porcinos_Total') }}
-            {{ Form::text('Cantidad_Porcinos_Total', $nacimiento->Cantidad_Porcinos_Total, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos_Total') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos Total']) }}
+            {{ Form::text('Cantidad_Porcinos_Total', $nacimiento->Cantidad_Porcinos_Total, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos_Total') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos Total', 'id' => 'total', 'onchange' => 'cantidadesCerdos()']) }}
             {!! $errors->first('Cantidad_Porcinos_Total', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('Cantidad_Porcinos_Criales') }}
-            {{ Form::text('Cantidad_Porcinos_Criales', $nacimiento->Cantidad_Porcinos_Criales, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos_Criales') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos Criales']) }}
+            {{ Form::text('Cantidad_Porcinos_Criales', $nacimiento->Cantidad_Porcinos_Criales, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos_Criales') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos Criales', 'id' => 'Criales', 'onchange' => 'cantidadesCerdos()']) }}
             {!! $errors->first('Cantidad_Porcinos_Criales', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('Cantidad_Porcinos_Reproductores') }}
-            {{ Form::text('Cantidad_Porcinos_Reproductores', $nacimiento->Cantidad_Porcinos_Reproductores, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos_Reproductores') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos Reproductores', 'onkeyup' => 'prueba()', 'id' => 'reproductores']) }}
-            {!! $errors->first('Cantidad_Porcinos_Reproductores', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::text('Cantidad_Porcinos_Reproductores', $nacimiento->Cantidad_Porcinos_Reproductores, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos_Reproductores') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos Reproductores', 'id' => 'reproductores', 'onchange' => 'cantidadesCerdos()']) }}
+            {!! $errors->first('Cantidad_Porcinos_Reproductores', '<div class="invalid-feedback">:message</div>') !!}<!-- 'onkeyup' => 'prueba()',-->
         </div>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" id="btn-registrar" style="display: none" data-bs-toggle="modal"
@@ -105,12 +105,12 @@
         </div>
         <div class="form-group">
             {{ Form::label('Cantidad_Porcinos_Muertos') }}
-            {{ Form::text('Cantidad_Porcinos_Muertos', $nacimiento->Cantidad_Porcinos_Muertos, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos_Muertos') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos Muertos']) }}
+            {{ Form::text('Cantidad_Porcinos_Muertos', $nacimiento->Cantidad_Porcinos_Muertos, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos_Muertos') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos Muertos', 'id' => 'muertos', 'onchange' => 'cantidadesCerdos()']) }}
             {!! $errors->first('Cantidad_Porcinos_Muertos', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        <button type="submit" id="submit1" class="btn btn-primary">{{ __('Submit') }}</button>
     </div>
 </div>

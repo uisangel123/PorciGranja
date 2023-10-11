@@ -178,6 +178,28 @@ $(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair
         });
     });
 });
+//Datos Nacimiento *Cantidad*
+function cantidadesCerdos(){
+    let total = parseInt(document.getElementById('total').value);
+    let repro = parseInt(document.getElementById('reproductores').value);
+    let criales = parseInt(document.getElementById('Criales').value);
+    let muerto = parseInt(document.getElementById('muertos').value);
+    let btn = document.getElementById('submit1');
+    if (!isNaN(total) && !isNaN(repro) && !isNaN(criales) && !isNaN(muerto)) {
+    let suma = repro + criales + muerto;
+        if(suma != total){
+            let mensaje = `La cantidad total ${total} es diferente a la de los cerdos ${suma}!`
+            mensajeError(mensaje, btn, "error-total");
+            btn.style.backgroundColor = "grey";
+            btn.disabled = true;
+        }else{
+            borrarError(btn, "error-total");
+            btn.disabled = false;
+            btn.style.backgroundColor = "";
+        }
+ console.log(suma)
+    }
+}
 
 
 
