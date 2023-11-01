@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('Cantidad_Porcinos_Criales');
             $table->integer('Cantidad_Porcinos_Reproductores');
             $table->integer('Cantidad_Porcinos_Muertos');
+            $table->integer('Cantidad_Porcinos_Vivos');
             $table->timestamps();
         });
     }

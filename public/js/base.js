@@ -131,7 +131,7 @@ $(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair
                 if (response) {
                     let datos = document.getElementById('cantidad');
 
-                    datos.value = response.datos;
+                    datos.value = response.buscarDatos;
                     console.log(response);
 
                 }
@@ -152,54 +152,162 @@ $(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair
             },
             success: function (response) {
                 let selectHembra = document.getElementById('hembra');
-            while (selectHembra.firstChild) {
+                while (selectHembra.firstChild) {
                     selectHembra.removeChild(selectHembra.firstChild);
-            }
-            let option = document.createElement("option");
-            option.value = 'Seleccionar hembra';
-            option.text = 'Seleccionar hembra';
-            selectHembra.insertBefore(option, selectHembra.firstChild);
-            
-            // Ahora agregamos las nuevas opciones
-            if(select2 != ""){
-            for (let i = 0; i < response.hola.length; i++) {
-                // Creamos la nueva opción
+                }
                 let option = document.createElement("option");
-                option.value = response.hola[i].id; // Aquí debes cambiar 'id' por el nombre del atributo que contiene el id de la hembra
-                option.text = response.hola[i].id; // Aquí debes cambiar 'id' por el nombre del atributo que contiene el nombre de la hembra
+                option.value = 'Seleccionar hembra';
+                option.text = 'Seleccionar hembra';
+                selectHembra.insertBefore(option, selectHembra.firstChild);
 
-                // Añadimos la opción al select
-                selectHembra.appendChild(option);
-            }
-            console.log(response.hola);
-            // console.log(select2);
-        }
+                // Ahora agregamos las nuevas opciones
+                if (select2 != "") {
+                    for (let i = 0; i < response.hola.length; i++) {
+                        // Creamos la nueva opción
+                        let option = document.createElement("option");
+                        option.value = response.hola[i].id; // Aquí debes cambiar 'id' por el nombre del atributo que contiene el id de la hembra
+                        option.text = response.hola[i].id; // Aquí debes cambiar 'id' por el nombre del atributo que contiene el nombre de la hembra
+
+                        // Añadimos la opción al select
+                        selectHembra.appendChild(option);
+                    }
+                    console.log(response.hola);
+                    // console.log(select2);
+                }
             },
         });
     });
+
 });
 //Datos Nacimiento *Cantidad*
-function cantidadesCerdos(){
+function cantidadesCerdos() {
     let total = parseInt(document.getElementById('total').value);
     let repro = parseInt(document.getElementById('reproductores').value);
     let criales = parseInt(document.getElementById('Criales').value);
     let muerto = parseInt(document.getElementById('muertos').value);
+    let vivo = parseInt(document.getElementById('vivos').value);
     let btn = document.getElementById('submit1');
-    if (!isNaN(total) && !isNaN(repro) && !isNaN(criales) && !isNaN(muerto)) {
-    let suma = repro + criales + muerto;
-        if(suma != total){
+    if (!isNaN(total) && !isNaN(repro) && !isNaN(criales) && !isNaN(muerto) && !isNaN(vivo)) {
+        let suma = repro + criales + muerto;
+        if (suma != total || (muerto + vivo) != total) {
             let mensaje = `La cantidad total ${total} es diferente a la de los cerdos ${suma}!`
             mensajeError(mensaje, btn, "error-total");
             btn.style.backgroundColor = "grey";
             btn.disabled = true;
-        }else{
+        } else {
             borrarError(btn, "error-total");
             btn.disabled = false;
             btn.style.backgroundColor = "";
         }
- console.log(suma)
+        console.log(suma)
     }
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const contenedor = document?.querySelector('#dinamico');
+    const btnSemana = document?.getElementById('agregarSemana');
+    let contadorSemana = 2;//recordar agregar esto para el numero de semanas, pero claro mirando el espacio
+    btnSemana?.addEventListener('click', () => {
+        let div = document?.createElement('div');
+        div.className = 'row';
+        div.innerHTML = `
+    <hr>
+    <div class="col-md-1">
+    <div class="form-group">
+        <label for="semana">Semana</label>
+        <input class="form-control" id="semana" placeholder="Semana" name="Semana[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+<div class="col-md-1">
+    <div class="form-group">
+        <label for="dia_1">Dia 1</label>
+        <input class="form-control" id="dia_1" placeholder="Dia 1" name="dia_1[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+<div class="col-md-1">
+    <div class "form-group">
+        <label for="dia_2">Dia 2</label>
+        <input class="form-control" id="dia_2" placeholder="Dia 2" name="dia_2[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+<div class="col-md-1">
+    <div class="form-group">
+        <label for="dia_3">Dia 3</label>
+        <input class="form-control" id="dia_3" placeholder="Dia 3" name="dia_3[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+<div class="col-md-1">
+    <div class="form-group">
+        <label for="dia_4">Dia 4</label>
+        <input class="form-control" id="dia_4" placeholder="Dia 4" name="dia_4[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+<div class="col-md-1">
+    <div class="form-group">
+        <label for="dia_5">Dia 5</label>
+        <input class="form-control" id="dia_5" placeholder="Dia 5" name="dia_5[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+<div class="col-md-1">
+    <div class="form-group">
+        <label for="dia_6">Dia 6</label>
+        <input class="form-control" id="dia_6" placeholder="Dia 6" name="dia_6[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+<div class="col-md-1">
+    <div class="form-group">
+        <label for="dia_7">Dia 7</label>
+        <input class="form-control" id="dia_7" placeholder="Dia 7" name="dia_7[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+<div class="col-md-2">
+    <div class="form-group">
+        <label for="promedio_semanal">Prom Semanal</label>
+        <input class="form-control" id="promedio_semanal" placeholder="Promedio Semanal" name="promedio_semanal[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+<div class="col-md-2">
+    <div class="form-group">
+        <label for="promedio_diario">Prom Diario</label>
+        <input class="form-control" id="promedio_diario" placeholder="Promedio Diario" name="promedio_diario[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+`;
+        contenedor.appendChild(div);
+    });
+    const contenedorDatosLote = document?.querySelector('#dinamicoDatos');
+    const btnDatosLote = document?.getElementById('agregarDatos');
+    btnDatosLote?.addEventListener('click', () => {
+        let div = document.createElement('div');
+        div.innerHTML = `
+        <div class="form-group">
+    <label for="id_Datos">Seleccione una Piara</label>
+    <select name="id_Datos" id="id_Datos" class="form-control">
+        <option value="">Seleccione una Piara</option>
+        <?php foreach ($datos as $dato): ?>
+            <option value="<?php echo $dato['id']; ?>"><?php echo $dato['id']; ?></option>
+        <?php endforeach; ?>
+    </select>
+</div>
+        `;
+        contenedorDatosLote.appendChild(div);
+    });
+    let datosLote = document.getElementById('lotes');
+    datosLote.addEventListener('change', () => {
+        alert('hola')
+    });
+});
+
+
 
 
 

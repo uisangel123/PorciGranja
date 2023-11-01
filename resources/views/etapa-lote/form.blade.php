@@ -14,11 +14,11 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
+                {{-- <div class="form-group">
                     {{ Form::label('id_corral') }}
                     {{ Form::select('id_corral', $corrales->pluck('name', 'id'), $etapaLote->id_corral, ['class' => 'form-control' . ($errors->has('id_corral') ? ' is-invalid' : ''), 'placeholder' => 'Id Corral']) }}
                     {!! $errors->first('id_corral', '<div class="invalid-feedback">:message</div>') !!}
-                </div>
+                </div> --}}
                 <div class="form-group">
                     {{ Form::label('id_etapa') }}
                     {{ Form::select('id_etapa', $etapas->pluck('Nombre', 'id'), $etapaLote->id_etapa, ['class' => 'form-control' . ($errors->has('id_etapa') ? ' is-invalid' : ''), 'placeholder' => 'Id Etapa']) }}

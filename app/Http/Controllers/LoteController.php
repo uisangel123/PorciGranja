@@ -116,4 +116,15 @@ class LoteController extends Controller
         return redirect()->route('lotes.index')
             ->with('success', 'Lote deleted successfully');
     }
+    public function buscarDinamico(Request $request)
+    {
+        $seleccionarDatos = $request->input('id_Datos');
+        $buscarDatos = Nacimiento::find($seleccionarDatos)->Cantidad_Porcinos_Vivos;
+        $datos = Nacimiento::all();
+        $data = [
+        'buscarDatos'=> $buscarDatos,
+        'datos'=> $datos,
+        ];
+        return response()->json($data);
+    }
 }

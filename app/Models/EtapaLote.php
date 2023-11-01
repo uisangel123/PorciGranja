@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $Nombre
  * @property $id_lote
- * @property $id_corral
  * @property $id_etapa
  * @property $Fecha_inicial
  * @property $Fecha_final
@@ -26,7 +25,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property $updated_at
  *
  * @property Alimento $alimento
- * @property Corrale $corrale
  * @property Etapa $etapa
  * @property Lote $lote
  * @package App
@@ -38,7 +36,6 @@ class EtapaLote extends Model
     static $rules = [
 		'Nombre' => 'required',
 		'id_lote' => 'required',
-		'id_corral' => 'required',
 		'id_etapa' => 'required',
 		'Fecha_inicial' => 'required',
 		'Peso_inicial' => 'required',
@@ -54,7 +51,7 @@ class EtapaLote extends Model
      *
      * @var array
      */
-    protected $fillable = ['Nombre','id_lote','id_corral','id_etapa','Fecha_inicial','Fecha_final','Peso_inicial','Peso_final','Cantidad_inicial','Cantidad_final','Muertes_totales','Porcentaje_Mortalidad','id_alimento','Observaciones'];
+    protected $fillable = ['Nombre','id_lote','id_etapa','Fecha_inicial','Fecha_final','Peso_inicial','Peso_final','Cantidad_inicial','Cantidad_final','Muertes_totales','Porcentaje_Mortalidad','id_alimento','Observaciones'];
 
 
     /**
@@ -68,10 +65,10 @@ class EtapaLote extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function corrale()
-    {
-        return $this->hasOne('App\Models\Corrale', 'id', 'id_corral');
-    }
+    // public function corrale()
+    // {
+    //     return $this->hasOne('App\Models\Corrale', 'id', 'id_corral');
+    // }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

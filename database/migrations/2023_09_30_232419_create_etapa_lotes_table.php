@@ -15,8 +15,6 @@ return new class extends Migration {
             $table->string('Nombre');
             $table->unsignedBigInteger('id_lote');
             $table->foreign('id_lote')->references('id')->on('lotes')->onDelete('cascade');
-            $table->unsignedBigInteger('id_corral');
-            $table->foreign('id_corral')->references('id')->on('corrales')->onDelete('cascade');
             $table->unsignedBigInteger('id_etapa');
             $table->foreign('id_etapa')->references('id')->on('etapas')->onDelete('cascade');
             $table->date('Fecha_inicial');
@@ -30,6 +28,9 @@ return new class extends Migration {
             $table->unsignedBigInteger('id_alimento');
             $table->foreign('id_alimento')->references('id')->on('alimentos')->onDelete('cascade');
             $table->mediumText('Observaciones');
+            // $table->unsignedBigInteger('id_alimentacion')->nullable();
+            // $table->foreign('id_alimentacion')->references('id')->on('alimentaciones')->onDelete('cascade');
+            // $table->string('Estado')->default('En Curso');
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $Cantidad_Porcinos_Criales
  * @property $Cantidad_Porcinos_Reproductores
  * @property $Cantidad_Porcinos_Muertos
+ * @property $Cantidad_Porcinos_Vivos
  * @property $created_at
  * @property $updated_at
  *
@@ -34,6 +35,7 @@ class Nacimiento extends Model
 		'Cantidad_Porcinos_Criales' => 'required',
 		'Cantidad_Porcinos_Reproductores' => 'required',
 		'Cantidad_Porcinos_Muertos' => 'required',
+        'Cantidad_Porcinos_Vivos' => 'required',
     ];
 
     protected $perPage = 20;
@@ -43,7 +45,7 @@ class Nacimiento extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_faseReproduccion','Fecha_Nacimiento','Peso_Promedio','Cantidad_Porcinos_Total','Cantidad_Porcinos_Criales','Cantidad_Porcinos_Reproductores','Cantidad_Porcinos_Muertos'];
+    protected $fillable = ['id_faseReproduccion','Fecha_Nacimiento','Peso_Promedio','Cantidad_Porcinos_Total','Cantidad_Porcinos_Criales','Cantidad_Porcinos_Reproductores','Cantidad_Porcinos_Muertos', 'Cantidad_Porcinos_Vivos'];
 
 
     /**

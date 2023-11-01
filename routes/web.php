@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AlimentacionController;
+use App\Http\Controllers\AlimentacioneController;
+use App\Http\Controllers\AlimentacionItemController;
 use App\Http\Controllers\AlimentoController;
 use App\Http\Controllers\EtapaController;
 use App\Http\Controllers\EtapaLoteController;
@@ -47,7 +50,8 @@ Route::resource('users', UserController::class); //agregar una ruta desde las op
 Route::resource('vacunaciones', VacunacioneController::class)->middleware('auth');
 Route::resource('reproducciones', ReproduccioneController::class)->middleware('auth');
 Route::resource('nacimientos', NacimientoController::class)->middleware('auth');
-Route::post('/buscarDinamico', [NacimientoController::class, 'buscarDinamico']);
+Route::resource('alimentacion', AlimentacioneController::class)->middleware('auth');
+Route::post('/buscarDinamico', [LoteController::class, 'buscarDinamico']);
 Route::post('/buscarDisponibles', [ReproduccioneController::class, 'buscarDisponibles']);
 
 

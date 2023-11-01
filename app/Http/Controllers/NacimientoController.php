@@ -123,10 +123,4 @@ class NacimientoController extends Controller
             ->with('success', 'Nacimiento deleted successfully');
     }
 
-    public function buscarDinamico(Request $request)
-    {
-        $seleccionarDatos = $request->input('id_Datos');
-        $buscarDatos = Nacimiento::find($seleccionarDatos)->Cantidad_Porcinos_Total;
-        return response()->json(['datos' => $buscarDatos]);
-    }
 }

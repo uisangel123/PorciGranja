@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Nacimiento
+    Alimentacione
 @endsection
 
 @section('content')
@@ -17,11 +17,11 @@
                             <div style="display: flex; justify-content: space-between; align-items: center;">
 
                                 <span id="card_title">
-                                    {{ __('Nacimiento') }}
+                                    {{ __('Alimentacione') }}
                                 </span>
 
                                 <div class="float-right">
-                                    <a href="{{ route('nacimientos.create') }}" class="btn btn-primary btn-sm float-right"
+                                    <a href="{{ route('alimentacion.create') }}" class="btn btn-primary btn-sm float-right"
                                         data-placement="left">
                                         {{ __('Create New') }}
                                     </a>
@@ -29,52 +29,38 @@
                             </div>
                         </div>
                         @if ($message = Session::get('success'))
-                            <div class="alert alert-success cerrarMensaje">
+                            <div class="alert alert-success">
                                 <p>{{ $message }}</p>
                             </div>
                         @endif
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover datatable">
                                     <thead class="thead">
                                         <tr>
                                             <th>No</th>
 
-                                            <th>Id Reproduccion</th>
-                                            <th>Fecha Nacimiento</th>
-                                            <th>Peso Promedio</th>
-                                            <th>Porcinos Totales</th>
-                                            <th>Criales</th>
-                                            <th>Reproductores</th>
-                                            <th>Muertos</th>
-                                            <th>Vivos</th>
+                                            <th>Id Lote</th>
 
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($nacimientos as $nacimiento)
+                                        @foreach ($alimentaciones as $alimentacione)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
 
-                                                <td>{{ $nacimiento->id_faseReproduccion }}</td>
-                                                <td>{{ $nacimiento->Fecha_Nacimiento }}</td>
-                                                <td>{{ $nacimiento->Peso_Promedio }}</td>
-                                                <td>{{ $nacimiento->Cantidad_Porcinos_Total }}</td>
-                                                <td>{{ $nacimiento->Cantidad_Porcinos_Criales }}</td>
-                                                <td>{{ $nacimiento->Cantidad_Porcinos_Reproductores }}</td>
-                                                <td>{{ $nacimiento->Cantidad_Porcinos_Muertos }}</td>
-                                                <td>{{ $nacimiento->Cantidad_Porcinos_Vivos }}</td>
+                                                <td>{{ $alimentacione->id_lote }}</td>
 
                                                 <td>
-                                                    <form action="{{ route('nacimientos.destroy', $nacimiento->id) }}"
+                                                    <form action="{{ route('alimentacion.destroy', $alimentacione->id) }}"
                                                         method="POST">
                                                         <a class="btn btn-sm btn-primary "
-                                                            href="{{ route('nacimientos.show', $nacimiento->id) }}"><i
+                                                            href="{{ route('alimentacion.show', $alimentacione->id) }}"><i
                                                                 class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                         <a class="btn btn-sm btn-success"
-                                                            href="{{ route('nacimientos.edit', $nacimiento->id) }}"><i
+                                                            href="{{ route('alimentacion.edit', $alimentacione->id) }}"><i
                                                                 class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                         @csrf
                                                         @method('DELETE')
@@ -89,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-                    {!! $nacimientos->links() !!}
+                    {!! $alimentaciones->links() !!}
                 </div>
             </div>
         </div>

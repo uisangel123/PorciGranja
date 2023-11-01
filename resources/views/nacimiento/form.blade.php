@@ -108,6 +108,11 @@
             {{ Form::text('Cantidad_Porcinos_Muertos', $nacimiento->Cantidad_Porcinos_Muertos, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos_Muertos') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos Muertos', 'id' => 'muertos', 'onchange' => 'cantidadesCerdos()']) }}
             {!! $errors->first('Cantidad_Porcinos_Muertos', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        <div class="form-group">
+            {{ Form::label('Cantidad_Porcinos_Vivos') }}
+            {{ Form::text('Cantidad_Porcinos_Vivos', $nacimiento->Cantidad_Porcinos_Vivos, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos_Vivos') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos Muertos', 'id' => 'vivos', 'onchange' => 'cantidadesCerdos()']) }}
+            {!! $errors->first('Cantidad_Porcinos_Vivos', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
 
     </div>
     <div class="box-footer mt20">
