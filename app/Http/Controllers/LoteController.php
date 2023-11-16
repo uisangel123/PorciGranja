@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Corrale;
+use App\Models\EtapaLote;
 use App\Models\Lote;
 use App\Models\Nacimiento;
 use Illuminate\Http\Request;
@@ -122,8 +123,19 @@ class LoteController extends Controller
         $buscarDatos = Nacimiento::find($seleccionarDatos)->Cantidad_Porcinos_Vivos;
         $datos = Nacimiento::all();
         $data = [
-        'buscarDatos'=> $buscarDatos,
-        'datos'=> $datos,
+            'buscarDatos' => $buscarDatos,
+            'datos' => $datos,
+        ];
+        return response()->json($data);
+    }
+    public function buscarLote(Request $request)
+    {
+        $seleccionarDatos = $request->input('id_Datos');
+        $buscarDatos = Lote::find($seleccionarDatos)->Cantidad_Porcinos;
+        // $datos = Nacimiento::all();
+        $data = [
+            'buscarDatos' => $buscarDatos,
+            // 'datos' => $datos,
         ];
         return response()->json($data);
     }

@@ -69,6 +69,12 @@ label {
         width: 40px !important;
     }
 
+    .custom-select{
+        margin-top: 30px;
+    }
+    .xd{
+        top: 10px !important;
+    }
 }
 .dropdown-1 {
     position: relative;
@@ -128,4 +134,55 @@ label {
 .m{
     border-radius: 0px;
     width: 100% !important;
+}
+.custom-select {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.custom-select label {
+    font-size: 16px;
+    color: #333;
+    align-self: flex-end;
+    margin-bottom: 10px; /* Espacio entre el texto y el select */
+}
+
+.custom-select .select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    border: 1px solid #cc0303;
+    padding: 5px 20px 5px 10px; /* Ajustar el espaciado interno del select */
+    border-radius: 4px;
+    font-size: 14px; /* Disminuir el tamaño de la fuente */
+    width: 150px; /* Disminuir el ancho del select */
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.custom-select select:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.custom-select select::after {
+    content: '\25BC'; /* Triángulo hacia abajo para indicar el select */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #555;
+    pointer-events: none;
+}
+.xd{
+    position: relative;
+    top: 90px;
 }

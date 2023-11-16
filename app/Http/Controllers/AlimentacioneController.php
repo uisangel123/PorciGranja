@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alimentacion;
 use App\Models\Alimentacione;
+use App\Models\EtapaLote;
 use App\Models\Lote;
 use Illuminate\Http\Request;
 
@@ -35,8 +36,12 @@ class AlimentacioneController extends Controller
     {
         $alimentacione = new Alimentacione();
         $alimentacion = new Alimentacion();
-        $lote = new Lote();
-        return view('alimentacione.create', compact('alimentacione', 'alimentacion', 'lote'));
+        // $lote = new Lote();
+        $etapaLote = new EtapaLote();
+        $etapa = EtapaLote::where('Estado', 'En curso')->whereNull('id_alimentacion')->pluck('id_lote');
+        $lote = Lote::whereIn('id', $etapa)->latest();
+
+        return view('alimentacione.create', compact('alimentacione', 'alimentacion', 'lote', 'etapa'));
     }
 
     /**
@@ -51,6 +56,10 @@ class AlimentacioneController extends Controller
         $dato = $request->all();
         $alimentacione = Alimentacione::create($dato);
         if ($alimentacione) {
+            $idAlimentacion = $alimentacione->id;
+            $id_lote = $alimentacione->id_lote;
+            $etapaLote = EtapaLote::where('id_lote', $id_lote)->where('Estado', 'En curso')->first();
+            $etapaLote->update(['id_alimentacion' => $idAlimentacion]);
             $request['id_alimentacion'] = $alimentacione->id;
             $ali = request()->validate(Alimentacion::$rules);
             for ($i = 0; $i < count($ali['Semana']); $i++) {
@@ -97,8 +106,9 @@ class AlimentacioneController extends Controller
     {
         $alimentacione = Alimentacione::find($id);
         $alimentacion = Alimentacion::where('id_alimentacion', $id)->get();
+        $lote = new Lote();
 
-        return view('alimentacione.edit', compact('alimentacione', 'alimentacion'));
+        return view('alimentacione.edit', compact('alimentacione', 'alimentacion', 'lote'));
     }
 
     /**
@@ -108,55 +118,63 @@ class AlimentacioneController extends Controller
      * @param  Alimentacione $alimentacione
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alimentacione $alimentacione)
+    public function update(Request $request, Alimentacione $alimentacione, $id)
     {
+        $confirmacion = $request->input('confirmacion12');
+        $etapaLote = EtapaLote::where('id_alimentacion',$id)->first();//cuando le de al create la casilla debe llenarse con el id de alimentación en la etapaLote
+        if($confirmacion ==  0){//terminar el seleccionar si una alimentación finalizo o no
+
+        }else{
+        $etapaLote->Estado = 'Finalizado';
+        $etapaLote->save();
+        }
         request()->validate(Alimentacione::$rules);
-        $datos = $request->all();
-        if ($alimentacione->update($datos)) {
-            $datos = $request->all();
-        }
-
-        $alimentacione->update($request->all('promedio_semanal', 'promedio_diario', 'Semana', 'dia_1', 'dia_2', 'dia_3', 'dia_4', 'dia_5', 'dia_6', 'dia_7', 'id'));
-        $ids = $request->all('id');
-        for ($i = 0; $i < count($ids); $i++) {
-            $id = $datos['id'][$i];
-            $data = $datos;
-            if ($id && $data['Semana'][$i]) {
-                $newData = Alimentacion::find($data['id'][$i]);
-                $newData->promedio_semanal = $data['promedio_semanal'][$i];
-                $newData->promedio_diario = $data['promedio_diario'][$i];
-                $newData->Semana = $data['Semana'][$i];
-                $newData->dia_1 = $data['dia_1'][$i];
-                $newData->dia_2 = $data['dia_2'][$i];
-                $newData->dia_3 = $data['dia_3'][$i];
-                $newData->dia_4 = $data['dia_4'][$i];
-                $newData->dia_5 = $data['dia_5'][$i];
-                $newData->dia_6 = $data['dia_6'][$i];
-                $newData->dia_7 = $data['dia_7'][$i];
-                $newData->save();
-            } else if ($id && !$data['Semana'][$i]) {
-                if (Alimentacion::find($id)->delete()) {
+        $dato = $request->all();
+        if ($alimentacione->update($dato) || $dato != null) {
+            $datos = $request->all('promedio_semanal', 'promedio_diario', 'Semana', 'dia_1', 'dia_2', 'dia_3', 'dia_4', 'dia_5', 'dia_6', 'dia_7', 'id');
+            $ids = $request->all('id');
+            for ($i = 0; $i < count($ids['id']); $i++) {
+                $idVarios = $datos['id'][$i];
+                $item = $datos;
+                if ($idVarios && $item['Semana'][$i]) {
+                    $newData = Alimentacion::find($item['id'][$i]);
+                    $newData->promedio_semanal = $dato['promedio_semanal'][$i];
+                    $newData->promedio_diario = $dato['promedio_diario'][$i];
+                    $newData->Semana = $dato['Semana'][$i];
+                    $newData->dia_1 = $dato['dia_1'][$i];
+                    $newData->dia_2 = $dato['dia_2'][$i];
+                    $newData->dia_3 = $dato['dia_3'][$i];
+                    $newData->dia_4 = $dato['dia_4'][$i];
+                    $newData->dia_5 = $dato['dia_5'][$i];
+                    $newData->dia_6 = $datos['dia_6'][$i];
+                    $newData->dia_7 = $dato['dia_7'][$i];
+                    $newData->save();
                 }
-            } else if (!$id && $data['Semana'][$i]) {
-                $newData = [
-                    'id_alimentacion' => $alimentacione->id,
-                    'promedio_semanal' => $data['promedio_semanal'][$i],
-                    'promedio_diario' => $data['promedio_diario'][$i],
-                    'Semana' => $data['Semana'][$i],
-                    'dia_1' => $data['dia_1'][$i],
-                    'dia_2' => $data['dia_2'][$i],
-                    'dia_3' => $data['dia_3'][$i],
-                    'dia_4' => $data['dia_4'][$i],
-                    'dia_5' => $data['dia_5'][$i],
-                    'dia_6' => $data['dia_6'][$i],
-                    'dia_7' => $data['dia_7'][$i],
-                ];
-                Alimentacion::create($newData);
+                else if (!$idVarios && $item['Semana'][$i]) {
+                    $newData = [
+                        'id_alimentacion' => $id,
+                        'promedio_semanal' => $item['promedio_semanal'][$i],
+                        'promedio_diario' => $item['promedio_diario'][$i],
+                        'Semana' => $item['Semana'][$i],
+                        'dia_1' => $item['dia_1'][$i],
+                        'dia_2' => $item['dia_2'][$i],
+                        'dia_3' => $item['dia_3'][$i],
+                        'dia_4' => $item['dia_4'][$i],
+                        'dia_5' => $item['dia_5'][$i],
+                        'dia_6' => $item['dia_6'][$i],
+                        'dia_7' => $item['dia_7'][$i],
+                    ];
+                    Alimentacion::create($newData);
+                }
             }
-        }
 
-        return redirect()->route('alimentacion.index')
-            ->with('success', 'Alimentacione updated successfully');
+
+            return redirect()->route('alimentacion.index')
+                ->with('success', 'Alimentacione updated successfully');
+        } else {
+            return redirect()->route('alimentacion.index')
+                ->with('success', 'Error al editar');
+        }
     }
 
     /**

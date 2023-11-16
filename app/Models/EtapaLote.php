@@ -21,9 +21,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property $Porcentaje_Mortalidad
  * @property $id_alimento
  * @property $Observaciones
+ * @property $id_alimentacion
+ * @property $Estado
  * @property $created_at
  * @property $updated_at
  *
+ * @property Alimentacione $alimentacione
  * @property Alimento $alimento
  * @property Etapa $etapa
  * @property Lote $lote
@@ -51,9 +54,17 @@ class EtapaLote extends Model
      *
      * @var array
      */
-    protected $fillable = ['Nombre','id_lote','id_etapa','Fecha_inicial','Fecha_final','Peso_inicial','Peso_final','Cantidad_inicial','Cantidad_final','Muertes_totales','Porcentaje_Mortalidad','id_alimento','Observaciones'];
+    protected $fillable = ['Nombre','id_lote','id_etapa','Fecha_inicial','Fecha_final','Peso_inicial','Peso_final','Cantidad_inicial','Cantidad_final','Muertes_totales','Porcentaje_Mortalidad','id_alimento','Observaciones','id_alimentacion','Estado'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function alimentacione()
+    {
+        return $this->hasOne('App\Models\Alimentacione', 'id', 'id_alimentacion');
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -61,14 +72,6 @@ class EtapaLote extends Model
     {
         return $this->hasOne('App\Models\Alimento', 'id', 'id_alimento');
     }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    // public function corrale()
-    // {
-    //     return $this->hasOne('App\Models\Corrale', 'id', 'id_corral');
-    // }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

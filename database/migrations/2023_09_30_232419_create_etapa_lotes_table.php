@@ -28,9 +28,9 @@ return new class extends Migration {
             $table->unsignedBigInteger('id_alimento');
             $table->foreign('id_alimento')->references('id')->on('alimentos')->onDelete('cascade');
             $table->mediumText('Observaciones');
-            // $table->unsignedBigInteger('id_alimentacion')->nullable();
-            // $table->foreign('id_alimentacion')->references('id')->on('alimentaciones')->onDelete('cascade');
-            // $table->string('Estado')->default('En Curso');
+            $table->unsignedBigInteger('id_alimentacion')->nullable();
+            $table->foreign('id_alimentacion')->references('id')->on('alimentaciones')->onDelete('cascade');
+            $table->string('Estado')->default('En Curso');
             $table->timestamps();
         });
     }

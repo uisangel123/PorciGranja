@@ -7,16 +7,14 @@
                 {!! $errors->first('id_lote', '<div class="invalid-feedback">:message</div>') !!}
             </div>
             <div class="col-md-6">
-                <div class="form-group">
-                    {{ Form::label('id_Etapa_Lote') }}
-                    {{ Form::text('id_Etapa_Lote', $alimentacione->id_Etapa_Lote, ['class' => 'form-control' . ($errors->has('id_Etapa_Lote') ? ' is-invalid' : ''), 'placeholder' => 'Id Etapa Lote']) }}
-                    {!! $errors->first('id_Etapa_Lote', '<div class="invalid-feedback">:message</div>') !!}
-                </div>
+                <label for="">Nombre Etapa</label>
+                <input type="text" readonly placeholder="Nombre Etapa" class="form-control">
             </div>
             <div class="col-md-6">
-                <label for="">Etapa</label>
-                <input type="text" readonly placeholder="Etapa" class="form-control">
+                <label for="">Id Etapa</label>
+                <input type="text" readonly placeholder="Id Etapa" class="form-control">
             </div>
+            {{-- <textarea placeholder="{{$etapa}}" name="" id="" cols="30" rows="10"></textarea> --}}
         </div>
     </div>
 </div>

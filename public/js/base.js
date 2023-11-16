@@ -119,7 +119,7 @@ $(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair
     $('#id_Datos').change(function () {
         let select = $(this).val();
         $.ajax({
-            url: "/buscarDinamico",
+            url: "/buscarLote",//fue cambiado de nacimiento a lote porq igual deb buscar la forma correcta de manejar los datos nacimiento en el lote, en el mismo lote o desde nacimiento
             method: "POST",
             data: {
                 "id_Datos": select,
@@ -133,6 +133,9 @@ $(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair
 
                     datos.value = response.buscarDatos;
                     console.log(response);
+                    console.log(response.buscarDatos)
+                    console.log(response.datos)
+
 
                 }
             }
@@ -214,73 +217,76 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="col-md-1">
     <div class="form-group">
         <label for="semana">Semana</label>
-        <input class="form-control" id="semana" placeholder="Semana" name="Semana[]" type="text">
+        <input class="form-control" id="semana" placeholder="Semana" name="Semana[]" type="text" oninput="calcularPromedioDiario(this)" >
         <div class="invalid-feedback"></div>
     </div>
 </div>
 <div class="col-md-1">
     <div class="form-group">
         <label for="dia_1">Dia 1</label>
-        <input class="form-control" id="dia_1" placeholder="Dia 1" name="dia_1[]" type="text">
+        <input class="form-control" id="dia_1" placeholder="Dia 1" name="dia_1[]" type="text" oninput="calcularPromedioDiario(this)" pattern="^[0-9]+$">
         <div class="invalid-feedback"></div>
     </div>
 </div>
 <div class="col-md-1">
     <div class "form-group">
         <label for="dia_2">Dia 2</label>
-        <input class="form-control" id="dia_2" placeholder="Dia 2" name="dia_2[]" type="text">
+        <input class="form-control" id="dia_2" placeholder="Dia 2" name="dia_2[]" type="text" oninput="calcularPromedioDiario(this)">
         <div class="invalid-feedback"></div>
     </div>
 </div>
 <div class="col-md-1">
     <div class="form-group">
         <label for="dia_3">Dia 3</label>
-        <input class="form-control" id="dia_3" placeholder="Dia 3" name="dia_3[]" type="text">
+        <input class="form-control" id="dia_3" placeholder="Dia 3" name="dia_3[]" type="text" oninput="calcularPromedioDiario(this)">
         <div class="invalid-feedback"></div>
     </div>
 </div>
 <div class="col-md-1">
     <div class="form-group">
         <label for="dia_4">Dia 4</label>
-        <input class="form-control" id="dia_4" placeholder="Dia 4" name="dia_4[]" type="text">
+        <input class="form-control" id="dia_4" placeholder="Dia 4" name="dia_4[]" type="text" oninput="calcularPromedioDiario(this)">
         <div class="invalid-feedback"></div>
     </div>
 </div>
 <div class="col-md-1">
     <div class="form-group">
         <label for="dia_5">Dia 5</label>
-        <input class="form-control" id="dia_5" placeholder="Dia 5" name="dia_5[]" type="text">
+        <input class="form-control" id="dia_5" placeholder="Dia 5" name="dia_5[]" type="text" oninput="calcularPromedioDiario(this)">
         <div class="invalid-feedback"></div>
     </div>
 </div>
 <div class="col-md-1">
     <div class="form-group">
         <label for="dia_6">Dia 6</label>
-        <input class="form-control" id="dia_6" placeholder="Dia 6" name="dia_6[]" type="text">
+        <input class="form-control" id="dia_6" placeholder="Dia 6" name="dia_6[]" type="text" oninput="calcularPromedioDiario(this)">
         <div class="invalid-feedback"></div>
     </div>
 </div>
 <div class="col-md-1">
     <div class="form-group">
         <label for="dia_7">Dia 7</label>
-        <input class="form-control" id="dia_7" placeholder="Dia 7" name="dia_7[]" type="text">
+        <input class="form-control" id="dia_7" placeholder="Dia 7" name="dia_7[]" type="text" oninput="calcularPromedioDiario(this)">
         <div class="invalid-feedback"></div>
     </div>
 </div>
 <div class="col-md-2">
     <div class="form-group">
         <label for="promedio_semanal">Prom Semanal</label>
-        <input class="form-control" id="promedio_semanal" placeholder="Promedio Semanal" name="promedio_semanal[]" type="text">
+        <input class="form-control" id="promedio_semanal" placeholder="Promedio Semanal" name="promedio_semanal[]" type="text" readonly>
         <div class="invalid-feedback"></div>
     </div>
 </div>
 <div class="col-md-2">
     <div class="form-group">
         <label for="promedio_diario">Prom Diario</label>
-        <input class="form-control" id="promedio_diario" placeholder="Promedio Diario" name="promedio_diario[]" type="text">
+        <input class="form-control" id="promedio_diario" placeholder="Promedio Diario" name="promedio_diario[]" type="text" readonly>
         <div class="invalid-feedback"></div>
     </div>
 </div>
+<div class="form-group">
+            <input name="id[]" type="hidden">
+            </div>
 `;
         contenedor.appendChild(div);
     });
@@ -302,11 +308,44 @@ document.addEventListener('DOMContentLoaded', function () {
         contenedorDatosLote.appendChild(div);
     });
     let datosLote = document.getElementById('lotes');
-    datosLote.addEventListener('change', () => {
-        alert('hola')
+    datosLote.addEventListener('change', (event) => {
+        $.ajax({
+            url: "/buscarEtapaLote",
+            method: "POST",
+            data: {
+            },
+            headers: {
+                "X-CSRF-TOKEN": token,
+            },
+            success: function (response) {
+            },
+        });
     });
-});
 
+});
+function calcularPromedioDiario(input) {
+    // Obtén el contenedor padre del input actual (la fila)
+    const row = input.closest('.row');
+
+    // Obtén todos los inputs de los días
+    const diasInputs = row.querySelectorAll('input[name^="dia_"]');
+
+    // Inicializa la suma
+    let suma = 0;
+
+    // Recorre todos los inputs de los días
+    for (let i = 0; i < diasInputs.length; i++) {
+        // Suma el valor del input al total (conviértelo a número primero)
+        suma += Number(diasInputs[i].value);
+    }
+
+    // Calcula el promedio
+    const promedio = suma / diasInputs.length;
+
+    // Encuentra el input del promedio diario y asigna el valor del promedio
+    const promedioDiarioInput = row.querySelector('input[name="promedio_semanal[]"]');
+    promedioDiarioInput.value = promedio.toFixed(2); // Redondea a 2 decimales
+}
 
 
 

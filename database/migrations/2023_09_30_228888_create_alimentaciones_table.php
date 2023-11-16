@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_lote');
             $table->foreign('id_lote')->references('id')->on('lotes')->onDelete('cascade');
-            $table->unsignedBigInteger('id_Etapa_Lote');
-            $table->foreign('id_Etapa_Lote')->references('id')->on('etapa_lotes')->onDelete('cascade');
             $table->timestamps();
         });
     }

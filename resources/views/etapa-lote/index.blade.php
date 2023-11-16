@@ -41,6 +41,7 @@
                                         <th>No</th>
                                         
 										<th>Nombre</th>
+										<th>Etapa</th>
 										<th>Fecha Inicial</th>
 										<th>Fecha Final</th>
 										<th>Peso Inicial</th>
@@ -48,7 +49,6 @@
 										<th>Cantidad Inicial</th>
 										<th>Cantidad Final</th>
 										<th>Muertes Totales</th>
-										<th>Porcentaje Mortalidad</th>
 
                                         <th></th>
                                     </tr>
@@ -59,6 +59,7 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $etapaLote->Nombre }}</td>
+											<td>{{ $etapaLote->id_etapa }}</td>
 											<td>{{ $etapaLote->Fecha_inicial }}</td>
 											<td>{{ $etapaLote->Fecha_final }}</td>
 											<td>{{ $etapaLote->Peso_inicial }}</td>
@@ -66,7 +67,6 @@
 											<td>{{ $etapaLote->Cantidad_inicial }}</td>
 											<td>{{ $etapaLote->Cantidad_final }}</td>
 											<td>{{ $etapaLote->Muertes_totales }}</td>
-											<td>{{ $etapaLote->Porcentaje_Mortalidad }}</td>
 
                                             <td>
                                                 <form action="{{ route('etapa-lotes.destroy',$etapaLote->id) }}" method="POST">

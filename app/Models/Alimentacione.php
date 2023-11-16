@@ -9,12 +9,10 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property $id
  * @property $id_lote
- * @property $id_Etapa_Lote
  * @property $created_at
  * @property $updated_at
  *
  * @property Alimentacion[] $alimentacions
- * @property EtapaLote $etapaLote
  * @property Lote $lote
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -24,7 +22,6 @@ class Alimentacione extends Model
     
     static $rules = [
 		'id_lote' => 'required',
-        'id_Etapa_Lote'=> 'required',
     ];
 
     protected $perPage = 20;
@@ -34,7 +31,7 @@ class Alimentacione extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_lote','id_Etapa_Lote'];
+    protected $fillable = ['id_lote'];
 
 
     /**
@@ -48,10 +45,6 @@ class Alimentacione extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function etapaLote()
-    {
-        return $this->hasOne('App\Models\EtapaLote', 'id', 'id_Etapa_Lote');
-    }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

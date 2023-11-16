@@ -53,6 +53,7 @@ Route::resource('nacimientos', NacimientoController::class)->middleware('auth');
 Route::resource('alimentacion', AlimentacioneController::class)->middleware('auth');
 Route::post('/buscarDinamico', [LoteController::class, 'buscarDinamico']);
 Route::post('/buscarDisponibles', [ReproduccioneController::class, 'buscarDisponibles']);
+Route::post('/buscarLote', [LoteController::class, 'buscarLote']);
 
 
 Route::post('users/{user}/edit', [UserController::class, 'actualizarPassword'])->name('actualizarPassword')->middleware('web');
