@@ -71,9 +71,16 @@
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        {{ Form::label('prom_diario') }}
-                        {{ Form::text('promedio_diario[]', $alimentacion->promedio_diario, ['class' => 'form-control' . ($errors->has('promedio_diario') ? ' is-invalid' : ''), 'placeholder' => 'Promedio Diario', 'readonly']) }}
-                        {!! $errors->first('promedio_diario', '<div class="invalid-feedback">:message</div>') !!}
+                        {{ Form::label('muertos') }}
+                        {{ Form::text('muertos[]', $alimentacion->muertos, ['class' => 'form-control' . ($errors->has('muertos') ? ' is-invalid' : ''), 'placeholder' => 'Muertos']) }}
+                        {!! $errors->first('muertos', '<div class="invalid-feedback">:message</div>') !!}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ Form::label('consumo') }}
+                        {{ Form::text('consumo[]', $alimentacion->consumo, ['class' => 'form-control' . ($errors->has('consumo') ? ' is-invalid' : ''), 'placeholder' => 'consumo', 'readonly']) }}
+                        {!! $errors->first('consumo', '<div class="invalid-feedback">:message</div>') !!}
                     </div>
                 </div>
         </div>
@@ -153,9 +160,16 @@
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        {{ Form::label('prom_diario') }}
-                        {{ Form::text('promedio_diario[]', $alimentacion->promedio_diario, ['class' => 'form-control item' .$alimentacion->id . ($errors->has('promedio_diario') ? ' is-invalid' : ''), 'placeholder' => 'Promedio Diario', 'id' => $alimentacion->id, 'readonly']) }}
-                        {!! $errors->first('promedio_diario', '<div class="invalid-feedback">:message</div>') !!}
+                        {{ Form::label('muertos') }}
+                        {{ Form::text('muertos[]', $alimentacion->muertos, ['class' => 'form-control item' .$alimentacion->id . ($errors->has('muertos') ? ' is-invalid' : ''), 'placeholder' => 'Muertos', 'id' => $alimentacion->id]) }}
+                        {!! $errors->first('muertos', '<div class="invalid-feedback">:message</div>') !!}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ Form::label('consumo') }}
+                        {{ Form::text('consumo[]', $alimentacion->consumo, ['class' => 'form-control item' .$alimentacion->id . ($errors->has('consumo') ? ' is-invalid' : ''), 'placeholder' => 'consumo', 'id' => $alimentacion->id, 'readonly']) }}
+                        {!! $errors->first('consumo', '<div class="invalid-feedback">:message</div>') !!}
                     </div>
                 </div>
                 <div class="form-group">

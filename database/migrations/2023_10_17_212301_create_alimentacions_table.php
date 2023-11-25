@@ -16,9 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_alimentacion');
             $table->foreign('id_alimentacion')->references('id')->on('alimentaciones')->onDelete('cascade');
             $table->decimal('promedio_semanal', 5, 2)->nullable();
-            $table->decimal('promedio_diario', 5, 2)->nullable();
-            // $table->integer('muertos')->nullable();
-            // $table->integer('consumo')->nullable();
+            $table->integer('muertos')->nullable();
+            $table->integer('consumo')->nullable();
             $table->string('Semana');
             $table->integer('dia_1')->nullable();
             $table->integer('dia_2')->nullable();

@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $id_alimentacion
  * @property $promedio_semanal
- * @property $promedio_diario
  * @property $Semana
  * @property $dia_1
  * @property $dia_2
@@ -19,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property $dia_5
  * @property $dia_6
  * @property $dia_7
+ * @property $muertos
+ * @property $consumo
  * @property $created_at
  * @property $updated_at
  *
@@ -31,7 +32,7 @@ class Alimentacion extends Model
     
     static $rules = [
 		'id_alimentacion' => 'required',
-		'promedio_diario' => 'required',
+		'promedio_semanal' => 'required',
 		'Semana' => 'required',
     ];
 
@@ -42,7 +43,7 @@ class Alimentacion extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_alimentacion','promedio_semanal','promedio_diario','Semana','dia_1','dia_2','dia_3','dia_4','dia_5','dia_6','dia_7'];
+    protected $fillable = ['id_alimentacion','promedio_semanal','Semana','dia_1','dia_2','dia_3','dia_4','dia_5','dia_6','dia_7','muertos','consumo'];
 
 
     /**

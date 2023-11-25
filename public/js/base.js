@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let div = document?.createElement('div');
         div.className = 'row';
         div.innerHTML = `
+    <br>
     <hr>
     <div class="col-md-1">
     <div class="form-group">
@@ -279,8 +280,15 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 <div class="col-md-2">
     <div class="form-group">
-        <label for="promedio_diario">Prom Diario</label>
-        <input class="form-control" id="promedio_diario" placeholder="Promedio Diario" name="promedio_diario[]" type="text" readonly>
+        <label for="muertos">Muertos</label>
+        <input class="form-control" id="muertos" placeholder="Muertos" name="muertos[]" type="text">
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+<div class="col-md-2">
+    <div class="form-group">
+        <label for="consumo">Consumo</label>
+        <input class="form-control" id="consumo" placeholder="consumo" name="consumo[]" type="text" readonly>
         <div class="invalid-feedback"></div>
     </div>
 </div>
@@ -329,22 +337,33 @@ function calcularPromedioDiario(input) {
 
     // Obtén todos los inputs de los días
     const diasInputs = row.querySelectorAll('input[name^="dia_"]');
+    const diasInputsTotales = document.querySelectorAll('input[name^="dia_"]');
 
     // Inicializa la suma
     let suma = 0;
+    let sumaTotal = 0;
 
     // Recorre todos los inputs de los días
     for (let i = 0; i < diasInputs.length; i++) {
         // Suma el valor del input al total (conviértelo a número primero)
         suma += Number(diasInputs[i].value);
     }
-
+    for (let i = 0; i < diasInputsTotales.length; i++) {
+        // Suma el valor del input al total (conviértelo a número primero)
+        sumaTotal += Number(diasInputsTotales[i].value);
+    }
     // Calcula el promedio
     const promedio = suma / diasInputs.length;
+    const promedioTotal = sumaTotal / diasInputsTotales.length;
+    
 
     // Encuentra el input del promedio diario y asigna el valor del promedio
-    const promedioDiarioInput = row.querySelector('input[name="promedio_semanal[]"]');
-    promedioDiarioInput.value = promedio.toFixed(2); // Redondea a 2 decimales
+    const promedioSemanalInput = row.querySelector('input[name="promedio_semanal[]"]');
+    const consumoInput = row.querySelector('input[name="consumo[]"]');
+    const promedioDiarioInput = document.querySelector('input[name="promedio_diario[]"]');
+    consumoInput.value = suma;
+    promedioSemanalInput.value = promedio.toFixed(2); // Redondea a 2 decimales
+    promedioDiarioInput.value = promedioTotal.toFixed(2); // Redondea a 2 decimales
 }
 
 

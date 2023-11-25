@@ -66,7 +66,6 @@ class AlimentacioneController extends Controller
                 $datos = [
                     'id_alimentacion' => $alimentacione->id,
                     'promedio_semanal' => $dato['promedio_semanal'][$i],
-                    'promedio_diario' => $dato['promedio_diario'][$i],
                     'Semana' => $dato['Semana'][$i],
                     'dia_1' => $dato['dia_1'][$i],
                     'dia_2' => $dato['dia_2'][$i],
@@ -75,6 +74,8 @@ class AlimentacioneController extends Controller
                     'dia_5' => $dato['dia_5'][$i],
                     'dia_6' => $dato['dia_6'][$i],
                     'dia_7' => $dato['dia_7'][$i],
+                    'muertos' => $dato['muertos'][$i],
+                    'consumo' => $dato['consumo'][$i],
                 ];
                 Alimentacion::create($datos);
             }
@@ -121,17 +122,17 @@ class AlimentacioneController extends Controller
     public function update(Request $request, Alimentacione $alimentacione, $id)
     {
         $confirmacion = $request->input('confirmacion12');
-        $etapaLote = EtapaLote::where('id_alimentacion',$id)->first();//cuando le de al create la casilla debe llenarse con el id de alimentación en la etapaLote
-        if($confirmacion ==  0){//terminar el seleccionar si una alimentación finalizo o no
+        $etapaLote = EtapaLote::where('id_alimentacion', $id)->first(); //cuando le de al create la casilla debe llenarse con el id de alimentación en la etapaLote
+        if ($confirmacion ==  0) { //terminar el seleccionar si una alimentación finalizo o no
 
-        }else{
-        $etapaLote->Estado = 'Finalizado';
-        $etapaLote->save();
+        } else {
+            $etapaLote->Estado = 'Finalizado';
+            $etapaLote->save();
         }
         request()->validate(Alimentacione::$rules);
         $dato = $request->all();
         if ($alimentacione->update($dato) || $dato != null) {
-            $datos = $request->all('promedio_semanal', 'promedio_diario', 'Semana', 'dia_1', 'dia_2', 'dia_3', 'dia_4', 'dia_5', 'dia_6', 'dia_7', 'id');
+            $datos = $request->all('promedio_semanal', 'promedio_diario', 'Semana', 'dia_1', 'dia_2', 'dia_3', 'dia_4', 'dia_5', 'dia_6', 'dia_7', 'muertos', 'consumo', 'id');
             $ids = $request->all('id');
             for ($i = 0; $i < count($ids['id']); $i++) {
                 $idVarios = $datos['id'][$i];
@@ -139,22 +140,21 @@ class AlimentacioneController extends Controller
                 if ($idVarios && $item['Semana'][$i]) {
                     $newData = Alimentacion::find($item['id'][$i]);
                     $newData->promedio_semanal = $dato['promedio_semanal'][$i];
-                    $newData->promedio_diario = $dato['promedio_diario'][$i];
                     $newData->Semana = $dato['Semana'][$i];
                     $newData->dia_1 = $dato['dia_1'][$i];
                     $newData->dia_2 = $dato['dia_2'][$i];
                     $newData->dia_3 = $dato['dia_3'][$i];
                     $newData->dia_4 = $dato['dia_4'][$i];
                     $newData->dia_5 = $dato['dia_5'][$i];
-                    $newData->dia_6 = $datos['dia_6'][$i];
+                    $newData->dia_6 = $dato['dia_6'][$i];
                     $newData->dia_7 = $dato['dia_7'][$i];
+                    $newData->muertos = $dato['muertos'][$i];
+                    $newData->consumo = $dato['consumo'][$i];
                     $newData->save();
-                }
-                else if (!$idVarios && $item['Semana'][$i]) {
+                } else if (!$idVarios && $item['Semana'][$i]) {
                     $newData = [
                         'id_alimentacion' => $id,
                         'promedio_semanal' => $item['promedio_semanal'][$i],
-                        'promedio_diario' => $item['promedio_diario'][$i],
                         'Semana' => $item['Semana'][$i],
                         'dia_1' => $item['dia_1'][$i],
                         'dia_2' => $item['dia_2'][$i],
@@ -163,6 +163,8 @@ class AlimentacioneController extends Controller
                         'dia_5' => $item['dia_5'][$i],
                         'dia_6' => $item['dia_6'][$i],
                         'dia_7' => $item['dia_7'][$i],
+                        'muertos' => $item['muertos'][$i],
+                        'consumo' => $item['consumo'][$i],
                     ];
                     Alimentacion::create($newData);
                 }
