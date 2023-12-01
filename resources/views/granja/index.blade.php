@@ -9,11 +9,30 @@
 
     @include('layouts.menu')
     <main id="main" class="main">
+<<<<<<< Updated upstream
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
+=======
+        <div class="pagetitle">
+            <h1>Granjas</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{asset('resources/views/home/index.blade.php')}}">Home</a></li>
+              
+                <li class="breadcrumb-item">Components</li>
+                <li class="breadcrumb-item active">Pagination</li>
+              </ol>
+            </nav>
+          </div><!-- End Page Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+>>>>>>> Stashed changes
 
                             <span id="card_title">
                                 {{ __('Granjas') }}

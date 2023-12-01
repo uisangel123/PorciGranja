@@ -47,7 +47,11 @@
                                     </div> --}}
 
                                     <div class="card-body">
+<<<<<<< Updated upstream
                                         <h5 class="card-title">Reproductores <span>| Este Mes</span></h5>
+=======
+                                        <h5 class="card-title" style="color:#895525 !important;">Ventas Porcinos<span>| Semana</span></h5>
+>>>>>>> Stashed changes
 
                                         <div class="d-flex align-items-center">
                                             <div
@@ -55,9 +59,13 @@
                                                 <i class="bi bi-cart"></i>
                                             </div>
                                             <div class="ps-3">
+<<<<<<< Updated upstream
                                                 <h6>{{$reproductores}}</h6>
+=======
+                                                <h6 style="color:#895525 !important;">145</h6>
+>>>>>>> Stashed changes
                                                 <span class="text-success small pt-1 fw-bold">12%</span> <span
-                                                    class="text-muted small pt-2 ps-1">increase</span>
+                                                    class="text-muted small pt-2 ps-1">Ganancias</span>
 
                                             </div>
                                         </div>
@@ -85,7 +93,11 @@
                                     </div> --}}
 
                                     <div class="card-body">
+<<<<<<< Updated upstream
                                         <h5 class="card-title">Muertos <span>| Este Mes</span></h5>
+=======
+                                        <h5 class="card-title" style="color:#895525 !important;">Alimento Porcinos<span>| Este Mes</span></h5>
+>>>>>>> Stashed changes
 
                                         <div class="d-flex align-items-center">
                                             <div
@@ -93,9 +105,13 @@
                                                 <i class="fa-solid fa-skull-crossbones"></i>
                                             </div>
                                             <div class="ps-3">
+<<<<<<< Updated upstream
                                                 <h6>{{$suma}}</h6>
+=======
+                                                <h6 style="color:#895525 !important;">$550,000</h6>
+>>>>>>> Stashed changes
                                                 <span class="text-success small pt-1 fw-bold">8%</span> <span
-                                                    class="text-muted small pt-2 ps-1">increase</span>
+                                                    class="text-muted small pt-2 ps-1">Ganancias</span>
 
                                             </div>
                                         </div>
@@ -124,7 +140,11 @@
                                     </div> --}}
 
                                     <div class="card-body">
+<<<<<<< Updated upstream
                                         <h5 class="card-title">Alimento <span>| Este Mes</span></h5>
+=======
+                                        <h5 class="card-title" style="color:#895525 !important;">Veterinarios<span>| Este mes</span></h5>
+>>>>>>> Stashed changes
 
                                         <div class="d-flex align-items-center">
                                             <div
@@ -132,9 +152,15 @@
                                                 <i class="fa-solid fa-apple-whole"></i>
                                             </div>
                                             <div class="ps-3">
+<<<<<<< Updated upstream
                                                 <h6>{{$alimento}}</h6>
                                                 <span class="text-danger small pt-1 fw-bold">KG</span> <span
                                                     class="text-muted small pt-2 ps-1">Consumo Total</span>
+=======
+                                                <h6 style="color:#895525 !important;">$250,000</h6>
+                                                <span class="text-danger small pt-1 fw-bold">12%</span> <span
+                                                    class="text-muted small pt-2 ps-1">Perdidas</span>
+>>>>>>> Stashed changes
 
                                             </div>
                                         </div>
@@ -163,7 +189,7 @@
                                     </div>
 
                                     <div class="card-body">
-                                        <h5 class="card-title">Reports <span>/Today</span></h5>
+                                        <h5 class="card-title" style="color:#895525 !important;">Reportes<span>/Hoy</span></h5>
 
                                         <!-- Line Chart -->
                                         <div id="reportsChart"></div>
@@ -172,13 +198,13 @@
                                             document.addEventListener("DOMContentLoaded", () => {
                                                 new ApexCharts(document.querySelector("#reportsChart"), {
                                                     series: [{
-                                                        name: 'Sales',
+                                                        name: 'Destete',
                                                         data: [31, 40, 28, 51, 42, 82, 56],
                                                     }, {
-                                                        name: 'Revenue',
+                                                        name: 'Engorde',
                                                         data: [11, 32, 45, 32, 34, 52, 41]
                                                     }, {
-                                                        name: 'Customers',
+                                                        name: 'Levante',
                                                         data: [15, 11, 32, 18, 9, 24, 11]
                                                     }],
                                                     chart: {
@@ -250,7 +276,7 @@
                                     </div>
 
                                     <div class="card-body">
-                                        <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                                        <h5 class="card-title" style="color:#895525 !important;">Recent Sales <span>| Today</span></h5>
 
                                         <table class="table table-borderless datatable">
                                             <thead>
@@ -336,57 +362,46 @@
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Recent Activity <span>| Today</span></h5>
+                                <h5 class="card-title" style="color:#895525 !important;">Etapas<span>| Este Mes</span></h5>
 
                                 <div class="activity">
 
                                     <div class="activity-item d-flex">
-                                        <div class="activite-label">32 min</div>
+                                        <div class="activite-label">Dia</div>
                                         <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                                        <div class="activity-content">
-                                            Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo
-                                                officiis</a> beatae
+                                        <div class="activity-content"><a href="#" class="fw-bold text-dark">
+                                            Nacimiento. </a>se castra
                                         </div>
                                     </div><!-- End activity item-->
 
                                     <div class="activity-item d-flex">
-                                        <div class="activite-label">56 min</div>
+                                        <div class="activite-label">12 H</div>
                                         <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
                                         <div class="activity-content">
-                                            Voluptatem blanditiis blanditiis eveniet
+                                            <a href="#" class="fw-bold text-dark">
+                                            Lactancia.
+                                            </a>
+                                            El lechón en el momento que nace pasa por 12 horas vitales para su crecimiento.
                                         </div>
                                     </div><!-- End activity item-->
 
                                     <div class="activity-item d-flex">
-                                        <div class="activite-label">2 hrs</div>
+                                        <div class="activite-label">120 Dias</div>
                                         <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
                                         <div class="activity-content">
-                                            Voluptates corrupti molestias voluptatem
+                                            <a href="#" class="fw-bold text-dark">
+                                            Destete.
+                                            </a>
+                                             Son trasladados a un criadero de transición donde permanecerán unos meses
                                         </div>
                                     </div><!-- End activity item-->
 
                                     <div class="activity-item d-flex">
-                                        <div class="activite-label">1 day</div>
+                                        <div class="activite-label">60 Dias</div>
                                         <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
                                         <div class="activity-content">
-                                            Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati
-                                                voluptatem</a> tempore
-                                        </div>
-                                    </div><!-- End activity item-->
-
-                                    <div class="activity-item d-flex">
-                                        <div class="activite-label">2 days</div>
-                                        <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                                        <div class="activity-content">
-                                            Est sit eum reiciendis exercitationem
-                                        </div>
-                                    </div><!-- End activity item-->
-
-                                    <div class="activity-item d-flex">
-                                        <div class="activite-label">4 weeks</div>
-                                        <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                                        <div class="activity-content">
-                                            Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
+                                        <a href="#" class="fw-bold text-dark">Engorde</a>
+                                        finalización va de los 50 a los 90 o 100 kg Y tiene una duración de 50 a 60 días, según sea el peso final de mercado.
                                         </div>
                                     </div><!-- End activity item-->
 
@@ -412,7 +427,7 @@
                             </div>
 
                             <div class="card-body pb-0">
-                                <h5 class="card-title">Budget Report <span>| This Month</span></h5>
+                                <h5 class="card-title" style="color:#895525 !important; ">Reproduccion <span>| este mes</span></h5>
 
                                 <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
 
@@ -425,28 +440,24 @@
                                             radar: {
                                                 // shape: 'circle',
                                                 indicator: [{
-                                                        name: 'Sales',
+                                                        name: 'Crias',
                                                         max: 6500
                                                     },
                                                     {
-                                                        name: 'Administration',
+                                                        name: 'Hembras en celo',
                                                         max: 16000
                                                     },
                                                     {
-                                                        name: 'Information Technology',
+                                                        name: 'Machos Vacunados',
                                                         max: 30000
                                                     },
                                                     {
-                                                        name: 'Customer Support',
+                                                        name: 'Lechones Muertos',
                                                         max: 38000
                                                     },
                                                     {
-                                                        name: 'Development',
+                                                        name: 'Lechones',
                                                         max: 52000
-                                                    },
-                                                    {
-                                                        name: 'Marketing',
-                                                        max: 25000
                                                     }
                                                 ]
                                             },
@@ -455,11 +466,11 @@
                                                 type: 'radar',
                                                 data: [{
                                                         value: [4200, 3000, 20000, 35000, 50000, 18000],
-                                                        name: 'Allocated Budget'
+                                                        name: 'Cantidad'
                                                     },
                                                     {
                                                         value: [5000, 14000, 28000, 26000, 42000, 21000],
-                                                        name: 'Actual Spending'
+                                                        name: 'Porcentaje'
                                                     }
                                                 ]
                                             }]
