@@ -23,7 +23,7 @@
                                 <div class="float-right">
                                     <a href="{{ route('razas.create') }}" class="btn btn-primary btn-sm float-right"
                                         data-placement="left">
-                                        {{ __('Create New') }}
+                                        {{ __('Crear Nuevo') }}
                                     </a>
                                 </div>
                             </div>

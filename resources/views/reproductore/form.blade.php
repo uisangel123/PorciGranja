@@ -11,7 +11,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     {{ Form::label('Raza') }}
-                    {{ Form::text('Raza', $reproductore->Raza, ['class' => 'form-control' . ($errors->has('Raza') ? ' is-invalid' : ''), 'placeholder' => 'Raza']) }}
+                    {{ Form::select('Raza',$razas->pluck('Nombre','id'), $reproductore->Raza, ['class' => 'form-control' . ($errors->has('Raza') ? ' is-invalid' : ''), 'placeholder' => 'Raza']) }}
                     {!! $errors->first('Raza', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>

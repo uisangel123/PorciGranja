@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('Cantidad_Porcinos_Muertos');
             $table->integer('Cantidad_Porcinos_Vivos');
             $table->unsignedBigInteger('id_lote')->nullable();//crear un select en el form de nacimientos para seleccionar el lote en el q ira los cerdos nacidosxd
-            $table->foreign('id_lote')->references('id')->on('lotes');
+            $table->foreign('id_lote')->references('id')->on('lotes')->onDelete('cascade');
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

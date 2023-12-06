@@ -27,7 +27,7 @@ return new class extends Migration {
             $table->float('Porcentaje_Mortalidad')->nullable();
             $table->unsignedBigInteger('id_alimento');
             $table->foreign('id_alimento')->references('id')->on('alimentos')->onDelete('cascade');
-            $table->mediumText('Observaciones');
+            $table->mediumText('Observaciones')->nullable();
             $table->unsignedBigInteger('id_alimentacion')->nullable();
             $table->foreign('id_alimentacion')->references('id')->on('alimentaciones')->onDelete('cascade');
             $table->string('Estado')->default('En Curso');
