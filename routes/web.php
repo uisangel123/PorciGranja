@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GranjaController;
 use App\Http\Controllers\CorraleController;
 use App\Http\Controllers\NacimientoController;
+use App\Http\Controllers\RazaController;
 use App\Http\Controllers\ReproduccioneController;
 use App\Http\Controllers\VacunacioneController;
 use App\Http\Controllers\ReproductoreController;
@@ -32,7 +33,7 @@ use App\Models\Nacimiento;
 
 
 Route::get('/', function () {
-  return view('home.index');
+  return redirect()->route('home.index');
 })->middleware(['auth']);
 
 Auth::routes();
@@ -46,10 +47,9 @@ Route::get('etapa-lote/pdf', [EtapaLoteController::class, 'pdf'])->name('etapa-l
 
 
 Route::resource('reproductores', ReproductoreController::class)->middleware('auth');
-Route::resource('granjas', GranjaController::class);
 Route::resource('corrales', CorraleController::class);
 Route::resource('alimentos', AlimentoController::class);
-Route::resource('etapas', EtapaController::class);
+Route::resource('etapas', EtapaController::class)->middleware('role');
 Route::resource('etapa-lotes', EtapaLoteController::class);
 Route::resource('lotes', LoteController::class);
 Route::resource('users', UserController::class); //agregar una ruta desde las opciones del user para acceder a sus datos
@@ -57,6 +57,7 @@ Route::resource('vacunaciones', VacunacioneController::class)->middleware('auth'
 Route::resource('reproducciones', ReproduccioneController::class)->middleware('auth');
 Route::resource('nacimientos', NacimientoController::class)->middleware('auth');
 Route::resource('alimentacion', AlimentacioneController::class)->middleware('auth');
+Route::resource('razas', RazaController::class)->middleware('auth')->middleware('role');
 Route::post('/buscarDinamico', [LoteController::class, 'buscarDinamico']);
 Route::post('/buscarDisponibles', [ReproduccioneController::class, 'buscarDisponibles']);
 Route::post('/buscarLote', [LoteController::class, 'buscarLote']);

@@ -35,16 +35,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EtapaLote extends Model
 {
-    
+
     static $rules = [
-		'Nombre' => 'required',
-		'id_lote' => 'required',
-		'id_etapa' => 'required',
-		'Fecha_inicial' => 'required',
-		'Peso_inicial' => 'required',
-		'Cantidad_inicial' => 'required',
-		'id_alimento' => 'required',
-		'Observaciones' => 'required',
+        'Nombre' => 'required',
+        'id_lote' => 'required',
+        'id_etapa' => 'required',
+        'Fecha_inicial' => 'required',
+        'Peso_inicial' => 'required',
+        'Cantidad_inicial' => 'required',
+        'id_alimento' => 'required',
+        'Observaciones' => 'required',
+        'users_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -54,7 +55,7 @@ class EtapaLote extends Model
      *
      * @var array
      */
-    protected $fillable = ['Nombre','id_lote','id_etapa','Fecha_inicial','Fecha_final','Peso_inicial','Peso_final','Cantidad_inicial','Cantidad_final','Muertes_totales','Porcentaje_Mortalidad','id_alimento','Observaciones','id_alimentacion','Estado'];
+    protected $fillable = ['Nombre', 'id_lote', 'id_etapa', 'Fecha_inicial', 'Fecha_final', 'Peso_inicial', 'Peso_final', 'Cantidad_inicial', 'Cantidad_final', 'Muertes_totales', 'Porcentaje_Mortalidad', 'id_alimento', 'Observaciones', 'id_alimentacion', 'Estado', 'users_id'];
 
 
     /**
@@ -64,7 +65,7 @@ class EtapaLote extends Model
     {
         return $this->hasOne('App\Models\Alimentacione', 'id', 'id_alimentacion');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -72,7 +73,7 @@ class EtapaLote extends Model
     {
         return $this->hasOne('App\Models\Alimento', 'id', 'id_alimento');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -80,7 +81,7 @@ class EtapaLote extends Model
     {
         return $this->hasOne('App\Models\Etapa', 'id', 'id_etapa');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -88,6 +89,4 @@ class EtapaLote extends Model
     {
         return $this->hasOne('App\Models\Lote', 'id', 'id_lote');
     }
-    
-
 }

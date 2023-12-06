@@ -33,7 +33,7 @@ class UserController extends Controller
             return view('user.index', compact('users'))
                 ->with('i', (request()->input('page', 1) - 1) * $users->perPage());
         }
-        return abort(403, 'No tienes los permisos requeridos para acceder a los siguientes datos o paginas.');
+        return redirect()->route('home.index')->with('danger','No tienes los permisos requeridos para acceder a esa pagina!');
     }
 
     /**
@@ -49,7 +49,8 @@ class UserController extends Controller
 
             return view('user.create', compact('user', 'roles'));
         }
-        return abort(403, 'No tienes los permisos requeridos para acceder a los siguientes datos o paginas.');
+        return redirect()->route('home.index')->with('danger','No tienes los permisos requeridos para acceder a esa pagina!');
+
     }
 
     /**
@@ -80,7 +81,8 @@ class UserController extends Controller
         if (auth()->user()->rol == 'admin') {
             return view('user.show', compact('user'));
         }
-        return abort(403, 'No tienes los permisos requeridos para acceder a los siguientes datos o paginas.');
+        return redirect()->route('home.index')->with('danger','No tienes los permisos requeridos para acceder a esa pagina!');
+
     }
 
     /**
@@ -96,7 +98,7 @@ class UserController extends Controller
         if (auth()->user()->id == $id || auth()->user()->rol == 'admin') {
             return view('user.edit', compact('user', 'roles'));
         }
-        return abort(403, 'No tienes los permisos requeridos para acceder a los siguientes datos o paginas.');
+        return redirect()->route('home.index')->with('danger','No tienes los permisos requeridos para acceder a esa pagina!');
     }
 
     /**
@@ -108,6 +110,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         request()->validate(User::$rules);
 
         if (auth()->user()->rol !== 'admin') {
@@ -115,7 +118,6 @@ class UserController extends Controller
         }
 
         request()->validate(User::$rules);
-
         $user->update($request->all());
 
         return redirect()->route('home.index')
@@ -141,14 +143,13 @@ class UserController extends Controller
         $passwordActual = $request->input('passwordActual');
         $passwordNueva = $request->input('passwordNueva');
         $passwordBd = Auth::user()->password;
-        if($passwordNueva && password_verify($passwordActual,$passwordBd)){
+        if ($passwordNueva && password_verify($passwordActual, $passwordBd)) {
             $user->password = Hash::make($passwordNueva);
             $user->save();
             return redirect()->route('home.index')
-            ->with('success', 'Contraseña actualizada exitosamente');
-        }else{
+                ->with('success', 'Contraseña actualizada exitosamente');
+        } else {
             print('error');
         }
-
     }
 }

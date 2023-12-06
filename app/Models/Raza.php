@@ -5,24 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Corrale
+ * Class Raza
  *
  * @property $id
- * @property $name
- * @property $granjas_id
- * @property $disponibilidad
+ * @property $Nombre
+ * @property $Descripcion
  * @property $created_at
  * @property $updated_at
  *
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Corrale extends Model
+class Raza extends Model
 {
     
     static $rules = [
-		'name' => 'required',
-		'disponibilidad' => 'required',
+		'Nombre' => 'required',
+		'Descripcion' => 'required',
     ];
 
     protected $perPage = 20;
@@ -32,8 +31,8 @@ class Corrale extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','disponibilidad'];
-    
-    
+    protected $fillable = ['Nombre','Descripcion'];
+
+
 
 }

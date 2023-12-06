@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Raza;
 use App\Models\Reproductore;
 use Illuminate\Http\Request;
 
@@ -32,9 +33,10 @@ class ReproductoreController extends Controller
     public function create()
     {
         $reproductore = new Reproductore();
+        $razas = Raza::all();
         $reproductoreMacho = Reproductore::where('Genero', 'Macho')->get();
         $reproductoreHembra = Reproductore::where('Genero', 'Hembra')->get();
-        return view('reproductore.create', compact('reproductore', 'reproductoreMacho', 'reproductoreHembra'));
+        return view('reproductore.create', compact('reproductore', 'reproductoreMacho', 'reproductoreHembra', 'razas'));
     }
 
     /**
@@ -76,9 +78,10 @@ class ReproductoreController extends Controller
     public function edit($id)
     {
         $reproductore = Reproductore::find($id);
+        $razas = Raza::all();
         $reproductoreMacho = Reproductore::where('Genero', 'Macho')->get();
         $reproductoreHembra = Reproductore::where('Genero', 'Hembra')->get();
-        return view('reproductore.edit', compact('reproductore', 'reproductoreMacho', 'reproductoreHembra'));
+        return view('reproductore.edit', compact('reproductore', 'reproductoreMacho', 'reproductoreHembra', 'razas'));
     }
 
     /**

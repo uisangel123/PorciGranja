@@ -45,24 +45,12 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Corral:</label>
-                                <input type="text" readonly
-                                    placeholder="{{ $etapaLote->id_corral }}"class="form-control">
-                            </div>
-                            <div class="form-group">
                                 <label>Etapa:</label>
                                 <input type="text" readonly placeholder="{{ $etapaLote->id_lote }}" class="form-control">
                             </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group">
-                                <label>Fecha Inicial:</label>
-                                <input type="text" readonly placeholder="{{ $etapaLote->Fecha_inicial }}"
-                                    class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Peso Inicial:</label>
-                                <input type="text" readonly placeholder="{{ $etapaLote->Peso_inicial }}"
+                                <label>Cantidad Inicial:</label>
+                                <input type="text" readonly placeholder="{{ $etapaLote->Cantidad_inicial }}"
                                     class="form-control">
                             </div>
                         </div>
@@ -73,15 +61,8 @@
                                     class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Peso Final:</label>
-                                <input type="text" readonly placeholder="{{ $etapaLote->Peso_final }}"
-                                    class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Cantidad Inicial:</label>
-                                <input type="text" readonly placeholder="{{ $etapaLote->Cantidad_inicial }}"
+                                <label>Fecha Inicial:</label>
+                                <input type="text" readonly placeholder="{{ $etapaLote->Fecha_inicial }}"
                                     class="form-control">
                             </div>
                             <div class="form-group">
@@ -92,27 +73,36 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Cantidad Final:</label>
-                                <input type="text" readonly placeholder="{{ $etapaLote->Cantidad_final }}"
-                                    class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Porcentaje Mortalidad:</label>
-                                <input type="text" readonly placeholder="{{ $etapaLote->Porcentaje_Mortalidad }}"
-                                    class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label>Alimento:</label>
                                 <input type="text" readonly placeholder="{{ $etapaLote->id_alimento }}"
                                     class="form-control">
                             </div>
                             <div class="form-group">
+                                <label>Peso Inicial:</label>
+                                <input type="text" readonly placeholder="{{ $etapaLote->Peso_inicial }}"
+                                    class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Peso Final:</label>
+                                <input type="text" readonly placeholder="{{ $etapaLote->Peso_final }}"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Cantidad Final:</label>
+                                <input type="text" readonly placeholder="{{ $etapaLote->Cantidad_final }}"
+                                    class="form-control">
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>Observaciones:</label>
                                 <input type="text" readonly placeholder="{{ $etapaLote->Observaciones }}"
                                     class="form-control">
                             </div>
+                            
                         </div>
                     </div>
                     <div class="float-right">

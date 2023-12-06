@@ -70,7 +70,7 @@ class RegisterController extends Controller
         if($userCount === 0){
             $data['rol'] = 'admin';
         }else{
-            $data['rol'] = null ;
+            $data['rol'] = 'usuario' ;
         }
         return User::create([
             'name' => $data['name'],

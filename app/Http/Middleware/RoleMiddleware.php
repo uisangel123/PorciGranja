@@ -17,7 +17,8 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check() || Auth::user()->rol !== 'admin') {
-            abort(403,'No tienes los permisos requeridos para acceder a los siguientes datos o paginas.');
+            // abort(403,'No tienes los permisos requeridos para acceder a los siguientes datos o paginas.');
+            return redirect()->route('home.index')->with('danger','No tienes los permisos requeridos para acceder a esa pagina!');
         }
         return $next($request);
     }

@@ -141,7 +141,7 @@ $(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair
             }
         })
     });
-    let select = document.getElementById('macho');
+    let select = document.getElementById('hembra');
     select.addEventListener('change', (event) => {
         let select2 = event.target.value;
         $.ajax({
@@ -154,14 +154,14 @@ $(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair
                 "X-CSRF-TOKEN": token,
             },
             success: function (response) {
-                let selectHembra = document.getElementById('hembra');
-                while (selectHembra.firstChild) {
-                    selectHembra.removeChild(selectHembra.firstChild);
+                let selectMacho = document.getElementById('macho');
+                while (selectMacho.firstChild) {
+                    selectMacho.removeChild(selectMacho.firstChild);
                 }
                 let option = document.createElement("option");
-                option.value = 'Seleccionar hembra';
-                option.text = 'Seleccionar hembra';
-                selectHembra.insertBefore(option, selectHembra.firstChild);
+                option.value = 'Seleccionar macho';
+                option.text = 'Seleccionar macho';
+                selectMacho.insertBefore(option, selectMacho.firstChild);
 
                 // Ahora agregamos las nuevas opciones
                 if (select2 != "") {
@@ -172,7 +172,7 @@ $(document).ready(function () {//revisar o preguntar mañana en la tarde a Jhair
                         option.text = response.hola[i].id; // Aquí debes cambiar 'id' por el nombre del atributo que contiene el nombre de la hembra
 
                         // Añadimos la opción al select
-                        selectHembra.appendChild(option);
+                        selectMacho.appendChild(option);
                     }
                     console.log(response.hola);
                     // console.log(select2);
@@ -298,25 +298,25 @@ document.addEventListener('DOMContentLoaded', function () {
 `;
         contenedor.appendChild(div);
     });
-    const contenedorDatosLote = document?.querySelector('#dinamicoDatos');
-    const btnDatosLote = document?.getElementById('agregarDatos');
-    btnDatosLote?.addEventListener('click', () => {
-        let div = document.createElement('div');
-        div.innerHTML = `
-        <div class="form-group">
-    <label for="id_Datos">Seleccione una Piara</label>
-    <select name="id_Datos" id="id_Datos" class="form-control">
-        <option value="">Seleccione una Piara</option>
-        <?php foreach ($datos as $dato): ?>
-            <option value="<?php echo $dato['id']; ?>"><?php echo $dato['id']; ?></option>
-        <?php endforeach; ?>
-    </select>
-</div>
-        `;
-        contenedorDatosLote.appendChild(div);
-    });
+//     const contenedorDatosLote = document?.querySelector('#dinamicoDatos');
+//     const btnDatosLote = document?.getElementById('agregarDatos');
+//     btnDatosLote?.addEventListener('click', () => {
+//         let div = document.createElement('div');
+//         div.innerHTML = `
+//         <div class="form-group">
+//     <label for="id_Datos">Seleccione una Piara</label>
+//     <select name="id_Datos[]" id="id_Datos" class="form-control">
+//         <option value="">Seleccione una Piara</option>
+//         <?php foreach ($datos as $dato): ?>
+//             <option value="<?php echo $dato['id']; ?>"><?php echo $dato['id']; ?></option>
+//         <?php endforeach; ?>
+//     </select>
+// </div>
+//         `;
+//         contenedorDatosLote.appendChild(div);
+//     });
     let datosLote = document.getElementById('lotes');
-    datosLote.addEventListener('change', (event) => {
+    datosLote?.addEventListener('change', (event) => {
         $.ajax({
             url: "/buscarEtapaLote",
             method: "POST",

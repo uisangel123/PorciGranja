@@ -8,6 +8,7 @@ use App\Models\Lote;
 use App\Models\Alimento;
 use App\Models\Etapa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
@@ -24,10 +25,11 @@ class EtapaLoteController extends Controller
      */
     public function index()
     {
-        $etapaLotes = EtapaLote::paginate();
+        $user = Auth::user()->id;
+        $etapaLotes = EtapaLote::where('users_id', $user)->get();
 
         return view('etapa-lote.index', compact('etapaLotes'))
-            ->with('i', (request()->input('page', 1) - 1) * $etapaLotes->perPage());
+            ->with('i');
     }
 
     /**
@@ -43,7 +45,7 @@ class EtapaLoteController extends Controller
         $etapas = Etapa::all();
         $alimentos = Alimento::all();
 
-        return view('etapa-lote.create', compact('etapaLote','lotes','corrales','etapas','alimentos'));
+        return view('etapa-lote.create', compact('etapaLote', 'lotes', 'corrales', 'etapas', 'alimentos'));
     }
 
 
@@ -62,9 +64,10 @@ class EtapaLoteController extends Controller
      */
     public function store(Request $request)
     {
+        $request["users_id"] = Auth::user()->id;
         request()->validate(EtapaLote::$rules);
-
-        $etapaLote = EtapaLote::create($request->all());
+        $datos = $request->all();
+        $etapaLote = EtapaLote::create($datos);
 
         return redirect()->route('etapa-lotes.index')
             ->with('success', 'EtapaLote Creada Exitosamente.');
@@ -97,7 +100,7 @@ class EtapaLoteController extends Controller
         $etapas = Etapa::all();
         $alimentos = Alimento::all();
 
-        return view('etapa-lote.edit', compact('etapaLote','lotes','corrales','etapas','alimentos'));
+        return view('etapa-lote.edit', compact('etapaLote', 'lotes', 'corrales', 'etapas', 'alimentos'));
     }
 
     /**
@@ -109,7 +112,9 @@ class EtapaLoteController extends Controller
      */
     public function update(Request $request, EtapaLote $etapaLote)
     {
+        $request["users_id"] = Auth::user()->id;
         request()->validate(EtapaLote::$rules);
+        $datos = $request->all();
 
         $etapaLote->update($request->all());
 

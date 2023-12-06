@@ -195,3 +195,16 @@ label {
 .titulo-semanas h3{
     font-weight: bold;
 }
+.centrado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.resaltar{
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(56, 144, 231) !important;
+    /* Espacio entre etiquetas */
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+}

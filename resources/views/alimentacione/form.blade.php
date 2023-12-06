@@ -6,6 +6,7 @@
                 {{ Form::select('id_lote', $lote->pluck('Nombre', 'id'), $alimentacione->id_lote, ['class' => 'form-control' . ($errors->has('id_lote') ? ' is-invalid' : ''), 'placeholder' => 'Id Lote', 'id' => 'lotes']) }}
                 {!! $errors->first('id_lote', '<div class="invalid-feedback">:message</div>') !!}
             </div>
+            <div style="display: none">
             <div class="col-md-6">
                 <label for="">Nombre Etapa</label>
                 <input type="text" readonly placeholder="Nombre Etapa" class="form-control">
@@ -17,10 +18,10 @@
             {{-- <textarea placeholder="{{$etapa}}" name="" id="" cols="30" rows="10"></textarea> --}}
             <div class="form-group">
                 {{ Form::label('prom_diario') }}
-                {{ Form::text('promedio_diario[]', $alimentacione->promedio_diario, ['class' => 'form-control item' . ($errors->has('promedio_diario') ? ' is-invalid' : ''), 'placeholder' => 'Promedio Diario', 'readonly']) }}
+                {{ Form::hidden('promedio_diario[]', $alimentacione->promedio_diario, ['class' => 'form-control item' . ($errors->has('promedio_diario') ? ' is-invalid' : ''), 'placeholder' => 'Promedio Diario', 'readonly']) }}
                 {!! $errors->first('promedio_diario', '<div class="invalid-feedback">:message</div>') !!}
             </div>
-
+        </div>
         </div>
         <br>
         <div class="titulo-semanas">

@@ -19,9 +19,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Alimentacione extends Model
 {
-    
+
     static $rules = [
-		'id_lote' => 'required',
+        'id_lote' => 'required',
+        'users_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -31,7 +32,7 @@ class Alimentacione extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_lote'];
+    protected $fillable = ['id_lote', 'users_id'];
 
 
     /**
@@ -41,11 +42,11 @@ class Alimentacione extends Model
     {
         return $this->hasMany('App\Models\Alimentacion', 'id_alimentacion', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -53,6 +54,4 @@ class Alimentacione extends Model
     {
         return $this->hasOne('App\Models\Lote', 'id', 'id_lote');
     }
-    
-
 }

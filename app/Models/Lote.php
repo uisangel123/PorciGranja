@@ -10,15 +10,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $Nombre
  * @property $id_corral
- * @property $id_Datos
  * @property $Cantidad_Porcinos
  * @property $created_at
  * @property $updated_at
  *
- * @property Alimentacione[] $alimentaciones //el error es porq no existe ese modal aun
+ * @property Alimentacione[] $alimentaciones
  * @property Corrale $corrale
  * @property EtapaLote[] $etapaLotes
- * @property Nacimiento $nacimiento
+ * @property Nacimiento[] $nacimientos
  * @property Vacunacione[] $vacunaciones
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -30,6 +29,7 @@ class Lote extends Model
 		'Nombre' => 'required',
 		'id_corral' => 'required',
 		'Cantidad_Porcinos' => 'required',
+		'users_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -39,7 +39,7 @@ class Lote extends Model
      *
      * @var array
      */
-    protected $fillable = ['Nombre','id_corral','id_Datos','Cantidad_Porcinos'];
+    protected $fillable = ['Nombre','id_corral','Cantidad_Porcinos', 'users_id'];
 
 
     /**
@@ -67,11 +67,11 @@ class Lote extends Model
     }
     
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function nacimiento()
+    public function nacimientos()
     {
-        return $this->hasOne('App\Models\Nacimiento', 'id', 'id_Datos');
+        return $this->hasMany('App\Models\Nacimiento', 'id_lote', 'id');
     }
     
     /**

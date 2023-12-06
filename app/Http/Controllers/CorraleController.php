@@ -38,8 +38,7 @@ class CorraleController extends Controller
     public function create()
     {
         $corrale = new Corrale();
-        $granjas = Granja::all();
-        return view('corrale.create', compact('corrale'), compact('granjas'));
+        return view('corrale.create', compact('corrale'));
     }
 
     /**
@@ -80,8 +79,7 @@ class CorraleController extends Controller
     public function edit($id)
     {
         $corrale = Corrale::find($id);
-        $granjas = Granja::all();
-        return view('corrale.edit', compact('corrale','granjas'));
+        return view('corrale.edit', compact('corrale'));
     }
 
     /**

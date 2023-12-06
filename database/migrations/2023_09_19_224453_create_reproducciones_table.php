@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date('Fecha_Inicio');
             $table->date('Fecha_Final')->nullable();
             $table->string('Estado')->default('En Curso');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

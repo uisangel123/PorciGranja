@@ -57,7 +57,7 @@
 										<th>Cantidad Final</th>
 										<th>Muertes Totales</th>
 
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -95,7 +95,6 @@
                         </div>
                     </div>
                 </div>
-                {!! $etapaLotes->links() !!}
             </div>
         </div>
     </div>

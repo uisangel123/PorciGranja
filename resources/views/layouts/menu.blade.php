@@ -15,12 +15,6 @@
                     <span>Usuarios</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('granjas.index') }}">
-                    <i class="bi bi-house-door-fill"></i>
-                    <span>Granja</span>
-                </a>
-            </li>
         @endif
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('corrales.index') }}">
@@ -54,12 +48,14 @@
                 </a>
             </ul>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('etapas.index') }}">
-                <i class="fa-solid fa-arrows-spin"></i>
-                <span>Etapas</span>
-            </a>
-        </li>
+        @if (auth()->user()->rol === 'admin')
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('etapas.index') }}">
+                    <i class="fa-solid fa-arrows-spin"></i>
+                    <span>Etapas</span>
+                </a>
+            </li>
+        @endif
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('etapa-lotes.index') }}">
                 <i class="bi bi-person"></i>
@@ -73,13 +69,25 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('alimentacion.index') }}">
+                <i class="fa-solid fa-apple-whole"></i>
+                <span>Alimentación</span>
+            </a>
+        </li>
+        {{-- <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('vacunaciones.index') }}">
                 <i class="fa-solid fa-syringe"></i>
                 <span>Vacunación</span>
             </a>
-        </li>
-
-
+        </li> --}}
+        @if (auth()->user()->rol === 'admin')
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('razas.index') }}">
+                    <i class="fa-solid fa-syringe"></i>
+                    <span>Razas</span>
+                </a>
+            </li>
+        @endif
         <!-- End Profile Page Nav -->
 
 

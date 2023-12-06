@@ -16,26 +16,28 @@ use Illuminate\Database\Eloquent\Model;
  * @property $Cantidad_Porcinos_Reproductores
  * @property $Cantidad_Porcinos_Muertos
  * @property $Cantidad_Porcinos_Vivos
+ * @property $id_lote
  * @property $created_at
  * @property $updated_at
  *
- * @property Lote[] $lotes
+ * @property Lote $lote
  * @property Reproduccione $reproduccione
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Nacimiento extends Model
 {
-    
+
     static $rules = [
-		'id_faseReproduccion' => 'required',
-		'Fecha_Nacimiento' => 'required',
-		'Peso_Promedio' => 'required',
-		'Cantidad_Porcinos_Total' => 'required',
-		'Cantidad_Porcinos_Criales' => 'required',
-		'Cantidad_Porcinos_Reproductores' => 'required',
-		'Cantidad_Porcinos_Muertos' => 'required',
+        'id_faseReproduccion' => 'required',
+        'Fecha_Nacimiento' => 'required',
+        'Peso_Promedio' => 'required',
+        'Cantidad_Porcinos_Total' => 'required',
+        'Cantidad_Porcinos_Criales' => 'required',
+        'Cantidad_Porcinos_Reproductores' => 'required',
+        'Cantidad_Porcinos_Muertos' => 'required',
         'Cantidad_Porcinos_Vivos' => 'required',
+        'users_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -45,17 +47,17 @@ class Nacimiento extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_faseReproduccion','Fecha_Nacimiento','Peso_Promedio','Cantidad_Porcinos_Total','Cantidad_Porcinos_Criales','Cantidad_Porcinos_Reproductores','Cantidad_Porcinos_Muertos', 'Cantidad_Porcinos_Vivos'];
+    protected $fillable = ['id_faseReproduccion', 'Fecha_Nacimiento', 'Peso_Promedio', 'Cantidad_Porcinos_Total', 'Cantidad_Porcinos_Criales', 'Cantidad_Porcinos_Reproductores', 'Cantidad_Porcinos_Muertos', 'Cantidad_Porcinos_Vivos', 'id_lote', 'users_id'];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function lotes()
+    public function lote()
     {
-        return $this->hasMany('App\Models\Lote', 'id_Datos', 'id');
+        return $this->hasOne('App\Models\Lote', 'id', 'id_lote');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -63,6 +65,4 @@ class Nacimiento extends Model
     {
         return $this->hasOne('App\Models\Reproduccione', 'id', 'id_faseReproduccion');
     }
-    
-
 }

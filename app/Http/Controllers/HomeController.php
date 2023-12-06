@@ -31,7 +31,9 @@ class HomeController extends Controller
         $alimentacion = Alimentacion::whereMonth('created_at', now()->month)->sum('muertos');
         $suma = $datosNacimiento + $alimentacion;
         $alimento = Alimentacion::whereMonth('created_at', now()->month)->sum('consumo');
-
-        return view('home.index', compact('reproductores','suma', 'alimento'));//cambie la ruta q antes era home solamente y tambien cambien el nombre del archivo a index y esta dentro de la carpeta home
+        $datos = [
+            $reproductores, $alimento, $suma
+        ];
+        return view('home.index', compact('reproductores', 'suma', 'alimento')); //cambie puta q antes era home solamente y tambien cambien el nombre del archivo a index y esta dentro de la carpeta home
     }
 }

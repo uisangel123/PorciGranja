@@ -7,6 +7,7 @@ use App\Models\Reproductore;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ReproduccioneController
@@ -21,10 +22,11 @@ class ReproduccioneController extends Controller
      */
     public function index()
     {
-        $reproducciones = Reproduccione::paginate();
+        $user = Auth::user()->id;
+        $reproducciones = Reproduccione::where('users_id', $user)->get();
 
         return view('reproduccione.index', compact('reproducciones'))
-            ->with('i', (request()->input('page', 1) - 1) * $reproducciones->perPage());
+            ->with('i');
     }
 
     public function pdf()
@@ -51,11 +53,12 @@ class ReproduccioneController extends Controller
             ->whereNotIn('id', $macho) //todos los machos cruzados en repros sin terminar, se comparan con todos los reproductores y si coinciden su id, no seran filtrados
             ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima)) //Fecha_nacimiento es un valor de cada repro q si no cumple para poder cruzar no sera filtrado
             ->get(); //obtenemos todos los machos q finalmente cumplieron las condiciones pasadas
-        // $hembrasDisponibles = Reproductore::where('Genero', 'Hembra') //mismo proceso para las hembras q lo de machos
-        //     ->whereNotIn('id', $hembra)
-        //     ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))
-        //     ->get();
-        $hembrasDisponibles = collect([]);
+        $hembrasDisponibles = Reproductore::where('Genero', 'Hembra') //mismo proceso para las hembras q lo de machos
+            ->whereNotIn('id', $hembra)
+            ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))
+            ->get();
+        $machosDisponibles = collect([]);
+        // $hembrasDisponibles = collect([]);
 
         return view('reproduccione.create', compact('reproduccione', 'machosDisponibles', 'hembrasDisponibles')); //los datos los mandamos por el compact
     }
@@ -68,9 +71,10 @@ class ReproduccioneController extends Controller
      */
     public function store(Request $request)
     {
+        $request["users_id"] = Auth::user()->id;
         request()->validate(Reproduccione::$rules);
-
-        $reproduccione = Reproduccione::create($request->all());
+        $datos = $request->all();
+        $reproduccione = Reproduccione::create($datos);
 
         return redirect()->route('reproducciones.index')
             ->with('success', 'Reproduccion Creada Exitosamente.');
@@ -98,8 +102,21 @@ class ReproduccioneController extends Controller
     public function edit($id)
     {
         $reproduccione = Reproduccione::find($id);
+        $edadminima = 2; //dato para determinar la edad minima para los porcinos reproductores
+        $reproducciones = Reproduccione::whereNull('Fecha_Final')->get(); //todas las reproducciones que tengan la fecha final en null(son procesos sin acabar)
+        $macho = $reproducciones->pluck('id_Porcino_Macho'); //esas repros q no han terminado, obtenemos los porcinos macho cruzado
+        $hembra = $reproducciones->pluck('id_Porcino_Hembra'); //esas repros q no han terminado, obtenemos las porcinos hembra cruzado
+        $machosDisponibles = Reproductore::where('Genero', 'Macho') //llamamos todos los porcinos reproductores por genero macho
+            ->whereNotIn('id', $macho) //todos los machos cruzados en repros sin terminar, se comparan con todos los reproductores y si coinciden su id, no seran filtrados
+            ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima)) //Fecha_nacimiento es un valor de cada repro q si no cumple para poder cruzar no sera filtrado
+            ->get(); //obtenemos todos los machos q finalmente cumplieron las condiciones pasadas
+            $hembrasDisponibles = Reproductore::where('Genero', 'Hembra') //mismo proceso para las hembras q lo de machos
+            ->whereNotIn('id', $hembra)
+            ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))
+            ->get();
+        // dd($reproduccione);
 
-        return view('reproduccione.edit', compact('reproduccione'));
+        return view('reproduccione.edit', compact('reproduccione', 'machosDisponibles', 'hembrasDisponibles'));
     }
 
     /**
@@ -111,7 +128,9 @@ class ReproduccioneController extends Controller
      */
     public function update(Request $request, Reproduccione $reproduccione)
     {
+        $request["users_id"] = Auth::user()->id;
         request()->validate(Reproduccione::$rules);
+        $datos = $request->all();
 
         $reproduccione->update($request->all());
 
@@ -136,12 +155,12 @@ class ReproduccioneController extends Controller
         $edadminima = 2; //dato para determinar la edad minima para los porcinos reproductores
         $reproducciones = Reproduccione::whereNull('Fecha_Final')->get(); //todas las reproducciones que tengan la fecha final en null(son procesos sin acabar)
         $seleccionado = $request->input('macho'); //2
-        $hembra = $reproducciones->pluck('id_Porcino_Hembra'); //esas repros q no han terminado, obtenemos las porcinos hembra cruzado
-        $hembrasDisponibles = Reproductore::where('Genero', 'Hembra') //mismo proceso para las hembras q lo de machos
+        $hembra = $reproducciones->pluck('id_Porcino_Macho'); //esas repros q no han terminado, obtenemos las porcinos hembra cruzado
+        $hembrasDisponibles = Reproductore::where('Genero', 'Macho') //mismo proceso para las hembras q lo de machos
             ->whereNotIn('id', $hembra)
             ->whereDate('Fecha_nacimiento', '<=', Carbon::now()->subDays($edadminima))
             ->get();
-        $hola = $hembrasDisponibles->where('Porcino_Macho','!=', $seleccionado);
+        $hola = $hembrasDisponibles->where('Porcino_Hembra', '!=', $seleccionado);
         $hola2 = collect($hola)->values();
         return response()->json([
             "hola" => $hola2,

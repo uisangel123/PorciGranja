@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     {{ Form::label('etapa_alimento_id') }}
-                    {{ Form::text('etapa_alimento_id', $alimento->etapa_alimento_id, ['class' => 'form-control' . ($errors->has('etapa_alimento_id') ? ' is-invalid' : ''), 'placeholder' => 'Etapa Alimento Id']) }}
+                    {{ Form::select('etapa_alimento_id',$etapas->pluck('Nombre', 'id'), $alimento->etapa_alimento_id, ['class' => 'form-control' . ($errors->has('etapa_alimento_id') ? ' is-invalid' : ''), 'placeholder' => 'Etapa Alimento Id']) }}
                     {!! $errors->first('etapa_alimento_id', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>

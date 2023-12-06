@@ -25,6 +25,7 @@ class User extends Authenticatable
         'name' => 'required',
         'cedula' => 'required',
         'email' => 'required',
+        // 'rol' => 'required',
         // 'password' => 'required',
         'telefono' => 'required',
     ];

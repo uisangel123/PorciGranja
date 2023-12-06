@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('corrales', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('granjas_id');
-            $table->foreign('granjas_id')->references('id')->on('granjas')->onDelete('cascade');
             $table->string('disponibilidad');
             $table->timestamps();
         });

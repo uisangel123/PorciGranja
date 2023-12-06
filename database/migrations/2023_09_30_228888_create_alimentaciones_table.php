@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_lote');
             $table->foreign('id_lote')->references('id')->on('lotes')->onDelete('cascade');
             $table->decimal('promedio_diario', 5, 2)->nullable();
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

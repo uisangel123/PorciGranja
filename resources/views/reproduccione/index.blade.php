@@ -73,10 +73,12 @@
                                                         method="POST">
                                                         <a class="btn btn-sm btn-primary "
                                                             href="{{ route('reproducciones.show', $reproduccione->id) }}"><i
-                                                                class="fa fa-fw fa-eye"></i>Detalles</a>
-                                                        <a class="btn btn-sm btn-success"
-                                                            href="{{ route('reproducciones.edit', $reproduccione->id) }}"><i
-                                                                class="fa fa-fw fa-edit"></i>Editar</a>
+                                                                class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                                @if ($reproduccione->Estado != 'Finalizado')
+                                                                <a class="btn btn-sm btn-success"
+                                                                href="{{ route('reproducciones.edit', $reproduccione->id) }}"><i
+                                                                    class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                                @endif
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm"><i
@@ -90,7 +92,6 @@
                             </div>
                         </div>
                     </div>
-                    {!! $reproducciones->links() !!}
                 </div>
             </div>
         </div>

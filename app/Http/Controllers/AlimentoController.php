@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alimento;
+use App\Models\Etapa;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -45,8 +46,9 @@ class AlimentoController extends Controller
      */
     public function create()
     {
+        $etapas = Etapa::all();
         $alimento = new Alimento();
-        return view('alimento.create', compact('alimento'));
+        return view('alimento.create', compact('alimento', 'etapas'));
     }
 
     /**
@@ -87,8 +89,9 @@ class AlimentoController extends Controller
     public function edit($id)
     {
         $alimento = Alimento::find($id);
+        $etapas = Etapa::all();
 
-        return view('alimento.edit', compact('alimento'));
+        return view('alimento.edit', compact('alimento', 'etapas'));
     }
 
     /**

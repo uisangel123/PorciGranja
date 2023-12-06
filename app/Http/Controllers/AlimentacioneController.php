@@ -7,6 +7,7 @@ use App\Models\Alimentacione;
 use App\Models\EtapaLote;
 use App\Models\Lote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class AlimentacioneController
@@ -21,10 +22,11 @@ class AlimentacioneController extends Controller
      */
     public function index()
     {
-        $alimentaciones = Alimentacione::paginate();
+        $user = Auth::user()->id;
+        $alimentaciones = Alimentacione::where('users_id', $user)->get();
 
         return view('alimentacione.index', compact('alimentaciones'))
-            ->with('i', (request()->input('page', 1) - 1) * $alimentaciones->perPage());
+            ->with('i');
     }
 
     /**
@@ -34,11 +36,12 @@ class AlimentacioneController extends Controller
      */
     public function create()
     {
+        $user = Auth::user()->id;
         $alimentacione = new Alimentacione();
         $alimentacion = new Alimentacion();
         // $lote = new Lote();
         $etapaLote = new EtapaLote();
-        $etapa = EtapaLote::where('Estado', 'En curso')->whereNull('id_alimentacion')->pluck('id_lote');
+        $etapa = EtapaLote::where('Estado', 'En curso')->whereNull('id_alimentacion')->where('users_id', $user)->pluck('id_lote');
         $lote = Lote::whereIn('id', $etapa)->latest();
 
         return view('alimentacione.create', compact('alimentacione', 'alimentacion', 'lote', 'etapa'));
@@ -52,6 +55,7 @@ class AlimentacioneController extends Controller
      */
     public function store(Request $request)
     {
+        $request["users_id"] = Auth::user()->id;
         request()->validate(Alimentacione::$rules);
         $dato = $request->all();
         $alimentacione = Alimentacione::create($dato);
@@ -129,6 +133,7 @@ class AlimentacioneController extends Controller
             $etapaLote->Estado = 'Finalizado';
             $etapaLote->save();
         }
+        $request["users_id"] = Auth::user()->id;
         request()->validate(Alimentacione::$rules);
         $dato = $request->all();
         if ($alimentacione->update($dato) || $dato != null) {

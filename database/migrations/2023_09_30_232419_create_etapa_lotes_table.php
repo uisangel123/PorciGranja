@@ -31,6 +31,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('id_alimentacion')->nullable();
             $table->foreign('id_alimentacion')->references('id')->on('alimentaciones')->onDelete('cascade');
             $table->string('Estado')->default('En Curso');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

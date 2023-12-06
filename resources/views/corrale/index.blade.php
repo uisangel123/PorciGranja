@@ -44,7 +44,6 @@
                                         <th>No</th>
                                         
 										<th>Nombre</th>
-										<th>Granjas Id</th>
 										<th>Disponibilidad</th>
 
                                         <th>Botones</th>
@@ -56,7 +55,6 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $corrale->name }}</td>
-											<td>{{ $corrale->granjas_id }}</td>
 											<td>{{ $corrale->disponibilidad }}</td>
 
                                             <td class="botones">

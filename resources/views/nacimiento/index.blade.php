@@ -39,7 +39,7 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table datatable">
+                                <table class="table table-striped table-hover datatable">
                                     <thead class="thead">
                                         <tr>
                                             <th>No</th>
@@ -53,7 +53,7 @@
                                             <th>Muertos</th>
                                             <th>Vivos</th>
 
-                                            <th></th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -92,7 +92,6 @@
                             </div>
                         </div>
                     </div>
-                    {!! $nacimientos->links() !!}
                 </div>
             </div>
         </div>

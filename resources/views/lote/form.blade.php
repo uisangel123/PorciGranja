@@ -21,23 +21,6 @@
                     {!! $errors->first('id_corral', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="form-group">
-                    {{ Form::label('id_Datos', 'Selecciones una Piara') }}
-                    <select name="id_Datos" id="id_Datos"
-                        class=" form-control{{ $errors->has('id_Datos') ? ' is-invalid' : '' }} select-dinamico">
-                        <option value="">Seleccione una Piara</option>
-                        @foreach ($datos as $dato)
-                            <option value="{{ $dato['id'] }}">{{ $dato['id'] }}</option>
-                        @endforeach
-                    </select>
-                    {!! $errors->first('id_Datos', '<div class="invalid-feedback">:message</div>') !!}
-                </div>
-                <div class="form-group" id="dinamicoDatos"></div>
-            </div>
-            <div class="col-md-4" style="display: flex; justify-content: center; align-items: center">
-                <button class="btn btn-primary" id="agregarDatos" type="button">Agregar otra piara</button>
-            </div>
             <div class="form-group">
                 {{ Form::label('Cantidad_Porcinos') }}
                 {{ Form::text('Cantidad_Porcinos', $lote->Cantidad_Porcinos, ['class' => 'form-control' . ($errors->has('Cantidad_Porcinos') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad Porcinos', 'id' => 'cantidad']) }}

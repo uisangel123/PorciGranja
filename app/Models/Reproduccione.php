@@ -22,11 +22,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Reproduccione extends Model
 {
-    
+
     static $rules = [
-		'id_Porcino_Macho' => 'required',
-		'id_Porcino_Hembra' => 'required',
-		'Fecha_Inicio' => 'required',
+        'id_Porcino_Macho' => 'required',
+        'id_Porcino_Hembra' => 'required',
+        'Fecha_Inicio' => 'required',
+        'users_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -36,7 +37,7 @@ class Reproduccione extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_Porcino_Macho','id_Porcino_Hembra','Fecha_Inicio','Fecha_Final','Estado'];
+    protected $fillable = ['id_Porcino_Macho', 'id_Porcino_Hembra', 'Fecha_Inicio', 'Fecha_Final', 'Estado', 'users_id'];
 
 
     /**
@@ -46,8 +47,8 @@ class Reproduccione extends Model
     {
         return $this->hasMany('App\Models\Nacimiento', 'id_faseReproduccion', 'id');
     }
-    
-    
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -55,6 +56,4 @@ class Reproduccione extends Model
     {
         return $this->hasOne('App\Models\Reproductore', 'id', 'id_Porcino_Macho');
     }
-    
-
 }

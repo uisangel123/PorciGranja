@@ -46,7 +46,7 @@
 
                                             <th>Id Lote</th>
 
-                                            <th></th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -78,7 +78,6 @@
                             </div>
                         </div>
                     </div>
-                    {!! $alimentaciones->links() !!}
                 </div>
             </div>
         </div>

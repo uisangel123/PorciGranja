@@ -9,6 +9,7 @@ use App\Models\Nacimiento;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class LoteController
@@ -27,10 +28,11 @@ class LoteController extends Controller
     }
     public function index()
     {
-        $lotes = Lote::paginate();
+        $user = Auth::user()->id;
+        $lotes = Lote::where('users_id', $user)->get();
 
         return view('lote.index', compact('lotes'))
-            ->with('i', (request()->input('page', 1) - 1) * $lotes->perPage());
+            ->with('i');
     }
 
     /**
@@ -64,9 +66,10 @@ class LoteController extends Controller
      */
     public function store(Request $request)
     {
+        $request["users_id"] = Auth::user()->id;
         request()->validate(Lote::$rules);
-
-        $lote = Lote::create($request->all());
+        $datos = $request->all();
+        $lote = Lote::create($datos);
 
         return redirect()->route('lotes.index')
             ->with('success', 'Lote Creado Exitosamente.');
@@ -109,7 +112,9 @@ class LoteController extends Controller
      */
     public function update(Request $request, Lote $lote)
     {
+        $request["users_id"] = Auth::user()->id;
         request()->validate(Lote::$rules);
+        $datos = $request->all();
 
         $lote->update($request->all());
 
