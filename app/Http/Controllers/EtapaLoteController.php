@@ -8,6 +8,8 @@ use App\Models\Lote;
 use App\Models\Alimento;
 use App\Models\Etapa;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 /**
  * Class EtapaLoteController
@@ -44,6 +46,14 @@ class EtapaLoteController extends Controller
         return view('etapa-lote.create', compact('etapaLote','lotes','corrales','etapas','alimentos'));
     }
 
+
+    public function pdf()
+    {
+        $etapaLote = EtapaLote::all();
+        $fechaActual = Carbon::now()->format('d-m-Y H:i:s');
+        $pdf = PDF::loadView('etapa-lote.pdf', ['etapaLotes' => $etapaLote]);
+        return $pdf->download('Reporte Etapa Lote ' . $fechaActual . '.pdf');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -57,7 +67,7 @@ class EtapaLoteController extends Controller
         $etapaLote = EtapaLote::create($request->all());
 
         return redirect()->route('etapa-lotes.index')
-            ->with('success', 'EtapaLote created successfully.');
+            ->with('success', 'EtapaLote Creada Exitosamente.');
     }
 
     /**
@@ -104,7 +114,7 @@ class EtapaLoteController extends Controller
         $etapaLote->update($request->all());
 
         return redirect()->route('etapa-lotes.index')
-            ->with('success', 'EtapaLote updated successfully');
+            ->with('success', 'EtapaLote Actualizado Correctamente');
     }
 
     /**
@@ -117,6 +127,6 @@ class EtapaLoteController extends Controller
         $etapaLote = EtapaLote::find($id)->delete();
 
         return redirect()->route('etapa-lotes.index')
-            ->with('success', 'EtapaLote deleted successfully');
+            ->with('success', 'EtapaLote Eliminado Correctamente');
     }
 }

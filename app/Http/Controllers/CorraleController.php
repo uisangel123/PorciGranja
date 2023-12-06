@@ -55,7 +55,7 @@ class CorraleController extends Controller
         $corrale = Corrale::create($request->all());
 
         return redirect()->route('corrales.index')
-            ->with('success', 'Corrale created successfully.');
+            ->with('success', 'Corrale Creado Exitosamente.');
     }
 
     /**
@@ -100,7 +100,7 @@ class CorraleController extends Controller
    
 
         return redirect()->route('corrales.index')
-            ->with('success', 'Corrale updated successfully');
+            ->with('success', 'Corral Actualizado Correctamente');
     }
 
     /**
@@ -113,6 +113,6 @@ class CorraleController extends Controller
         $corrale = Corrale::find($id)->delete();
 
         return redirect()->route('corrales.index')
-            ->with('success', 'Corrale deleted successfully');
+            ->with('success', 'Corral Eliminado Correctamente');
     }
 }

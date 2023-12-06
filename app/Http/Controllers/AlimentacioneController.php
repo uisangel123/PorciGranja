@@ -81,7 +81,7 @@ class AlimentacioneController extends Controller
             }
         }
         return redirect()->route('alimentacion.index')
-            ->with('success', 'Alimentacione created successfully.');
+            ->with('success', 'Alimentacion Creada Exitosamente.');
     }
 
     /**
@@ -172,7 +172,7 @@ class AlimentacioneController extends Controller
 
 
             return redirect()->route('alimentacion.index')
-                ->with('success', 'Alimentacione updated successfully');
+                ->with('success', 'Alimentacion Actualizada Correctamente');
         } else {
             return redirect()->route('alimentacion.index')
                 ->with('success', 'Error al editar');
@@ -189,6 +189,6 @@ class AlimentacioneController extends Controller
         $alimentacione = Alimentacione::find($id)->delete();
 
         return redirect()->route('alimentacion.index')
-            ->with('success', 'Alimentacione deleted successfully');
+            ->with('success', 'Alimentacion Eliminada Correctamente');
     }
 }

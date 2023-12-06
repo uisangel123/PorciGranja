@@ -39,6 +39,12 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home.index'); //le agregue en el name el .index para q funcione la ruta de volver al inicio
 
+Route::get('lote/pdf', [LoteController::class, 'pdf'])->name('lote.pdf');
+Route::get('Reproduccione/pdf', [ReproduccioneController::class, 'pdf'])->name('Reproduccione.pdf');
+Route::get('alimento/pdf', [AlimentoController::class, 'pdf'])->name('alimento.pdf');
+Route::get('etapa-lote/pdf', [EtapaLoteController::class, 'pdf'])->name('etapa-lote.pdf');
+
+
 Route::resource('reproductores', ReproductoreController::class)->middleware('auth');
 Route::resource('granjas', GranjaController::class);
 Route::resource('corrales', CorraleController::class);

@@ -52,7 +52,7 @@ class VacunacioneController extends Controller
         $vacunacione = Vacunacione::create($request->all());
 
         return redirect()->route('vacunaciones.index')
-            ->with('success', 'Vacunacione created successfully.');
+            ->with('success', 'Vacunacion Creada Exitosamente.');
     }
 
     /**
@@ -95,7 +95,7 @@ class VacunacioneController extends Controller
         $vacunacione->update($request->all());
 
         return redirect()->route('vacunaciones.index')
-            ->with('success', 'Vacunacione updated successfully');
+            ->with('success', 'Vacunacione Actualizada Correctamente');
     }
 
     /**
@@ -108,6 +108,6 @@ class VacunacioneController extends Controller
         $vacunacione = Vacunacione::find($id)->delete();
 
         return redirect()->route('vacunaciones.index')
-            ->with('success', 'Vacunacione deleted successfully');
+            ->with('success', 'Vacunacione Eliminada Correctamente');
     }
 }

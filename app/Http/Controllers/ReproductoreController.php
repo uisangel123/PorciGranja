@@ -51,7 +51,7 @@ class ReproductoreController extends Controller
 
 
         return redirect()->route('reproductores.index')
-            ->with('success', 'Reproductore created successfully.');
+            ->with('success', 'Reproductor Creado Exitosamente.');
     }
 
     /**
@@ -95,7 +95,7 @@ class ReproductoreController extends Controller
         $reproductore->update($request->all());
 
         return redirect()->route('reproductores.index')
-            ->with('success', 'Reproductore updated successfully');
+            ->with('success', 'Reproductor Actualizado Correctamente');
     }
 
     /**
@@ -108,6 +108,6 @@ class ReproductoreController extends Controller
         $reproductore = Reproductore::find($id)->delete();
 
         return redirect()->route('reproductores.index')
-            ->with('success', 'Reproductore deleted successfully');
+            ->with('success', 'Reproductore Eliminado Correctamente');
     }
 }

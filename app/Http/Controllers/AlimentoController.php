@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Alimento;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 /**
  * Class AlimentoController
@@ -26,6 +28,14 @@ class AlimentoController extends Controller
 
         return view('alimento.index', compact('alimentos'))
             ->with('i', (request()->input('page', 1) - 1) * $alimentos->perPage());
+    }
+
+    public function pdf()
+    {
+        $alimentos = Alimento::all();
+        $fechaActual = Carbon::now()->format('d-m-Y H:i:s');
+        $pdf = PDF::loadView('alimento.pdf', ['alimentos' => $alimentos]);
+        return $pdf->download('Reporte Alimentos ' . $fechaActual . '.pdf');
     }
 
     /**
@@ -52,7 +62,7 @@ class AlimentoController extends Controller
         $alimento = Alimento::create($request->all());
 
         return redirect()->route('alimentos.index')
-            ->with('success', 'Alimento created successfully.');
+            ->with('success', 'Alimento Creado Exitosamente.');
     }
 
     /**
@@ -95,7 +105,7 @@ class AlimentoController extends Controller
         $alimento->update($request->all());
 
         return redirect()->route('alimentos.index')
-            ->with('success', 'Alimento updated successfully');
+            ->with('success', 'Alimento Actualizado Correctamente');
     }
 
     /**
@@ -108,6 +118,6 @@ class AlimentoController extends Controller
         $alimento = Alimento::find($id)->delete();
 
         return redirect()->route('alimentos.index')
-            ->with('success', 'Alimento deleted successfully');
+            ->with('success', 'Alimento Eliminado Correctamente');
     }
 }

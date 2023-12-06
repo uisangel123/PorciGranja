@@ -6,6 +6,7 @@ use App\Models\Reproduccione;
 use App\Models\Reproductore;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 /**
  * Class ReproduccioneController
@@ -24,6 +25,14 @@ class ReproduccioneController extends Controller
 
         return view('reproduccione.index', compact('reproducciones'))
             ->with('i', (request()->input('page', 1) - 1) * $reproducciones->perPage());
+    }
+
+    public function pdf()
+    {
+        $reproducciones = Reproduccione::all();
+        $fechaActual = Carbon::now()->format('d-m-Y H:i:s');
+        $pdf = PDF::loadView('reproduccione.pdf', ['reproducciones' => $reproducciones]);
+        return $pdf->download('Reporte Reproducciones ' . $fechaActual . '.pdf');
     }
 
     /**
@@ -64,7 +73,7 @@ class ReproduccioneController extends Controller
         $reproduccione = Reproduccione::create($request->all());
 
         return redirect()->route('reproducciones.index')
-            ->with('success', 'Reproduccione created successfully.');
+            ->with('success', 'Reproduccion Creada Exitosamente.');
     }
 
     /**
@@ -107,7 +116,7 @@ class ReproduccioneController extends Controller
         $reproduccione->update($request->all());
 
         return redirect()->route('reproducciones.index')
-            ->with('success', 'Reproduccione updated successfully');
+            ->with('success', 'Reproduccione Actualizada Correctamente');
     }
 
     /**
@@ -120,7 +129,7 @@ class ReproduccioneController extends Controller
         $reproduccione = Reproduccione::find($id)->delete();
 
         return redirect()->route('reproducciones.index')
-            ->with('success', 'Reproduccione deleted successfully');
+            ->with('success', 'Reproduccione Eliminada Correctamente');
     }
     public function buscarDisponibles(Request $request)
     {

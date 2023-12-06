@@ -52,7 +52,7 @@ class EtapaController extends Controller
         $etapa = Etapa::create($request->all());
 
         return redirect()->route('etapas.index')
-            ->with('success', 'Etapa created successfully.');
+            ->with('success', 'Etapa Creada Exitosamente.');
     }
 
     /**
@@ -95,7 +95,7 @@ class EtapaController extends Controller
         $etapa->update($request->all());
 
         return redirect()->route('etapas.index')
-            ->with('success', 'Etapa updated successfully');
+            ->with('success', 'Etapa Actualizada Correctamente');
     }
 
     /**
@@ -108,6 +108,6 @@ class EtapaController extends Controller
         $etapa = Etapa::find($id)->delete();
 
         return redirect()->route('etapas.index')
-            ->with('success', 'Etapa deleted successfully');
+            ->with('success', 'Etapa Eliminada Correctamente');
     }
 }

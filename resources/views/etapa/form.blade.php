@@ -18,6 +18,6 @@
         </div>
     </div>
     <div class="box-footer mt20">
-        <button style="margin-top: 10px" type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        <button style="margin-top: 10px" type="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>

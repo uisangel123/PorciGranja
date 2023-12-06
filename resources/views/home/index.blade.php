@@ -47,11 +47,10 @@
                                     </div> --}}
 
                                     <div class="card-body">
-<<<<<<< Updated upstream
+
                                         <h5 class="card-title">Reproductores <span>| Este Mes</span></h5>
-=======
-                                        <h5 class="card-title" style="color:#895525 !important;">Ventas Porcinos<span>| Semana</span></h5>
->>>>>>> Stashed changes
+
+
 
                                         <div class="d-flex align-items-center">
                                             <div
@@ -59,11 +58,9 @@
                                                 <i class="bi bi-cart"></i>
                                             </div>
                                             <div class="ps-3">
-<<<<<<< Updated upstream
-                                                <h6>{{$reproductores}}</h6>
-=======
-                                                <h6 style="color:#895525 !important;">145</h6>
->>>>>>> Stashed changes
+
+                                                <h6>{{0}}</h6>
+
                                                 <span class="text-success small pt-1 fw-bold">12%</span> <span
                                                     class="text-muted small pt-2 ps-1">Ganancias</span>
 
@@ -93,11 +90,10 @@
                                     </div> --}}
 
                                     <div class="card-body">
-<<<<<<< Updated upstream
+
                                         <h5 class="card-title">Muertos <span>| Este Mes</span></h5>
-=======
-                                        <h5 class="card-title" style="color:#895525 !important;">Alimento Porcinos<span>| Este Mes</span></h5>
->>>>>>> Stashed changes
+
+
 
                                         <div class="d-flex align-items-center">
                                             <div
@@ -105,11 +101,10 @@
                                                 <i class="fa-solid fa-skull-crossbones"></i>
                                             </div>
                                             <div class="ps-3">
-<<<<<<< Updated upstream
-                                                <h6>{{$suma}}</h6>
-=======
-                                                <h6 style="color:#895525 !important;">$550,000</h6>
->>>>>>> Stashed changes
+
+                                                <h6>{{0}}</h6>
+
+
                                                 <span class="text-success small pt-1 fw-bold">8%</span> <span
                                                     class="text-muted small pt-2 ps-1">Ganancias</span>
 
@@ -140,11 +135,10 @@
                                     </div> --}}
 
                                     <div class="card-body">
-<<<<<<< Updated upstream
+
                                         <h5 class="card-title">Alimento <span>| Este Mes</span></h5>
-=======
-                                        <h5 class="card-title" style="color:#895525 !important;">Veterinarios<span>| Este mes</span></h5>
->>>>>>> Stashed changes
+
+
 
                                         <div class="d-flex align-items-center">
                                             <div
@@ -152,15 +146,12 @@
                                                 <i class="fa-solid fa-apple-whole"></i>
                                             </div>
                                             <div class="ps-3">
-<<<<<<< Updated upstream
-                                                <h6>{{$alimento}}</h6>
+
+                                                <h6>{{0}}</h6>
                                                 <span class="text-danger small pt-1 fw-bold">KG</span> <span
                                                     class="text-muted small pt-2 ps-1">Consumo Total</span>
-=======
-                                                <h6 style="color:#895525 !important;">$250,000</h6>
-                                                <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                                    class="text-muted small pt-2 ps-1">Perdidas</span>
->>>>>>> Stashed changes
+
+
 
                                             </div>
                                         </div>

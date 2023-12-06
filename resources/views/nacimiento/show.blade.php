@@ -9,54 +9,70 @@
 
     @include('layouts.menu')
     <main id="main" class="main">
-        <section class="content container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="float-left">
-                                <span class="card-title">{{ __('Show') }} Nacimiento</span>
-                            </div>
-                            <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('nacimientos.index') }}"> {{ __('Back') }}</a>
-                            </div>
+        <ol class="breadcrumb" style="padding: 0 0 0 10px">
+            <li class="breadcrumb-item"><i class="fa-solid fa-house"></i></i> {{ strtoupper('inicio') }}</a></li>
+            <?php $segments = ''; ?>
+            @foreach (Request::segments() as $key => $segment)
+                @if ($segment == 'edit' || count(Request::segments()) - 1 == $key)
+                    @continue
+                @endif
+                <?php $segments .= '/' . $segment; ?>
+                <li class="breadcrumb-item">
+                    <a href="{{ $segments }}"> {{ strtoupper($segment) }}</a>
+                </li>
+            @endforeach
+        </ol>
+        <div class="card">
+            <div class="card-header">
+                <div class="float-left">
+                    <span class="card-title">Datos Nacimiento:</span>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Id Fasereproduccion:</label>
+                            <input type="text" readonly placeholder="{{ $nacimiento->id_faseReproduccion }}" class="form-control">
                         </div>
-
-                        <div class="card-body">
-
-                            <div class="form-group">
-                                <strong>Id Fasereproduccion:</strong>
-                                {{ $nacimiento->id_faseReproduccion }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Fecha Nacimiento:</strong>
-                                {{ $nacimiento->Fecha_Nacimiento }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Peso Promedio:</strong>
-                                {{ $nacimiento->Peso_Promedio }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Cantidad Porcinos Total:</strong>
-                                {{ $nacimiento->Cantidad_Porcinos_Total }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Cantidad Porcinos Criales:</strong>
-                                {{ $nacimiento->Cantidad_Porcinos_Criales }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Cantidad Porcinos Reproductores:</strong>
-                                {{ $nacimiento->Cantidad_Porcinos_Reproductores }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Cantidad Porcinos Muertos:</strong>
-                                {{ $nacimiento->Cantidad_Porcinos_Muertos }}
-                            </div>
-
+                        <div class="form-group">
+                            <label>Fecha Nacimiento:</label>
+                            <input type="text" readonly placeholder="{{ $nacimiento->Fecha_Nacimiento }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Peso Promedio:</label>
+                            <input type="text" readonly placeholder="{{ $nacimiento->Peso_Promedio }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Cantidad Porcinos Total:</label>
+                            <input type="text" readonly placeholder="{{ $nacimiento->Cantidad_Porcinos_Total }}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Cantidad Porcinos Criales:</label>
+                            <input type="text" readonly placeholder="{{ $nacimiento->Cantidad_Porcinos_Criales }}"
+                                class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Cantidad Porcinos Reproductores:</label>
+                            <input type="text" readonly placeholder="{{ $nacimiento->Cantidad_Porcinos_Reproductores }}"
+                                class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Cantidad Porcinos Muertos:</label>
+                            <input type="text" readonly placeholder="{{ $nacimiento->Cantidad_Porcinos_Muertos }}"
+                                class="form-control">
                         </div>
                     </div>
                 </div>
+                <div class="float-right">
+                    <a style="margin-top: 10px" class="btn btn-primary" href="{{ route('corrales.index') }}">Regresar</a>
+                </div>
             </div>
-        </section>
+        </div>
     </main>
 @endsection
+
+

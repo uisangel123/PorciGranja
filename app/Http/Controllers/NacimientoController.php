@@ -63,7 +63,7 @@ class NacimientoController extends Controller
 
 
         return redirect()->route('nacimientos.index')
-            ->with('success', 'Nacimiento created successfully.');
+            ->with('success', 'Nacimiento Creado Exitosamente.');
     }
 
     /**
@@ -107,7 +107,7 @@ class NacimientoController extends Controller
         $nacimiento->update($request->all());
 
         return redirect()->route('nacimientos.index')
-            ->with('success', 'Nacimiento updated successfully');
+            ->with('success', 'Nacimiento Actualizado Correctamente');
     }
 
     /**
@@ -120,7 +120,7 @@ class NacimientoController extends Controller
         $nacimiento = Nacimiento::find($id)->delete();
 
         return redirect()->route('nacimientos.index')
-            ->with('success', 'Nacimiento deleted successfully');
+            ->with('success', 'Nacimiento Eliminado Correctamente');
     }
 
 }

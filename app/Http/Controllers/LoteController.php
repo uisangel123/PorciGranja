@@ -7,6 +7,8 @@ use App\Models\EtapaLote;
 use App\Models\Lote;
 use App\Models\Nacimiento;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 /**
  * Class LoteController
@@ -36,6 +38,16 @@ class LoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function pdf()
+    {
+        $lotes = Lote::all();
+        $fechaActual = Carbon::now()->format('d-m-Y H:i:s');
+        $pdf = PDF::loadView('lote.pdf', ['lotes' => $lotes]);
+        return $pdf->download('Reporte Lotes ' . $fechaActual . '.pdf');
+    }
+
     public function create()
     {
         $lote = new Lote();
@@ -57,7 +69,7 @@ class LoteController extends Controller
         $lote = Lote::create($request->all());
 
         return redirect()->route('lotes.index')
-            ->with('success', 'Lote created successfully.');
+            ->with('success', 'Lote Creado Exitosamente.');
     }
 
     /**
@@ -102,7 +114,7 @@ class LoteController extends Controller
         $lote->update($request->all());
 
         return redirect()->route('lotes.index')
-            ->with('success', 'Lote updated successfully');
+            ->with('success', 'Lote Actualizado Correctamente');
     }
 
     /**
@@ -115,7 +127,7 @@ class LoteController extends Controller
         $lote = Lote::find($id)->delete();
 
         return redirect()->route('lotes.index')
-            ->with('success', 'Lote deleted successfully');
+            ->with('success', 'Lote Eliminado Correctamente');
     }
     public function buscarDinamico(Request $request)
     {

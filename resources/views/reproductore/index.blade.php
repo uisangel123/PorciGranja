@@ -17,13 +17,13 @@
                             <div style="display: flex; justify-content: space-between; align-items: center;">
 
                                 <span id="card_title">
-                                    {{ __('Reproductore') }}
+                                    Reproductores
                                 </span>
 
                                 <div class="float-right">
                                     <a href="{{ route('reproductores.create') }}" class="btn btn-primary btn-sm float-right"
                                         data-placement="left">
-                                        {{ __('Create New') }}
+                                        Crear Nuevo
                                     </a>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table datatable">
                                     <thead class="thead">
                                         <tr>
                                             <th>No</th>
@@ -79,14 +79,14 @@
                                                         method="POST">
                                                         <a class="btn btn-sm btn-primary "
                                                             href="{{ route('reproductores.show', $reproductore->id) }}"><i
-                                                                class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                                class="fa fa-fw fa-eye"></i>Detalles</a>
                                                         <a class="btn btn-sm btn-success"
                                                             href="{{ route('reproductores.edit', $reproductore->id) }}"><i
-                                                                class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                                class="fa fa-fw fa-edit"></i>Editar</a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm"><i
-                                                                class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                                class="fa fa-fw fa-trash"></i>ELiminar</button>
                                                     </form>
                                                 </td>
                                             </tr>
