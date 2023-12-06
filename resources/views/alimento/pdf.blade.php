@@ -52,8 +52,7 @@
     <table>
         <thead>
             <tr style="text-align: center">
-                <th style="background-color:transparent"><img src="{{ public_path('assets/img/LOGO-3.png') }}"
-                        style="width: 155px; height: 120px;"></th>
+                <th style="background-color:transparent"><img src="{{public_path('assets/img/pr1.png')}}" style="width: 240px; height: 120px;"></th>
                 <th style="width: 400px;background-color:transparent">
                     <p style="font-size: 25px">REPORTE ALIMENTOS</p>
                 </th>

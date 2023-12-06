@@ -10,8 +10,8 @@
 
                         <div class="d-flex justify-content-center py-4">
                             <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                <img src="{{ asset('assets/img/LOGO-3.png') }}" style="width: 70px;height: 55px !important;">
-                                <span class="d-none d-lg-block">Porcigranja</span>
+                                <img src="{{ asset('assets/img/porcigranja11-removebg-preview.png') }}" style="width: 240px;height: 55px !important;">
+                               
                             </a>
                         </div><!-- End Logo -->
 

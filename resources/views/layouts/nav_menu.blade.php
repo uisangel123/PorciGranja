@@ -2,8 +2,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{ route('home.index') }}" class="logo d-flex align-items-center">{{-- modifique la ruta q devuelve al inicio por medio del logo --}}
-            <img src="{{ asset('assets/img/LOGO-3.png') }}" alt="" style="width: 70px;height: 55px !important;">
-            <span class="d-none d-lg-block">PorciGranja</span>
+            <img src="{{ asset('assets/img/porcigranja11-removebg-preview.png') }}" alt="" style="width: 241px;height: 55px !important;">
+            
         </a>
         {{-- ESCONDE EL MENU --}}
         <i class="bi bi-list toggle-sidebar-btn"></i>
